@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: todo
+  name: todo
+spec:
+  endpoints:
+  - interval: 10s
+    port: 8080-tcp
+    path: /metrics
+    scheme: http
+    targetPort: 8080
+  - interval: 10s
+    port: 8080-tcp
+    path: /metrics/application
+    scheme: http
+    targetPort: 8080
+  selector:
+    matchLabels:
+      app: todo
+
