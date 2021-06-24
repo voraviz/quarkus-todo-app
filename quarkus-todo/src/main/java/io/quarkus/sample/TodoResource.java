@@ -38,7 +38,6 @@ public class TodoResource {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "List All Tasks")
     @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     @Counted(
@@ -60,12 +59,11 @@ public class TodoResource {
 
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "getOne Tasks")
     @APIResponses(
         value = {
-            @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
-            @APIResponse(responseCode = "404", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+            @APIResponse(responseCode = "200", description = "Found", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
+            @APIResponse(responseCode = "404", description = "Not Found", content = @Content(mediaType = MediaType.APPLICATION_JSON))
         }
     )
     @Counted(
@@ -90,9 +88,8 @@ public class TodoResource {
     }
     @POST
     @Transactional
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Create Tasks")
-    @APIResponse(responseCode = "201", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+    @APIResponse(responseCode = "201",description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     @Counted(
         name = "countCreate", 
         description = "Counts how many times the create method has been invoked"
@@ -112,9 +109,8 @@ public class TodoResource {
     }
     @PATCH
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Update Task")
-    @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+    @APIResponse(responseCode = "200",description = "Updated", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     @Counted(
         name = "countUpdate", 
         description = "Counts how many times the update method has been invoked"
@@ -149,12 +145,11 @@ public class TodoResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Delete Tasks")
     @APIResponses(
         value = {
-            @APIResponse(responseCode = "204", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
-            @APIResponse(responseCode = "201", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+            @APIResponse(responseCode = "204", description ="deleted", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
+            @APIResponse(responseCode = "404", description ="Not found", content = @Content(mediaType = MediaType.APPLICATION_JSON))
         }
     )
     @Counted(
