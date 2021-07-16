@@ -8,12 +8,12 @@ spec:
   endpoints:
   - interval: 10s
     port: 8080-tcp
-    path: /metrics
+    path: /q/metrics
     scheme: http
     targetPort: 8080
   - interval: 10s
     port: 8080-tcp
-    path: /metrics/application
+    path: /q/metrics/application
     scheme: http
     targetPort: 8080
   selector:
