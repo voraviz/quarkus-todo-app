@@ -31,6 +31,9 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
   - Add->From Git
   - Git Repository: https://github.com/voraviz/quarkus-todo-app
   - Add label app=todo
+    
+    ![](images/app-topology.png)
+
 - Create Service Monitor
   - Command line
     
@@ -43,7 +46,7 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
   - Run following command to gererate workload to getAll method
     
     ```bash
-    siege -c 2 http://$(oc get route/todo -o jsonpath='{.spec.host}')
+    siege -c 4 -t 5m -d 1 http://$(oc get route/todo -o jsonpath='{.spec.host}')
     ```
 
   - Developer Console, Monitoring->Metrics->Custom Query and select checkbox Stacked
@@ -51,3 +54,5 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
     ```bash
     rate(application_io_quarkus_sample_TodoResource_countGetAll_total[1m])
     ```
+
+    ![](images/app-monitor.png)
