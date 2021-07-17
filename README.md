@@ -72,14 +72,16 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
     curl -v  http://$(oc get route/todo -o jsonpath='{.spec.host}')/api
     ```
   
+  - Create todo
+    
+    ```bash
+     curl -H "Content-type: application/json" \
+     --data "@sample.json" -v \
+     http://$(oc get route/todo -o jsonpath='{.spec.host}')/api
+    ```
+ 
   - Delete todo number 1
    
     ```bash
     curl -v -X DELETE http://$(oc get route/todo -o jsonpath='{.spec.host}')/api/1
-    ```
-  
-  - Create todo
-    
-    ```bash
-     curl -H "Content-type: application/json" --data "@sample.json" -v http://$(oc get route/todo -o jsonpath='{.spec.host}')/api
     ```
