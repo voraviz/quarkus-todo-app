@@ -46,7 +46,7 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
   - Run following command to gererate workload to getAll method
     
     ```bash
-    siege -c 4 -t 5m -d 1 http://$(oc get route/todo -o jsonpath='{.spec.host}')
+    siege -c 5 -t 5m -d 1 http://$(oc get route/todo -o jsonpath='{.spec.host}')/api
     ```
 
   - Developer Console, Monitoring->Metrics->Custom Query and select checkbox Stacked
