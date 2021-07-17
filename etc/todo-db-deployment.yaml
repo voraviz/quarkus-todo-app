@@ -1,16 +1,16 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/part-of: todo-app
     app.openshift.io/runtime: postgresql
+    app: todo-db
   name: todo-db
-  app: todo-db
 spec:
   replicas: 1
-  revisionHistoryLimit: 3
   selector:
-    name: todo-db
+    matchLabels:
+      app: todo-db
   strategy:
     activeDeadlineSeconds: 21600
     recreateParams:
@@ -21,7 +21,9 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        name: todo-db
+        app: todo-db
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       containers:
       - env:
@@ -42,6 +44,10 @@ spec:
               name: todo-db
         image: image-registry.openshift-image-registry.svc:5000/openshift/postgresql:latest
         imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1024Mi
         livenessProbe:
           exec:
             command:
@@ -65,9 +71,6 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-        resources:
-          limits:
-            memory: 512Mi
         securityContext:
           capabilities: {}
           privileged: false

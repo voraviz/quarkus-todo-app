@@ -11,7 +11,7 @@ spec:
     protocol: TCP
     targetPort: 5432
   selector:
-    name: todo-db
+    app: todo-db
   sessionAffinity: None
   type: ClusterIP
 status:
