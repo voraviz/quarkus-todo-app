@@ -15,4 +15,4 @@ metadata:
   name: todo
 spec:
   lookupPolicy:
-    local: false
+    local: true
