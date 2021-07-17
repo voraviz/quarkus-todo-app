@@ -31,6 +31,7 @@ spec:
       creationTimestamp: null
       labels:
         app: todo
+        maistra.io/expose-route: "true"
     spec:
       containers:
       - name: todo
