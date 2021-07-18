@@ -6,12 +6,12 @@ metadata:
   name: todo
 spec:
   endpoints:
-  - interval: 10s
+  - interval: 60s
     port: 8080-tcp
     path: /q/metrics
     scheme: http
     targetPort: 8080
-  - interval: 10s
+  - interval: 60s
     port: 8080-tcp
     path: /q/metrics/application
     scheme: http
