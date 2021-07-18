@@ -5,6 +5,7 @@
   - [Deploy on OpenShift](#deploy-on-openshift)
   - [User Workload Monitor](#user-workload-monitor)
   - [Test REST API](#test-rest-api)
+  - [Kustomize](#kustomize)
 
 ## Development Mode
 - Database container is configured automatically with Zero Config Setup (DevService). Check [application.properties](src/main/resources/application.properties) that there is no database URL, user and password specified in default profile.
@@ -33,26 +34,38 @@
   - Native container with [build_native_container.sh](build_native_container.sh)
   
 ## Deploy on OpenShift
-- Create PostgreSQL
-  - [Deploy](etc/deploy/todo-db.yaml) by YAML
-    
-    ```bash
-    oc apply -f etc/deploy/todo-db.yaml
-    ```
 
 - Deploy todo application
   
   - Developer Console
-    - Add->From Git
-    - Git Repository: https://github.com/voraviz/quarkus-todo-app
-    - Select *Route* and add label *app=todo*
+    - PostgreSQL
+      - Add->Database, Select PostgreSQL
+    
+        | Parameter                      | Value        | 
+        |--------------------------------|--------------|
+        | Database Service Name          | todo-db      | 
+        | PostgreSQL Connection Username | todo         | 
+        | PostgreSQL Connection Password | todoPassw0rd |  
+        | Volume Capacity | 1Gi |  
 
-  - [Build](etc/build/todo-build.yaml) and [deploy](etc/todo.yaml) by YAMLs
-  
-    ```bash
-    oc apply -f etc/todo-build.yaml
-    oc apply -f etc/todo.yaml
-    ```
+    - Todo App
+      - Add->From Git
+      - Git Repository: https://github.com/voraviz/quarkus-todo-app
+      - Select *Route* and add label *app=todo*
+
+  - CLI with YAML files
+    - [Build](etc/build/todo-build.yaml)
+      
+      ```bash
+      oc apply -f etc/build/todo-build.yaml
+      oc apply -f etc/deploy/todo.yaml
+      ```
+    - Deploy [PostgreSQL](etc/deploy/todo-db.yaml) and [Todo App](etc/deploy/todo.yaml)
+      
+      ```bash
+      oc apply -f etc/deploy/todo-db.yaml
+      oc apply -f etc/deploy/todo.yaml
+      ```
     
     ![](images/app-topology.png)
 
@@ -61,7 +74,7 @@
   - Create [Service Monitor](etc/deploy/service-monitor.yaml) 
     
     ```bash
-    oc apply -f etc/service-monitor.yaml
+    oc apply -f etc/deploy/service-monitor.yaml
     ```
 
   - Scale todo to 2 pods
@@ -105,3 +118,9 @@
     ```bash
     curl -v -X DELETE http://$(oc get route/todo -o jsonpath='{.spec.host}')/api/1
     ```
+## Kustomize
+- Sample Kustomize
+  
+  ```bash
+  oc create -k kustomize/overlays/dev
+  ```
