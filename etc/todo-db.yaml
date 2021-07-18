@@ -111,7 +111,6 @@ spec:
       - name: todo-db-data
         persistentVolumeClaim:
           claimName: todo-db
-  test: false
 ---
 apiVersion: v1
 kind: Service
