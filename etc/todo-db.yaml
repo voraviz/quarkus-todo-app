@@ -40,14 +40,9 @@ spec:
     matchLabels:
       app: todo-db
   strategy:
-    activeDeadlineSeconds: 21600
-    recreateParams:
-      timeoutSeconds: 600
-    resources: {}
     type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: todo-db
       annotations:
