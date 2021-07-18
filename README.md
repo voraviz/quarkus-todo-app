@@ -5,6 +5,7 @@
   - [Deploy on OpenShift](#deploy-on-openshift)
   - [User Workload Monitor](#user-workload-monitor)
   - [Test REST API](#test-rest-api)
+  - [GitOps with ArgoCD](#gitops-with-argocd)
   - [Kustomize](#kustomize)
 
 ## Development Mode
@@ -66,7 +67,7 @@
       oc apply -f etc/deploy/todo-db.yaml
       oc apply -f etc/deploy/todo.yaml
       ```
-    
+
     ![](images/app-topology.png)
 
 ## User Workload Monitor
@@ -118,9 +119,33 @@
     ```bash
     curl -v -X DELETE http://$(oc get route/todo -o jsonpath='{.spec.host}')/api/1
     ```
+## GitOps with ArgoCD
+- Create Application *todo-app-builder* and point to directory *etc/build*
+  - Application config
+
+    ![](images/todo-app-builder-config.png)
+
+  - Topology
+
+    ![](images/todo-app-builder.png)
+
+  - Builder log
+
+    ![](images/todo-app-builder-log.png)
+
+- Create Application *todo-app* and point to directory *etc/deploy*
+  - Application config
+
+    ![](images/todo-app-config.png)
+    
+  - Topology
+
+    ![](images/todo-app.png)
+
 ## Kustomize
 - Sample Kustomize
-  
+  *Ramark: Deployment image is set to external registry.*
+
   ```bash
   oc create -k kustomize/overlays/dev
   ```
