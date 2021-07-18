@@ -14,6 +14,32 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
     -e POSTGRES_PASSWORD=restcrud -e POSTGRES_DB=rest-crud \
     -p 5432:5432 postgres:13.1
 ``` -->
+## Development Mode with Zero Config Setup
+- Database container is configured automatically with Zero Config Setup (DevService). Check [application.properties](src/main/resources/application.properties) that there is no database URL, user and password specified in default profile.
+  
+  ```bash
+  mvn quarkus:dev
+  ```
+
+  Output
+
+  ```bash
+  ...
+  11:42:17 INFO  [or.te.DockerClientFactory] (build-37) Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+  11:42:17 INFO  [or.te.DockerClientFactory] (build-37) Checking the system...
+  11:42:17 INFO  [or.te.DockerClientFactory] (build-37) ✔︎ Docker server version should be at least 1.6.0
+  11:42:18 INFO  [or.te.DockerClientFactory] (build-37) ✔︎ Docker environment should have more than 2GB free disk space
+  11:42:18 INFO  [🐳.2]] (build-37) Creating container for image: postgres:13.2
+  11:42:18 INFO  [🐳.2]] (build-37) Starting container with ID: 0040a40f1bbe0f583455d047ba3abf6e0cd7d9718fec342f9bb0a3fdf46bc315
+  11:42:19 INFO  [🐳.2]] (build-37) Container postgres:13.2 is starting: 0040a40f1bbe0f583455d047ba3abf6e0cd7d9718fec342f9bb0a3fdf46bc315
+  11:42:22 INFO  [🐳.2]] (build-37) Container postgres:13.2 started in PT4.512469S
+  ...
+  ```
+  
+- Build container image
+  - JVM fast-jar container with [build_jvm_container.sh](build_jvm_container.sh)
+  - Native container with [build_native_container.sh](build_native_container.sh)
+  
 ## Deploy on OpenShift
 - Create PostgreSQL
   - [Deploy](etc/todo-db.yaml) by YAML
