@@ -34,10 +34,10 @@
   
 ## Deploy on OpenShift
 - Create PostgreSQL
-  - [Deploy](etc/todo-db.yaml) by YAML
+  - [Deploy](etc/deploy/todo-db.yaml) by YAML
     
     ```bash
-    oc apply -f etc/todo-db.yaml
+    oc apply -f etc/deploy/todo-db.yaml
     ```
 
 - Deploy todo application
@@ -47,7 +47,7 @@
     - Git Repository: https://github.com/voraviz/quarkus-todo-app
     - Select *Route* and add label *app=todo*
 
-  - [Build](etc/todo-build.yaml) and [deploy](etc/todo.yaml) by YAMLs
+  - [Build](etc/build/todo-build.yaml) and [deploy](etc/todo.yaml) by YAMLs
   
     ```bash
     oc apply -f etc/todo-build.yaml
@@ -58,7 +58,7 @@
 
 ## User Workload Monitor
 - Monitor application's metrics with service monitor
-  - Create [Service Monitor](etc/service-monitor.yaml) 
+  - Create [Service Monitor](etc/deploy/service-monitor.yaml) 
     
     ```bash
     oc apply -f etc/service-monitor.yaml
