@@ -1,3 +1,24 @@
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: todo
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion":"apps.openshift.io/v1","kind":"Deployment","name":"todo-db"}]'
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/voraviz/quarkus-todo-app
+  labels:
+    app: todo
+    app.kubernetes.io/component: todo
+    app.kubernetes.io/instance: todo
+    app.kubernetes.io/name: java
+    app.kubernetes.io/part-of: todo-app
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: openjdk-11-ubi8
+spec:
+  lookupPolicy:
+    local: true
+---
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
@@ -13,7 +34,7 @@ metadata:
     app.kubernetes.io/name: java
     app.kubernetes.io/part-of: todo-app
     app.openshift.io/runtime: java
-    app.openshift.io/runtime-version: openjdk-11-el7
+    app.openshift.io/runtime-version: openjdk-11-ubi8
 spec:
   failedBuildsHistoryLimit: 5
   nodeSelector: null
@@ -29,7 +50,7 @@ spec:
     sourceStrategy:
       from:
         kind: ImageStreamTag
-        name: java:openjdk-11-el7
+        name: java:openjdk-11-ubi8
         namespace: openshift
     type: Source
   output:
