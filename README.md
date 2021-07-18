@@ -1,20 +1,12 @@
 # TODO Application
 
 - [TODO Application](#todo-application)
+  - [Development Mode](#development-mode)
   - [Deploy on OpenShift](#deploy-on-openshift)
-<!-- ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cescoffier/quarkus-todo-app/Build) -->
+  - [User Workload Monitor](#user-workload-monitor)
+  - [Test REST API](#test-rest-api)
 
-<!-- ## Database -->
-
-<!-- Run:
-
-```bash
-docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
-    --name postgres-quarkus-rest-http-crud -e POSTGRES_USER=restcrud \
-    -e POSTGRES_PASSWORD=restcrud -e POSTGRES_DB=rest-crud \
-    -p 5432:5432 postgres:13.1
-``` -->
-## Development Mode with Zero Config Setup
+## Development Mode
 - Database container is configured automatically with Zero Config Setup (DevService). Check [application.properties](src/main/resources/application.properties) that there is no database URL, user and password specified in default profile.
   
   ```bash
@@ -64,6 +56,7 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
     
     ![](images/app-topology.png)
 
+## User Workload Monitor
 - Monitor application's metrics with service monitor
   - Create [Service Monitor](etc/service-monitor.yaml) 
     
@@ -91,6 +84,7 @@ docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
 
     ![](images/app-monitor.png)
 
+## Test REST API
 - Test API
   - Get all todo 
   
