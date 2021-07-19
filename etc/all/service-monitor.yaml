@@ -3,6 +3,7 @@ kind: ServiceMonitor
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/hook: Sync
   labels:
     app: todo
   name: todo
