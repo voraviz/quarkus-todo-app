@@ -9,6 +9,7 @@
   - [Kustomize](#kustomize)
 
 ## Development Mode
+- Navigate to directory [todo](todo) or [todo-reactive](todo-reactive)
 - Database container is configured automatically with Zero Config Setup (DevService). Check [application.properties](src/main/resources/application.properties) that there is no database URL, user and password specified in default profile.
   
   ```bash
@@ -31,8 +32,8 @@
   ```
   
 - Build container image
-  - JVM fast-jar container with [build_jvm_container.sh](build_jvm_container.sh)
-  - Native container with [build_native_container.sh](build_native_container.sh)
+  - JVM fast-jar container with [build_jvm_container.sh](todo/build_jvm_container.sh)
+  - Native container with [build_native_container.sh](todo/build_native_container.sh)
   
 ## Deploy on OpenShift
 
@@ -55,13 +56,13 @@
       - Select *Route* and add label *app=todo*
 
   - CLI with YAML files
-    - [Build](etc/build/todo-build.yaml)
+    - [Build](todo/etc/build/todo-build.yaml)
       
       ```bash
       oc apply -f etc/build/todo-build.yaml
       oc apply -f etc/deploy/todo.yaml
       ```
-    - Deploy [PostgreSQL](etc/deploy/todo-db.yaml) and [Todo App](etc/deploy/todo.yaml)
+    - Deploy [PostgreSQL](todo/etc/deploy/todo-db.yaml) and [Todo App](todo/etc/deploy/todo.yaml)
       
       ```bash
       oc apply -f etc/deploy/todo-db.yaml
@@ -72,7 +73,7 @@
 
 ## User Workload Monitor
 - Monitor application's metrics with service monitor
-  - Create [Service Monitor](etc/deploy/service-monitor.yaml) 
+  - Create [Service Monitor](todo/etc/deploy/service-monitor.yaml) 
     
     ```bash
     oc apply -f etc/deploy/service-monitor.yaml

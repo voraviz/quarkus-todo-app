@@ -1,0 +1,6 @@
+META-INF/panache-archive.marker
+io/quarkus/sample/TodoResourceTest$1.class
+io/quarkus/sample/TodoResourceTest.class
+io/quarkus/sample/TodoResourceIT$1.class
+io/quarkus/sample/DatabaseResource.class
+io/quarkus/sample/TodoResourceIT.class
