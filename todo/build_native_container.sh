@@ -2,6 +2,8 @@
 CONTAINER_NAME=todo
 TAG=native
 TYPE=native
+#TAG=native-distroless
+#TYPE=native-distroless
 # Use native container build
 START_BUILD_APP=$(date +%s)
 mvn clean package -Dquarkus.native.container-build=true \
