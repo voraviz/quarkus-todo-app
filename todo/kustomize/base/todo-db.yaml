@@ -45,6 +45,7 @@ spec:
     metadata:
       labels:
         app: todo-db
+        version: v1
       annotations:
         sidecar.istio.io/inject: "false"
     spec:
@@ -120,7 +121,7 @@ metadata:
     app: todo-db
 spec:
   ports:
-  - name: postgresql
+  - name: tcp
     port: 5432
     protocol: TCP
     targetPort: 5432

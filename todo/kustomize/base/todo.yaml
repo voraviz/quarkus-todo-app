@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: todo
     app.kubernetes.io/name: java
     app.kubernetes.io/part-of: todo-app
-    app.openshift.io/runtime: java
-    app.openshift.io/runtime-version: openjdk-11-ubi8
+    app.openshift.io/runtime: quarkus
+    app.openshift.io/runtime-version: 2.0.0.Final
   name: todo
 spec:
   progressDeadlineSeconds: 600
@@ -31,7 +31,12 @@ spec:
       creationTimestamp: null
       labels:
         app: todo
-        maistra.io/expose-route: "true"
+        version: v1
+        maistra.io/expose-route: 'true'
+      annotations:
+        sidecar.istio.io/inject: "false"
+        sidecar.istio.io/rewriteAppHTTPProbers: "false"
+        app.openshift.io/connects-to: '[{"apiVersion":"apps.openshift.io/v1","kind":"Deployment","name":"todo-db"}]'
     spec:
       containers:
       - name: todo
@@ -45,20 +50,23 @@ spec:
             cpu: "0.05"
             memory: 40Mi
           limits:
-            cpu: "0.2"
-            memory: 250Mi
+            cpu: "0.1"
+            memory: 200Mi
+        env:
+        - name: quarkus.http.access-log.enabled
+          value: "false"  
         readinessProbe:
           httpGet:
             path: /q/health/ready
             port: 8080
           initialDelaySeconds: 25
-          periodSeconds: 5   
+          periodSeconds: 60   
         livenessProbe:
           httpGet:
             path: /q/health/live
             port: 8080
           initialDelaySeconds: 10
-          periodSeconds: 5             
+          periodSeconds: 60             
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       tolerations:
