@@ -26,11 +26,15 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.jboss.logging.Logger;
+import org.eclipse.microprofile.opentracing.Traced;
 
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TodoResource {
+
+    private static final Logger LOG = Logger.getLogger(TodoResource.class);
 
     @OPTIONS
     public Response opt() {
@@ -54,6 +58,7 @@ public class TodoResource {
             description = "Concurrent connection to GetAll method"
             )
     public List<Todo> getAll() {
+        LOG.info("getAll");
         return Todo.listAll(Sort.by("order"));
     }
 
