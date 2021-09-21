@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 \
-    --name postgres-quarkus-rest-http-crud -e POSTGRES_USER=restcrud \
-    -e POSTGRES_PASSWORD=restcrud -e POSTGRES_DB=rest-crud \
+    --name todo-db -e POSTGRES_USER=todo \
+    -e POSTGRES_PASSWORD=todoPassw0rd -e POSTGRES_DB=todo \
     -p 5432:5432 postgres:13.1
