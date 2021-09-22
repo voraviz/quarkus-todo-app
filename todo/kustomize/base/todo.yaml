@@ -41,7 +41,7 @@ spec:
       containers:
       - name: todo
         image: quay.io/voravitl/todo:native
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -77,6 +77,10 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext: {}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        drop: ALL
+        readOnlyRootFilesystem: true
       terminationGracePeriodSeconds: 30
 
