@@ -121,31 +121,10 @@
     curl -v -X DELETE http://$(oc get route/todo -o jsonpath='{.spec.host}')/api/1
     ```
 ## GitOps with ArgoCD
-- Create Application *todo-app-builder* and point to directory *etc/build*
-  - Application config
-
-    ![](images/todo-app-builder-config.png)
-
-  - Topology
-
-    ![](images/todo-app-builder.png)
-
-  - Builder log
-
-    ![](images/todo-app-builder-log.png)
-
-- Create Application *todo-app* and point to directory *etc/deploy*
-  - Application config
-
-    ![](images/todo-app-config.png)
-    
-  - Topology
-
-    ![](images/todo-app.png)
+  WIP
 
 ## Kustomize
-- Sample Kustomize
-  *Ramark: Deployment image is set to external registry.*
+- Sample Kustomize for Dev environment
 
   ```bash
   oc create -k kustomize/overlays/dev
