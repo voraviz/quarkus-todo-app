@@ -122,6 +122,15 @@
   oc expose svc todo
   ```
 
+  or build by YAML
+
+  ```bash
+  oc create -f etc/todo-build.yaml
+  oc logs -f bc/todo
+  oc new-app --name=todo --image-stream=todo:latest --labels=app=todo
+  oc expose svc/todo
+  ```
+
 ### Kustomize
 
 - Deploy with Kustomize
