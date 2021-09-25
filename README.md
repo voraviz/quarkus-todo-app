@@ -2,15 +2,17 @@
 
 - [TODO Application](#todo-application)
   - [Development Mode](#development-mode)
-  - [Deploy on OpenShift](#deploy-on-openshift)
+  - [Build and Deploy with OpenShift](#build-and-deploy-with-openshift)
+    - [Build and Deploy](#build-and-deploy)
+      - [Dev Console](#dev-console)
+      - [CLI](#cli)
+    - [Kustomize](#kustomize)
   - [User Workload Monitor](#user-workload-monitor)
-  - [Test REST API](#test-rest-api)
   - [GitOps with ArgoCD](#gitops-with-argocd)
-  - [Kustomize](#kustomize)
 
 ## Development Mode
 - Navigate to directory [todo](todo) or [todo-reactive](todo-reactive)
-- Database container is configured automatically with Zero Config Setup (DevService). Check [application.properties](src/main/resources/application.properties) that there is no database URL, user and password specified in default profile.
+- Database container is configured automatically with Zero Config Setup (DevService). Check [application.properties](todo/src/main/resources/application.properties) that there is no database URL, user and password specified in default and ve profile.
   
   ```bash
   mvn quarkus:dev
@@ -30,53 +32,112 @@
   11:42:22 INFO  [🐳.2]] (build-37) Container postgres:13.2 started in PT4.512469S
   ...
   ```
+- Open URL http://localhost:8080 with your browser
+- Test RESTful API
+  - Create new todo item
+    
+    ```bash
+     curl -H "Content-type: application/json" \
+     --data "@sample.json" -v \
+      http://localhost:8080/api
+    ```
   
-- Build container image
+  - List all todo items
+
+    ```bash
+     curl -v localhost:8080/api
+    ```
+
+  - Delete todo number 1
+
+    ```bash
+    curl -v -X DELETE http://localhost:8080/api/1
+    ```
+
+<!-- - Build container image
   - JVM fast-jar container with [build_jvm_container.sh](todo/build_jvm_container.sh)
-  - Native container with [build_native_container.sh](todo/build_native_container.sh)
+  - Native container with [build_native_container.sh](todo/build_native_container.sh) -->
   
-## Deploy on OpenShift
+<!-- ## Build & Deploy on OpenShift
 
 - Deploy todo application
   
-  - Developer Console
-    - PostgreSQL
-      - Add->Database, Select PostgreSQL
-    
-        | Parameter                      | Value        | 
-        |--------------------------------|--------------|
-        | Database Service Name          | todo-db      | 
-        | PostgreSQL Connection Username | todo         | 
-        | PostgreSQL Connection Password | todoPassw0rd |  
-        | Volume Capacity | 1Gi |  
-
+ 
     - Todo App
-      - Add->From Git
-      - Git Repository: https://github.com/voraviz/quarkus-todo-app
-      - Select *Route* and add label *app=todo*
 
-  - CLI with YAML files
+      
+      - Select label and add lable app=todo -->
+  <!-- - CLI with YAML files
     - [Build](todo/etc/build/todo-build.yaml)
       
       ```bash
       oc apply -f etc/build/todo-build.yaml
       oc apply -f etc/deploy/todo.yaml
-      ```
-    - Deploy [PostgreSQL](todo/etc/deploy/todo-db.yaml) and [Todo App](todo/etc/deploy/todo.yaml)
-      
-      ```bash
-      oc apply -f etc/deploy/todo-db.yaml
-      oc apply -f etc/deploy/todo.yaml
-      ```
+      ``` -->
+## Build and Deploy with OpenShift
+### Build and Deploy
+#### Dev Console
+- Deploy PostgreSQL Database. Add->Database, Select PostgreSQL
+    
+        | Parameter                      | Value        | 
+        |--------------------------------|--------------|
+        | Database Service Name          | todo-db      | 
+        | PostgreSQL Connection Username | todo         | 
+        | PostgreSQL Connection Password | todoPassword |  
 
-    ![](images/app-topology.png)
+- Build and deploy todo app from Git
+  - Add->From Git
+  - Git Repository: https://github.com/voraviz/quarkus-todo-app and select *Show Advanced Git Option*       
+ 
+        
+        | Parameter                      | Value        | 
+        |--------------------------------|--------------|
+        | Context dir        | todo      | 
+        | Application Name | todo-app         | 
+        | Name| todo | 
+      
+      - Select Route option    
+      - Select Build Configuration to add environment variables
+ 
+        | Environment variables (build and runtime)  | Value        | 
+        |--------------------------------|--------------|
+        | QUARKUS_PACKAGE_TYPE       | uber-jar      | 
+#### CLI
+- PostgreSQL Database
+  
+  ```bash
+  oc create -f kustomize/base/todo-db.yaml
+  ```
+
+- Todo App
+  
+  ```bash
+  oc new-app --name todo \
+  ubi8-openjdk-11:1.3~https://github.com/voraviz/quarkus-todo-app \
+  --context-dir=todo --build-env=QUARKUS_PACKAGE_TYPE=uber-jar \
+  --labels=app=todo --allow-missing-images
+  oc logs -f buildconfig/todo
+  oc expose svc todo
+  ```
+
+### Kustomize
+
+- Deploy with Kustomize
+      
+  ```bash
+  oc create -k kustomize/overlays/dev
+  watch oc get pods
+  ```
+
+  ![](images/app-topology.png)
 
 ## User Workload Monitor
-- Monitor application's metrics with service monitor
-  - Create [Service Monitor](todo/etc/deploy/service-monitor.yaml) 
+- Enable User Workload Monitor
+- Create service monitor to monitor todo app
+  - Create [Service Monitor](todo/kustomize/base/service-monitor.yaml) 
     
     ```bash
-    oc apply -f etc/deploy/service-monitor.yaml
+    oc apply -f etc/deploy/service-monitor.yaml 
     ```
 
   - Scale todo to 2 pods
@@ -99,33 +160,8 @@
 
     ![](images/app-monitor.png)
 
-## Test REST API
-- Test API
-  - Get all todo 
-  
-    ```bash
-    curl -v  http://$(oc get route/todo -o jsonpath='{.spec.host}')/api
-    ```
-  
-  - Create todo
-    
-    ```bash
-     curl -H "Content-type: application/json" \
-     --data "@sample.json" -v \
-     http://$(oc get route/todo -o jsonpath='{.spec.host}')/api
-    ```
- 
-  - Delete todo number 1
-   
-    ```bash
-    curl -v -X DELETE http://$(oc get route/todo -o jsonpath='{.spec.host}')/api/1
+
     ```
 ## GitOps with ArgoCD
   WIP
 
-## Kustomize
-- Sample Kustomize for Dev environment
-
-  ```bash
-  oc create -k kustomize/overlays/dev
-  ```

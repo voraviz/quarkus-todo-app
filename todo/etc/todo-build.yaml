@@ -48,6 +48,9 @@ spec:
     type: Git
   strategy:
     sourceStrategy:
+      env:
+      - name: QUARKUS_PACKAGE_TYPE
+        value: uber-jar    
       from:
         kind: ImageStreamTag
         name: java:openjdk-11-ubi8

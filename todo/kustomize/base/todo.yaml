@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: todo
-        image: quay.io/voravitl/todo:v1
+        image: quay.io/voravitl/todo:native
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
