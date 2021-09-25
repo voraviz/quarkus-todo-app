@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/name: java
     app.kubernetes.io/part-of: todo-app
     app.openshift.io/runtime: quarkus
-    app.openshift.io/runtime-version: 2.0.0.Final
+    app.openshift.io/runtime-version: 2.2.3.Final
   name: todo
 spec:
   progressDeadlineSeconds: 600
@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: todo
-        image: quay.io/voravitl/todo:native
+        image: quay.io/voravitl/todo:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -59,14 +59,14 @@ spec:
           httpGet:
             path: /q/health/ready
             port: 8080
-          initialDelaySeconds: 25
-          periodSeconds: 60   
+          initialDelaySeconds: 15
+          periodSeconds: 180  
         livenessProbe:
           httpGet:
             path: /q/health/live
             port: 8080
           initialDelaySeconds: 10
-          periodSeconds: 60             
+          periodSeconds: 180             
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       tolerations:
