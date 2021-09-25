@@ -102,7 +102,9 @@
         | Environment variables (build and runtime)  | Value        | 
         |--------------------------------|--------------|
         | QUARKUS_PACKAGE_TYPE       | uber-jar      | 
+
 #### CLI
+
 - PostgreSQL Database
   
   ```bash
@@ -128,10 +130,11 @@
   oc create -k kustomize/overlays/dev
   watch oc get pods
   ```
-
+  
   ![](images/app-topology.png)
 
 ## User Workload Monitor
+
 - Enable User Workload Monitor
 - Create service monitor to monitor todo app
   - Create [Service Monitor](todo/kustomize/base/service-monitor.yaml) 
@@ -161,7 +164,7 @@
     ![](images/app-monitor.png)
 
 
-    ```
+
 ## GitOps with ArgoCD
   WIP
 
