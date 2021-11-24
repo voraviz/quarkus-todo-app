@@ -10,7 +10,7 @@ then
 fi
 # Use native container build
 START_BUILD_APP=$(date +%s)
-mvn clean package -Pnative \
+mvn clean package -Pnative -DskipTests=true \
 -Dquarkus.native.remote-container-build=true \
 -Dquarkus.native.container-runtime=podman \
 -Dquarkus.native.native-image-xmx=5g
