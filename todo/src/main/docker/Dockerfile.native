@@ -16,9 +16,7 @@
 ###
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 WORKDIR /work/
-RUN microdnf update --nodocs --setopt=install_weak_deps=0 \
-    && microdnf clean all && \
-    && chown 1001 /work \
+RUN chown 1001 /work \
     && chmod "g+rwX" /work \
     && chown 1001:root /work
 COPY --chown=1001:root target/*-runner /work/application
