@@ -1,5 +1,5 @@
 #!/bin/bash
-CONTAINER_NAME=todo
+CONTAINER_NAME=quay.io/voravitl/todo
 TAG=v1
 TYPE=jvm
 CONTAINER_RUNTIME=podman
@@ -10,5 +10,5 @@ then
 fi
 #mvn clean package -DskipTests=true -Dquarkus.package.type=$TYPE
 mvn clean package -DskipTests=true
-$CONTAINER_RUNTIME build -f src/main/docker/Dockerfile.$TYPE \
+$CONTAINER_RUNTIME build --platform linux/amd64 -f src/main/docker/Dockerfile.$TYPE \
 -t ${CONTAINER_NAME}:${TAG} .
