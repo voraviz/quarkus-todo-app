@@ -9,6 +9,7 @@ if [ $? -ne 0 ];
 then
    CONTAINER_RUNTIME=docker 
 fi
+CONTAINER_RUNTIME=docker
 # START_BUILD_APP=$(date +%s)
 # mvn clean package -Pnative -DskipTests=true \
 # -Dquarkus.native.remote-container-build=true \
