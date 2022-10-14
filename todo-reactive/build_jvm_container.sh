@@ -8,6 +8,6 @@ if [ $? -ne 0 ];
 then
    CONTAINER_RUNTIME=docker 
 fi
-mvn clean package -DskipTests=true -Dquarkus.package.type=fast-jar
-$CONTAINER_RUNTIME build -f src/main/docker/Dockerfile.$TYPE \
+mvn clean package -DskipTests=true 
+$CONTAINER_RUNTIME build --platform=linux/amd64 -f src/main/docker/Dockerfile.$TYPE \
 -t ${CONTAINER_NAME}:${TAG} .
