@@ -1,3 +1,4 @@
+.vscode
 .java-version
 todo/target/*
 todo-reactive/target/*
