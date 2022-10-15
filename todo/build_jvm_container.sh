@@ -1,6 +1,6 @@
 #!/bin/bash
 CONTAINER_NAME=quay.io/voravitl/todo
-TAG=v1
+TAG=otel
 TYPE=jvm
 CONTAINER_RUNTIME=podman
 podman --version 1>/dev/null 2>&1
