@@ -1,7 +1,6 @@
 package io.quarkus.sample;
 
 import io.quarkus.panache.common.Sort;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.Produces;
@@ -24,6 +23,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.jboss.logging.Logger;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
@@ -49,8 +49,12 @@ public class TodoResource {
     @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     public List<Todo> getAll() {
         LOG.info("getAll");
-        registry.counter("io.quarkus.sample.TodoResource.getAll").increment();
-        return Todo.listAll(Sort.by("order"));
+        registry.counter("io.quarkus.sample.TodoResource.getAll.count").increment();
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
+        return timer.record(() -> {
+            return Todo.listAll(Sort.by("order"));
+        });
+        
     }
 
     @GET
@@ -64,32 +68,23 @@ public class TodoResource {
     )
     public Todo getOne(@PathParam("id") Long id) {
         Todo entity = Todo.findById(id);
-        registry.counter("io.quarkus.sample.TodoResource.getOne").increment();
+        registry.counter("io.quarkus.sample.TodoResource.getOne.count").increment();
         if (entity == null) {
             throw new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND);
         }
-        return entity;
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.getOne.time");
+        return timer.record(() -> {
+            return entity;
+        });
+        
     }
     @POST
     @Transactional
     @Operation(summary = "Create Tasks")
     @APIResponse(responseCode = "201",description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON))
-    // @Counted(
-    //     name = "countCreate", 
-    //     description = "Counts how many times the create method has been invoked"
-    //     )
-    // @Timed(
-    //     name = "timeCreate", 
-    //     description = "Times how long it takes to create the getAll method in second", 
-    //     unit = MetricUnits.SECONDS
-    //     )
-    // @ConcurrentGauge(
-    //         name = "concurrentCreate",
-    //         description = "Concurrent connection to create method"
-    //     )
     public Response create(@Valid Todo item) {
         item.persist();
-        registry.counter("io.quarkus.sample.TodoResource.create").increment();
+        registry.counter("io.quarkus.sample.TodoResource.create.count").increment();
         return Response.status(Status.CREATED).entity(item).build();
     }
     @PATCH
@@ -104,15 +99,23 @@ public class TodoResource {
         entity.order = todo.order;
         entity.title = todo.title;
         entity.url = todo.url;
-        registry.counter("io.quarkus.sample.TodoResource.update").increment();
-        return Response.ok(entity).build();
+        registry.counter("io.quarkus.sample.TodoResource.update.count").increment();
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.update.time");
+        return timer.record(() -> {
+            return Response.ok(entity).build();
+        });
+        
     }
 
     @DELETE
     @Transactional
     public Response deleteCompleted() {
-        Todo.deleteCompleted();
-        return Response.noContent().build();
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.delete");
+        return timer.record(() -> {
+            Todo.deleteCompleted();
+            return Response.noContent().build();
+        });
+       
     }
 
     @DELETE
@@ -131,7 +134,7 @@ public class TodoResource {
             throw new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND);
         }
         entity.delete();
-        registry.counter("io.quarkus.sample.TodoResource.deleteOne").increment();
+        registry.counter("io.quarkus.sample.TodoResource.deleteOne.count").increment();
         return Response.noContent().build();
     }
 
