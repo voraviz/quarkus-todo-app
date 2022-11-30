@@ -18,10 +18,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import java.util.List;
-import org.eclipse.microprofile.metrics.MetricUnits;
-import org.eclipse.microprofile.metrics.annotation.ConcurrentGauge;
-import org.eclipse.microprofile.metrics.annotation.Counted;
-import org.eclipse.microprofile.metrics.annotation.Timed;
+// import org.eclipse.microprofile.metrics.MetricUnits;
+// import org.eclipse.microprofile.metrics.annotation.ConcurrentGauge;
+// import org.eclipse.microprofile.metrics.annotation.Counted;
+// import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
@@ -43,19 +43,19 @@ public class TodoResource {
     @GET
     @Operation(summary = "List All Tasks")
     @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON))
-    @Counted(
-        name = "countGetAll", 
-        description = "Counts how many times the getAll method has been invoked"
-        )
-    @Timed(
-        name = "timeGetAll", 
-        description = "Times how long it takes to invoke the getAll method in second", 
-        unit = MetricUnits.SECONDS
-        )
-    @ConcurrentGauge(
-            name = "concurrentGetAll",
-            description = "Concurrent connection to GetAll method"
-            )
+    // @Counted(
+    //     name = "countGetAll", 
+    //     description = "Counts how many times the getAll method has been invoked"
+    //     )
+    // @Timed(
+    //     name = "timeGetAll", 
+    //     description = "Times how long it takes to invoke the getAll method in second", 
+    //     unit = MetricUnits.SECONDS
+    //     )
+    // @ConcurrentGauge(
+    //         name = "concurrentGetAll",
+    //         description = "Concurrent connection to GetAll method"
+    //         )
     public List<Todo> getAll() {
         LOG.info("getAll");
         return Todo.listAll(Sort.by("order"));
@@ -70,19 +70,19 @@ public class TodoResource {
             @APIResponse(responseCode = "404", description = "Not Found", content = @Content(mediaType = MediaType.APPLICATION_JSON))
         }
     )
-    @Counted(
-        name = "countGetOne", 
-        description = "Counts how many times the getOne method has been invoked"
-        )
-    @Timed(
-        name = "timeGetOne", 
-        description = "Times how long it takes to invoke the getOne method in second", 
-        unit = MetricUnits.SECONDS
-        )
-    @ConcurrentGauge(
-            name = "concurrentGetOne",
-            description = "Concurrent connection to GetOne method"
-        )
+    // @Counted(
+    //     name = "countGetOne", 
+    //     description = "Counts how many times the getOne method has been invoked"
+    //     )
+    // @Timed(
+    //     name = "timeGetOne", 
+    //     description = "Times how long it takes to invoke the getOne method in second", 
+    //     unit = MetricUnits.SECONDS
+    //     )
+    // @ConcurrentGauge(
+    //         name = "concurrentGetOne",
+    //         description = "Concurrent connection to GetOne method"
+    //     )
     public Todo getOne(@PathParam("id") Long id) {
         Todo entity = Todo.findById(id);
         if (entity == null) {
@@ -94,19 +94,19 @@ public class TodoResource {
     @Transactional
     @Operation(summary = "Create Tasks")
     @APIResponse(responseCode = "201",description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON))
-    @Counted(
-        name = "countCreate", 
-        description = "Counts how many times the create method has been invoked"
-        )
-    @Timed(
-        name = "timeCreate", 
-        description = "Times how long it takes to create the getAll method in second", 
-        unit = MetricUnits.SECONDS
-        )
-    @ConcurrentGauge(
-            name = "concurrentCreate",
-            description = "Concurrent connection to create method"
-        )
+    // @Counted(
+    //     name = "countCreate", 
+    //     description = "Counts how many times the create method has been invoked"
+    //     )
+    // @Timed(
+    //     name = "timeCreate", 
+    //     description = "Times how long it takes to create the getAll method in second", 
+    //     unit = MetricUnits.SECONDS
+    //     )
+    // @ConcurrentGauge(
+    //         name = "concurrentCreate",
+    //         description = "Concurrent connection to create method"
+    //     )
     public Response create(@Valid Todo item) {
         item.persist();
         return Response.status(Status.CREATED).entity(item).build();
@@ -115,19 +115,19 @@ public class TodoResource {
     @Path("/{id}")
     @Operation(summary = "Update Task")
     @APIResponse(responseCode = "200",description = "Updated", content = @Content(mediaType = MediaType.APPLICATION_JSON))
-    @Counted(
-        name = "countUpdate", 
-        description = "Counts how many times the update method has been invoked"
-        )
-    @Timed(
-        name = "timeUpdate", 
-        description = "Times how long it takes to invoke the update method in second", 
-        unit = MetricUnits.SECONDS
-        )
-    @ConcurrentGauge(
-            name = "concurrentUpdate",
-            description = "Concurrent connection to update method"
-        )
+    // @Counted(
+    //     name = "countUpdate", 
+    //     description = "Counts how many times the update method has been invoked"
+    //     )
+    // @Timed(
+    //     name = "timeUpdate", 
+    //     description = "Times how long it takes to invoke the update method in second", 
+    //     unit = MetricUnits.SECONDS
+    //     )
+    // @ConcurrentGauge(
+    //         name = "concurrentUpdate",
+    //         description = "Concurrent connection to update method"
+    //     )
     @Transactional
     public Response update(@Valid Todo todo, @PathParam("id") Long id) {
         Todo entity = Todo.findById(id);
@@ -156,19 +156,19 @@ public class TodoResource {
             @APIResponse(responseCode = "404", description ="Not found", content = @Content(mediaType = MediaType.APPLICATION_JSON))
         }
     )
-    @Counted(
-        name = "countDeleteOne", 
-        description = "Counts how many times the deleteOne method has been invoked"
-        )
-    @Timed(
-        name = "timeDeleteOne", 
-        description = "Times how long it takes to deleteOne the getAll method in second", 
-        unit = MetricUnits.SECONDS
-        )
-    @ConcurrentGauge(
-            name = "concurrentDeleteOne",
-            description = "Concurrent connection to deleteOne method"
-        )
+    // @Counted(
+    //     name = "countDeleteOne", 
+    //     description = "Counts how many times the deleteOne method has been invoked"
+    //     )
+    // @Timed(
+    //     name = "timeDeleteOne", 
+    //     description = "Times how long it takes to deleteOne the getAll method in second", 
+    //     unit = MetricUnits.SECONDS
+    //     )
+    // @ConcurrentGauge(
+    //         name = "concurrentDeleteOne",
+    //         description = "Concurrent connection to deleteOne method"
+    //     )
     public Response deleteOne(@PathParam("id") Long id) {
         Todo entity = Todo.findById(id);
         if (entity == null) {
