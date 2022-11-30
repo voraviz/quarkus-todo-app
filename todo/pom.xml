@@ -18,7 +18,6 @@
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
     <testcontainers.version>1.15.1</testcontainers.version>
   </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
