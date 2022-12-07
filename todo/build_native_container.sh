@@ -10,10 +10,7 @@ then
    CONTAINER_RUNTIME=docker 
 fi
 # START_BUILD_APP=$(date +%s)
-# mvn clean package -Pnative -DskipTests=true \
-# -Dquarkus.native.remote-container-build=true \
-# -Dquarkus.native.container-runtime=podman \
-# -Dquarkus.native.native-image-xmx=5g
+mvn clean install -Dnative  -DskipTests=true -Dquarkus.native.container-runtime=podman -Dquarkus.native.remote-container-build=true
 # END_BUILD_APP=$(date +%s)
 START_BUILD_CONTAINER=$(date +%s)
 $CONTAINER_RUNTIME build -f src/main/docker/Dockerfile.$TYPE \
