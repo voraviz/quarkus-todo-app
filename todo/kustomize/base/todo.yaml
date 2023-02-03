@@ -28,7 +28,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: todo
         version: v1
@@ -54,7 +53,9 @@ spec:
             memory: 200Mi
         env:
         - name: quarkus.http.access-log.enabled
-          value: "false"  
+          value: "false"
+        - name: quarkus.hibernate-orm.database.generation
+          value: "none"
         readinessProbe:
           httpGet:
             path: /q/health/ready
