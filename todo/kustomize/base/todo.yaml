@@ -55,7 +55,9 @@ spec:
         - name: quarkus.http.access-log.enabled
           value: "true"  
         - name: quarkus.log.level
-          value: DEBUG
+          value: INFO
+        - name: quarkus.hibernate-orm.database.generation
+          value: none
         - name: quarkus.opentelemetry.tracer.exporter.otlp.endpoint
           value: http://otel-collector:4317
         # readinessProbe:
