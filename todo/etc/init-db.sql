@@ -1,6 +1,5 @@
-drop sequence if exists hibernate_sequence;
-drop constraint if exists unique_title;
 drop table if exists Todo;
+drop sequence if exists hibernate_sequence;
 create sequence hibernate_sequence start 1 increment 1;
 create table Todo (
        id int8 not null,
