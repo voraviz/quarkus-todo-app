@@ -101,19 +101,24 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/pgsql/data
           name: todo-db-data
+        # securityContext:
+        #   allowPrivilegeEscalation: false
+        #   runAsNonRoot: true
+        #   drop: ALL
+        #   readOnlyRootFilesystem: true
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext:
-        allowPrivilegeEscalation: false
-        runAsNonRoot: true
-        drop: ALL
-        readOnlyRootFilesystem: true
       terminationGracePeriodSeconds: 30
       volumes:
       - name: todo-db-data
         persistentVolumeClaim:
           claimName: todo-db
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        drop: ALL
+        readOnlyRootFilesystem: true
 ---
 apiVersion: v1
 kind: Service
