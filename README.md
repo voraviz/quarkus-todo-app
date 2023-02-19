@@ -5,10 +5,13 @@
     - [OTEL and Jaeger](#otel-and-jaeger)
     - [To-Do App](#to-do-app)
     - [Test](#test)
-  - [OpenShift](#openshift)
+  - [OpenShift - OpenTelementry](#openshift---opentelementry)
     - [Install Operators](#install-operators)
     - [Deploy to-do app](#deploy-to-do-app)
     - [Test](#test-1)
+  - [OpenShift - Service Mesh with OpenTelemetry](#openshift---service-mesh-with-opentelemetry)
+    - [Install Operators](#install-operators-1)
+    - [Configure Service Mesh](#configure-service-mesh)
 
 ## Local Deployment
 
@@ -50,7 +53,7 @@
   
     ![](images/jaeger-console-select-statement.png)
   
-## OpenShift
+## OpenShift - OpenTelementry
 
 ### Install Operators
 
@@ -188,3 +191,66 @@
 - View trace
   
   ![](images/jaeger-todo-trace-sql-statement.png)
+
+## OpenShift - Service Mesh with OpenTelemetry
+
+### Install Operators
+
+- Install OpenShift Service Mesh and Kiali Operator
+
+  ```bash
+  oc create -f todo/etc/openshift/service-mesh-sub.yaml
+  oc create -f todo/etc/openshift/kiali-sub.yaml
+  ```
+
+### Configure Service Mesh
+- Create Namespace for control plane
+  
+  ```bash
+  oc new-project todo-istio-system
+  ```
+- Create control plane
+  
+  ```bash
+  oc create -f todo/etc/openshift/smcp.yaml -n todo-istio-system
+  oc apply -f todo/etc/openshift/smcp-ha.yaml -n todo-istio-system
+  watch oc get smcp/basic -n todo-istio-system
+  ```
+  
+  Result
+
+  ```bash
+  NAME    READY   STATUS            PROFILES      VERSION   AGE
+  basic   9/9     ComponentsReady   ["default"]   2.3.1     21m
+  ```
+
+- Join namspace todo to control plane
+  
+  ```bash
+  cat todo/etc/openshift/smmr.yaml | \
+  sed 's/PROJECT/todo/' | \
+  oc create -n todo-istio-system -f -
+  oc get smmr -n todo-istio-system 
+  ```
+
+  Result
+
+  ```bash
+  servicemeshmemberroll.maistra.io/default created
+  NAME      READY   STATUS       AGE
+  default   1/1     Configured   1s
+  ```
+
+- Add sidecar to todo
+
+  ```bash
+  oc patch deployment/todo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n todo
+  watch oc get po -l app=todo -n todo
+  ```
+
+  Result
+
+  ```bash
+
+  ```
+
