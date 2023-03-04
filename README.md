@@ -62,14 +62,14 @@
   - Red Hat OpenShift distributed tracing platform (Jaeger)
 
     ```bash
-    oc create -f etc/jaeger-sub.yaml
+    cd todo
+    oc create -f etc/openshift/jaeger-sub.yaml
     ```
 
   - Red Hat OpenShift distributed tracing data collection (OTEL)
 
     ```bash
-    cd todo
-    oc create -f etc/otel-sub.yaml
+    oc create -f etc/openshift/otel-sub.yaml
     ```
 
 - Verify operators are installed successfully
@@ -81,10 +81,9 @@
    Result
 
    ```bash
-   NAME                               DISPLAY                                                 VERSION    REPLACES                                       PHASE
-   devworkspace-operator.v0.17.0      DevWorkspace Operator                                   0.17.0     devworkspace-operator.v0.16.0-0.1666668361.p   Succeeded
-   jaeger-operator.v1.39.0-3          Red Hat OpenShift distributed tracing platform          1.39.0-3   jaeger-operator.v1.34.1-5                      Succeeded
-   opentelemetry-operator.v0.63.1-4   Red Hat OpenShift distributed tracing data collection   0.63.1-4   opentelemetry-operator.v0.60.0-2               Succeeded
+    NAME                               DISPLAY                                                 VERSION    REPLACES                           PHASE
+    jaeger-operator.v1.39.0-3          Red Hat OpenShift distributed tracing platform          1.39.0-3   jaeger-operator.v1.34.1-5          Succeeded
+    opentelemetry-operator.v0.63.1-4   Red Hat OpenShift distributed tracing data collection   0.63.1-4   opentelemetry-operator.v0.60.0-2   Succeeded
    ```
 
    OpenShift Console
@@ -100,7 +99,7 @@
 - Create [Jaeger instance](todo/etc/openshift/jaeger.yaml)
   
   ```bash
-  oc create -f todo/etc/openshift/jaeger.yaml -n todo 
+  oc create -f etc/openshift/jaeger.yaml -n todo 
   ```
 
   Check
@@ -112,8 +111,8 @@
   Result 
 
   ```bash
-  NAME                     READY   STATUS    RESTARTS   AGE
-  jaeger-5649d6997-48c4l   2/2     Running   0          3m4s
+  NAME                      READY   STATUS    RESTARTS   AGE
+  jaeger-867dcf97bd-xpjwq   2/2     Running   0          15s
   ```
 
 - Create [OTEL instance](todo/etc/openshift/otel-collector.yaml)
@@ -138,7 +137,7 @@
   ```
   
   ```bash
-  cat todo/etc/openshift/otel-collector.yaml | sed 's/PROJECT/'$(oc project -q)'/' | oc create -n todo -f -
+  cat etc/openshift/otel-collector.yaml | sed 's/PROJECT/'$(oc project -q)'/' | oc create -n todo -f -
   ```
 
   Check 
@@ -199,8 +198,18 @@
 - Install OpenShift Service Mesh and Kiali Operator
 
   ```bash
-  oc create -f todo/etc/openshift/service-mesh-sub.yaml
-  oc create -f todo/etc/openshift/kiali-sub.yaml
+  oc create -f etc/openshift/service-mesh-sub.yaml
+  oc create -f etc/openshift/kiali-sub.yaml
+  ```
+
+  Result
+
+  ```bash
+  NAME                               DISPLAY                                                 VERSION    REPLACES                           PHASE
+  jaeger-operator.v1.39.0-3          Red Hat OpenShift distributed tracing platform          1.39.0-3   jaeger-operator.v1.34.1-5          Succeeded
+  kiali-operator.v1.57.5             Kiali Operator                                          1.57.5     kiali-operator.v1.57.3             Succeeded
+  opentelemetry-operator.v0.63.1-4   Red Hat OpenShift distributed tracing data collection   0.63.1-4   opentelemetry-operator.v0.60.0-2   Succeeded
+  servicemeshoperator.v2.3.1         Red Hat OpenShift Service Mesh                          2.3.1-0    servicemeshoperator.v2.3.0         Succeeded
   ```
 
 ### Configure Service Mesh
@@ -212,8 +221,7 @@
 - Create control plane
   
   ```bash
-  oc create -f todo/etc/openshift/smcp.yaml -n todo-istio-system
-  oc apply -f todo/etc/openshift/smcp-ha.yaml -n todo-istio-system
+  oc create -f etc/openshift/smcp.yaml -n todo-istio-system
   watch oc get smcp/basic -n todo-istio-system
   ```
   
@@ -221,13 +229,13 @@
 
   ```bash
   NAME    READY   STATUS            PROFILES      VERSION   AGE
-  basic   9/9     ComponentsReady   ["default"]   2.3.1     21m
+  basic   9/9     ComponentsReady   ["default"]   2.3.1     65s
   ```
 
 - Join namspace todo to control plane
   
   ```bash
-  cat todo/etc/openshift/smmr.yaml | \
+  cat etc/openshift/smmr.yaml | \
   sed 's/PROJECT/todo/' | \
   oc create -n todo-istio-system -f -
   oc get smmr -n todo-istio-system 
@@ -247,10 +255,31 @@
   oc patch deployment/todo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n todo
   watch oc get po -l app=todo -n todo
   ```
-
-  Result
+- Create DestinationRule, Gateway and VirtualService
 
   ```bash
-
+  cat etc/openshift/todo-istio.yaml|sed 's/DOMAIN/'$(oc whoami --show-console|awk -F'apps.' '{print $2}')/|oc apply -n todo -f -
   ```
+
+- Get Istio ingress gateway route
+
+  ```bash
+  oc get route  -n todo-istio-system|grep 'todo.apps'|awk '{print $2}'
+  ```
+
+- Open todo app with URL from previous step and check Kiali Graph
+  
+  ![](images/todo-kiali.png)
+
+- Configure OTEL to send trace to Service Mesh's Jaeger
+  - OpenShift Admin Console, select project todo then select Installed Operators
+  - Select Red Hat OpenShift distributed tracing data collection and select OpenTelemetry Collector
+  - Select otel
+  - Change endpoint to jaeger-collector-headless.todo-istio-system.svc:14250
+
+    ![](images/config-otel-jager-collector.png)
+
+- Check Service Mesh's Jaeger that OpenTracing is sent to Service Mesh's Jaeger
+
+  ![](images/service-mesh-jaeger.png)
 

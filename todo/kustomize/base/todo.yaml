@@ -34,7 +34,7 @@ spec:
         maistra.io/expose-route: 'true'
       annotations:
         sidecar.istio.io/inject: "false"
-        sidecar.istio.io/rewriteAppHTTPProbers: "false"
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
         app.openshift.io/connects-to: '[{"apiVersion":"apps.openshift.io/v1","kind":"Deployment","name":"todo-db"}]'
     spec:
       containers:

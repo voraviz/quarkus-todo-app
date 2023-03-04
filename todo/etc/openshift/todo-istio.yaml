@@ -1,0 +1,54 @@
+kind: DestinationRule
+apiVersion: networking.istio.io/v1beta1
+metadata:
+  namespace: todo
+  name: todo
+  annotations: ~
+spec:
+  host: todo.todo.svc.cluster.local
+  subsets:
+    - name: v1
+      labels:
+        version: v1
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+      consistentHash: ~
+    outlierDetection:
+      consecutiveGatewayErrors: 2
+      consecutive5xxErrors: 2
+---
+kind: Gateway
+apiVersion: networking.istio.io/v1beta1
+metadata:
+  namespace: todo
+  name: todo-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - todo.apps.DOMAIN
+
+---
+kind: VirtualService
+apiVersion: networking.istio.io/v1beta1
+metadata:
+  namespace: todo
+  name: todo
+spec:
+  http:
+    - route:
+        - destination:
+            host: todo.todo.svc.cluster.local
+            subset: v1
+          weight: 100
+  hosts:
+    - todo.apps.DOMAIN
+  gateways:
+    - todo/todo-gateway
+---
