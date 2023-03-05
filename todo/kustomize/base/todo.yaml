@@ -34,12 +34,12 @@ spec:
         maistra.io/expose-route: 'true'
       annotations:
         sidecar.istio.io/inject: "false"
-        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+        sidecar.istio.io/rewriteAppHTTPProbers: "false"
         app.openshift.io/connects-to: '[{"apiVersion":"apps.openshift.io/v1","kind":"Deployment","name":"todo-db"}]'
     spec:
       containers:
       - name: todo
-        image: quay.io/voravitl/todo:otel
+        image: quay.io/voravitl/todo:otel-native
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -58,8 +58,6 @@ spec:
           value: INFO
         - name: quarkus.hibernate-orm.database.generation
           value: none
-        - name: quarkus.opentelemetry.tracer.exporter.otlp.endpoint
-          value: http://otel-collector:4317
         readinessProbe:
           httpGet:
             path: /q/health/ready

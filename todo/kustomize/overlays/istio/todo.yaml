@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    spec:
+      containers:
+      - name: todo
+        env:
+        - name: quarkus.opentelemetry.tracer.exporter.otlp.endpoint
+          value: http://otel-collector:4317

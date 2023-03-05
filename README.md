@@ -160,11 +160,22 @@
 
 
 ### Deploy to-do app
-
-- Deploy with Kustomize
   
+- Snippet from deployment with env for OTEL
+
+  ```yaml
+      spec:
+      containers:
+      - name: todo
+        env:
+        - name: quarkus.opentelemetry.tracer.exporter.otlp.endpoint
+          value: http://otel-collector:4317
+  ```
+  
+- Deploy with kustomize
+
   ```bash
-  oc apply -k todo/kustomize/overlays/dev -n todo
+  oc apply -k kustomize/overlays/otel -n todo
   ```
 
 - Check 
@@ -249,12 +260,23 @@
   default   1/1     Configured   1s
   ```
 
-- Add sidecar to todo
+- Add sidecar and rewrite Liveness and Readiness probe to todo
+  
+  ```yaml
+    template:
+      metadata:
+        annotations:
+          sidecar.istio.io/inject: "true"
+          sidecar.istio.io/rewriteAppHTTPProbers: "true"
+  ```
+
+  Update deployment with Kustomize
 
   ```bash
-  oc patch deployment/todo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n todo
+  oc apply -k kustomize/overlays/istio -n todo
   watch oc get po -l app=todo -n todo
   ```
+
 - Create DestinationRule, Gateway and VirtualService
 
   ```bash
