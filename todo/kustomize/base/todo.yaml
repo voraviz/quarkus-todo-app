@@ -58,18 +58,20 @@ spec:
           value: INFO
         - name: quarkus.hibernate-orm.database.generation
           value: none
+        - name: quarkus.http.cors
+          value: "true"
         readinessProbe:
           httpGet:
             path: /q/health/ready
             port: 8080
           initialDelaySeconds: 15
-          periodSeconds: 180  
+          periodSeconds: 300  
         livenessProbe:
           httpGet:
             path: /q/health/live
             port: 8080
           initialDelaySeconds: 10
-          periodSeconds: 180
+          periodSeconds: 600
         securityContext:
           seccompProfile: #"RuntimeDefault" or "Localhost"
             type: RuntimeDefault
