@@ -305,3 +305,12 @@
 
   ![](images/service-mesh-jaeger.png)
 
+- Check todo pod's log for Trace ID
+  
+  ```bash
+   09:32:44 [io.qu.ht.access-log] (executor-thread-0) =127.0.0.6 - - 06/Mar/2023:09:32:44 +0000 "DELETE /api/ HTTP/1.1" 204 - "http://todo.apps.cluster-srlk7.srlk7.sandbox565.opentlc.com/todo.html" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" traceId=f433a3102857a47bcb6323ba65ae893a spanId=503008fb528089d7
+  ```
+  
+  You can search Trace ID from Jaeger Console
+
+  ![](images/jaeger-search-by-trace-id.png)
