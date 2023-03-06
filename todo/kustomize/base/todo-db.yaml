@@ -12,7 +12,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: gp2
+  storageClassName: gp3-csi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -28,7 +28,7 @@ spec:
   resources:
     requests:
       storage: 10Mi
-  storageClassName: gp2
+  storageClassName: gp3-csi
 ---
 apiVersion: v1
 kind: Secret
