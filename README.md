@@ -5,7 +5,6 @@
   - [Build and Deploy with OpenShift](#build-and-deploy-with-openshift)
     - [Build and Deploy](#build-and-deploy)
       - [Dev Console](#dev-console)
-      - [CLI](#cli)
     - [Kustomize](#kustomize)
   - [User Workload Monitor](#user-workload-monitor)
   - [GitOps with ArgoCD](#gitops-with-argocd)
@@ -81,9 +80,10 @@
     
         | Parameter                      | Value        | 
         |--------------------------------|--------------|
-        | Database Service Name          | todo-db      | 
+        | Database Service Name          | todo-db      |      
         | PostgreSQL Connection Username | todo         | 
-        | PostgreSQL Connection Password | todoPassword |  
+        | PostgreSQL Connection Password | todoPassword | 
+        | Database Name                  | todo         |  
 
 - Build and deploy todo app from Git
   - Add->From Git
@@ -92,32 +92,42 @@
         
         | Parameter                      | Value        | 
         |--------------------------------|--------------|
-        | Context dir        | todo      | 
-        | Application Name | todo-app         | 
-        | Name| todo | 
+        | Context dir                    | todo         | 
+        | Application Name               | todo-app     | 
+        | Name                           | todo         | 
       
       - Select Route option    
       - Select Build Configuration to add environment variables
  
         | Environment variables (build and runtime)  | Value        | 
         |--------------------------------|--------------|
-        | QUARKUS_PACKAGE_TYPE       | uber-jar      | 
+        | QUARKUS_PACKAGE_TYPE         | uber-jar     | 
+      
+      - Select Deployment to add environment variables
+ 
+        | Environment variables (build and runtime)  | Value        | 
+        |--------------------------------|--------------|
+        |quarkus.hibernate-orm.database.generation|create|
 
-#### CLI
+<!-- #### CLI
 
 - PostgreSQL Database
   
   ```bash
+  cd todo
+  oc new-project todo
   oc create -f kustomize/base/todo-db.yaml
+  watch oc get po
+  oc get pvc
   ```
 
 - Todo App
   
   ```bash
-  oc new-app --name todo \
-  ubi8-openjdk-11:1.3~https://github.com/voraviz/quarkus-todo-app \
-  --context-dir=todo --build-env=QUARKUS_PACKAGE_TYPE=uber-jar \
-  --labels=app=todo --allow-missing-images
+  oc new-app --name=todo \
+     --context-dir=todo   --labels=app=todo \
+     --allow-missing-images \
+     https://github.com/voraviz/quarkus-todo-app  
   oc logs -f buildconfig/todo
   oc expose svc todo
   ```
@@ -129,7 +139,7 @@
   oc logs -f bc/todo
   oc new-app --name=todo --image-stream=todo:latest --labels=app=todo
   oc expose svc/todo
-  ```
+  ``` -->
 
 ### Kustomize
 
