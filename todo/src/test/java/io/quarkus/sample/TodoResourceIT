@@ -1,6 +1,6 @@
 package io.quarkus.sample;
 
-import io.quarkus.test.common.QuarkusTestResource;
+// import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 import io.restassured.common.mapper.TypeRef;
 import org.apache.http.HttpStatus;
@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 import static io.restassured.RestAssured.get;
@@ -50,7 +50,7 @@ public class TodoResourceIT {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                 .body("title", is(todo.title))
                 .body("completed", is(false))
-                .body("id", is(1));
+                .body("id", is(51));
 
         List<Todo> todos = get("/api").then()
                 .statusCode(HttpStatus.SC_OK)

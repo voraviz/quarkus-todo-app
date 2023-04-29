@@ -9,6 +9,6 @@ then
    CONTAINER_RUNTIME=docker 
 fi
 #mvn clean package -DskipTests=true -Dquarkus.package.type=$TYPE
-mvn clean package -DskipTests=true
+mvn clean package
 $CONTAINER_RUNTIME build --platform linux/amd64 -f src/main/docker/Dockerfile.$TYPE \
 -t ${CONTAINER_NAME}:${TAG} .
