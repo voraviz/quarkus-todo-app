@@ -29,10 +29,13 @@ import io.quarkus.panache.common.Sort;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.jboss.logging.Logger;
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TodoResource {
+
+    private static final Logger LOG = Logger.getLogger(TodoResource.class);
 
     @OPTIONS
     public Response opt() {
