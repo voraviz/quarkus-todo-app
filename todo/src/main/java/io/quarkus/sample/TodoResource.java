@@ -35,7 +35,6 @@ public class TodoResource {
     private final MeterRegistry registry;
     
     TodoResource(MeterRegistry registry) {
-
         this.registry = registry;
     }
 
@@ -53,8 +52,7 @@ public class TodoResource {
         Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
         return timer.record(() -> {
             return Todo.listAll(Sort.by("order"));
-        });
-        
+        });     
     }
 
     @GET
@@ -85,7 +83,11 @@ public class TodoResource {
     public Response create(@Valid Todo item) {
         item.persist();
         registry.counter("io.quarkus.sample.TodoResource.create.count").increment();
-        return Response.status(Status.CREATED).entity(item).build();
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.create.time");
+        return timer.record(() -> {
+            return Response.status(Status.CREATED).entity(item).build();
+        });
+        
     }
     @PATCH
     @Path("/{id}")
@@ -129,13 +131,20 @@ public class TodoResource {
         }
     )
     public Response deleteOne(@PathParam("id") Long id) {
-        Todo entity = Todo.findById(id);
         registry.counter("io.quarkus.sample.TodoResource.deleteOne.count").increment();
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.delete.time");
+        return timer.record( () -> {
+            Todo entity = Todo.findById(id);
+        
         if (entity == null) {
             throw new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND);
         }
         entity.delete();
         return Response.noContent().build();
+       }
+
+        );           
+        
     }
 
 }

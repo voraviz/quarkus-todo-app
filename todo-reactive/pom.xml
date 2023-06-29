@@ -116,13 +116,6 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
-    <!-- fix CVE-2022-25857 -->
-    <dependency>
-      <groupId>org.yaml</groupId>
-      <artifactId>snakeyaml</artifactId>
-      <version>1.32</version>
-    </dependency>
-
   </dependencies>
   <build>
     <plugins>

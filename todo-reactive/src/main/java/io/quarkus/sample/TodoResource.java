@@ -15,12 +15,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import java.util.List;
-
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
-
 import io.micrometer.core.instrument.MeterRegistry;
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.panache.common.Sort;
@@ -37,7 +35,6 @@ public class TodoResource {
     private final MeterRegistry registry;
 
      TodoResource(MeterRegistry registry) {
-
         this.registry = registry;
     }
 
@@ -52,10 +49,12 @@ public class TodoResource {
     public Uni<List<Todo>> getAll() {
        LOG.info(Thread.currentThread().getName());
        registry.counter("io.quarkus.sample.TodoResource.getAll.count").increment();
-    //    Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
-        return Panache.withTransaction(
+       Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
+       return timer.record(() -> {
+             return Panache.withTransaction(
                 () -> Todo.findAll(Sort.by("order")).list()
         );
+       });
     }
 
     @GET
@@ -86,23 +85,20 @@ public class TodoResource {
                         new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND)
                 ));
         });
-        // return Panache.withTransaction(
-        //         () -> Todo.<Todo>findById(id)
-        //             .onItem().ifNull().failWith(() ->
-        //                 new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND)
-        //         ));
     }
-
     @POST
     @Operation(summary = "Create Tasks")
     @APIResponse(responseCode = "201",description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     public Uni<Response> create(@Valid Todo item) {
         registry.counter("io.quarkus.sample.TodoResource.create.count").increment();
-        return Panache.withTransaction(
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.create.time");
+         return timer.record(() -> {
+            return Panache.withTransaction(
                 () -> item.persist()
             ).replaceWith(
                 () -> Response.status(Status.CREATED).entity(item).build()
         );
+        });     
     }
 
     @PATCH
@@ -130,7 +126,6 @@ public class TodoResource {
 
     @DELETE
     public Uni<Response> deleteCompleted() {
-        // Timer timer = registry.timer("io.quarkus.sample.TodoResource.delete");
         return Panache.withTransaction(
                 () -> Todo.deleteCompleted()
         ).replaceWith(
@@ -148,8 +143,8 @@ public class TodoResource {
         }
     )
     public Uni<Response> deleteOne(@PathParam("id") Long id) {
-        Timer timer = registry.timer("io.quarkus.sample.TodoResource.delete");
         registry.counter("io.quarkus.sample.TodoResource.deleteOne.count").increment();        
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.delete.time");
         return timer.record( () -> {
             return Panache.withTransaction(
                 () -> Todo.findById(id)
