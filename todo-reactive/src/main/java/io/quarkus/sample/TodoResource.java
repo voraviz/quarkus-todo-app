@@ -1,6 +1,5 @@
 package io.quarkus.sample;
 
-import java.util.List;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -15,27 +14,32 @@ import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+import java.util.List;
 
-// import org.eclipse.microprofile.metrics.MetricUnits;
-// import org.eclipse.microprofile.metrics.annotation.ConcurrentGauge;
-// import org.eclipse.microprofile.metrics.annotation.Counted;
-// import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.panache.common.Sort;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.jboss.logging.Logger;
+import io.micrometer.core.instrument.Timer;
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TodoResource {
 
     private static final Logger LOG = Logger.getLogger(TodoResource.class);
+    private final MeterRegistry registry;
+
+     TodoResource(MeterRegistry registry) {
+
+        this.registry = registry;
+    }
 
     @OPTIONS
     public Response opt() {
@@ -45,21 +49,10 @@ public class TodoResource {
     @GET
     @Operation(summary = "List All Tasks")
     @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON))
-    // @Counted(
-    //     name = "countGetAll", 
-    //     description = "Counts how many times the getAll method has been invoked"
-    //     )
-    // @Timed(
-    //     name = "timeGetAll", 
-    //     description = "Times how long it takes to invoke the getAll method in second", 
-    //     unit = MetricUnits.SECONDS
-    //     )
-    // @ConcurrentGauge(
-    //         name = "concurrentGetAll",
-    //         description = "Concurrent connection to GetAll method"
-    //         )   
-             public Uni<List<Todo>> getAll() {
-        System.out.println(Thread.currentThread().getName());
+    public Uni<List<Todo>> getAll() {
+       LOG.info(Thread.currentThread().getName());
+       registry.counter("io.quarkus.sample.TodoResource.getAll.count").increment();
+    //    Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
         return Panache.withTransaction(
                 () -> Todo.findAll(Sort.by("order")).list()
         );
@@ -69,7 +62,7 @@ public class TodoResource {
     @Blocking
     @Path("/blocking")
     public List<Todo> getAllBlocking() {
-        System.out.println(Thread.currentThread().getName());
+        LOG.info(Thread.currentThread().getName());
         return getAll()
                 .await().indefinitely();
     }
@@ -83,44 +76,28 @@ public class TodoResource {
             @APIResponse(responseCode = "404", description = "Not Found", content = @Content(mediaType = MediaType.APPLICATION_JSON))
         }
     )
-    // @Counted(
-    //     name = "countGetOne", 
-    //     description = "Counts how many times the getOne method has been invoked"
-    //     )
-    // @Timed(
-    //     name = "timeGetOne", 
-    //     description = "Times how long it takes to invoke the getOne method in second", 
-    //     unit = MetricUnits.SECONDS
-    //     )
-    // @ConcurrentGauge(
-    //         name = "concurrentGetOne",
-    //         description = "Concurrent connection to GetOne method"
-    //     )
     public Uni<Todo> getOne(@PathParam("id") Long id) {
-        return Panache.withTransaction(
+        registry.counter("io.quarkus.sample.TodoResource.getOne.count").increment();
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.getOne.time");
+        return timer.record(() -> {
+            return Panache.withTransaction(
                 () -> Todo.<Todo>findById(id)
                     .onItem().ifNull().failWith(() ->
                         new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND)
                 ));
+        });
+        // return Panache.withTransaction(
+        //         () -> Todo.<Todo>findById(id)
+        //             .onItem().ifNull().failWith(() ->
+        //                 new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND)
+        //         ));
     }
 
     @POST
     @Operation(summary = "Create Tasks")
     @APIResponse(responseCode = "201",description = "Created", content = @Content(mediaType = MediaType.APPLICATION_JSON))
-    // @Counted(
-    //     name = "countCreate", 
-    //     description = "Counts how many times the create method has been invoked"
-    //     )
-    // @Timed(
-    //     name = "timeCreate", 
-    //     description = "Times how long it takes to create the getAll method in second", 
-    //     unit = MetricUnits.SECONDS
-    //     )
-    // @ConcurrentGauge(
-    //         name = "concurrentCreate",
-    //         description = "Concurrent connection to create method"
-    //     )
     public Uni<Response> create(@Valid Todo item) {
+        registry.counter("io.quarkus.sample.TodoResource.create.count").increment();
         return Panache.withTransaction(
                 () -> item.persist()
             ).replaceWith(
@@ -132,21 +109,11 @@ public class TodoResource {
     @Path("/{id}")
     @Operation(summary = "Update Task")
     @APIResponse(responseCode = "200",description = "Updated", content = @Content(mediaType = MediaType.APPLICATION_JSON))
-    // @Counted(
-    //     name = "countUpdate", 
-    //     description = "Counts how many times the update method has been invoked"
-    //     )
-    // @Timed(
-    //     name = "timeUpdate", 
-    //     description = "Times how long it takes to invoke the update method in second", 
-    //     unit = MetricUnits.SECONDS
-    //     )
-    // @ConcurrentGauge(
-    //         name = "concurrentUpdate",
-    //         description = "Concurrent connection to update method"
-    //     )
     public Uni<Todo> update(@Valid Todo todo, @PathParam("id") Long id) {
-        return Panache.withTransaction(
+        registry.counter("io.quarkus.sample.TodoResource.update.count").increment();
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.update.time");
+        return timer.record(() -> {
+            return Panache.withTransaction(
                 () -> Todo.<Todo>findById(id)
                 .onItem().transform(entity -> {
                     entity.id = id;
@@ -157,10 +124,13 @@ public class TodoResource {
                     return entity;
                 })
         );
+        });
+        
     }
 
     @DELETE
     public Uni<Response> deleteCompleted() {
+        // Timer timer = registry.timer("io.quarkus.sample.TodoResource.delete");
         return Panache.withTransaction(
                 () -> Todo.deleteCompleted()
         ).replaceWith(
@@ -177,21 +147,11 @@ public class TodoResource {
             @APIResponse(responseCode = "404", description ="Not found", content = @Content(mediaType = MediaType.APPLICATION_JSON))
         }
     )
-    // @Counted(
-    //     name = "countDeleteOne", 
-    //     description = "Counts how many times the deleteOne method has been invoked"
-    //     )
-    // @Timed(
-    //     name = "timeDeleteOne", 
-    //     description = "Times how long it takes to deleteOne the getAll method in second", 
-    //     unit = MetricUnits.SECONDS
-    //     )
-    // @ConcurrentGauge(
-    //         name = "concurrentDeleteOne",
-    //         description = "Concurrent connection to deleteOne method"
-    //     )
     public Uni<Response> deleteOne(@PathParam("id") Long id) {
-        return Panache.withTransaction(
+        Timer timer = registry.timer("io.quarkus.sample.TodoResource.delete");
+        registry.counter("io.quarkus.sample.TodoResource.deleteOne.count").increment();        
+        return timer.record( () -> {
+            return Panache.withTransaction(
                 () -> Todo.findById(id)
                         .onItem().ifNull().failWith(() ->
                             new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND)
@@ -200,6 +160,18 @@ public class TodoResource {
         ).replaceWith(
                 () -> Response.noContent().build()
         );
+        }
+
+        );
+        // return Panache.withTransaction(
+        //         () -> Todo.findById(id)
+        //                 .onItem().ifNull().failWith(() ->
+        //                     new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND)
+        //                 )
+        //                 .call(entity -> entity.delete())
+        // ).replaceWith(
+        //         () -> Response.noContent().build()
+        // );
     }
 
 }

@@ -23,12 +23,12 @@ public class Todo extends PanacheEntity {
 
     public String url;
 
-    public static Multi<Todo> findNotCompleted() {
-        return stream("completed", false);
+    public static Uni<List<Todo>> findNotCompleted() {
+        return list("completed", false);
     }
 
-    public static Multi<Todo> findCompleted() {
-        return stream("completed", true);
+    public static Uni<List<Todo>> findCompleted() {
+        return list("completed", true);
     }
 
     public static Uni<Long> deleteCompleted() {

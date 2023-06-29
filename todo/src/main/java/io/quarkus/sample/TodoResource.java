@@ -130,11 +130,11 @@ public class TodoResource {
     )
     public Response deleteOne(@PathParam("id") Long id) {
         Todo entity = Todo.findById(id);
+        registry.counter("io.quarkus.sample.TodoResource.deleteOne.count").increment();
         if (entity == null) {
             throw new WebApplicationException("Todo with id of " + id + " does not exist.", Status.NOT_FOUND);
         }
         entity.delete();
-        registry.counter("io.quarkus.sample.TodoResource.deleteOne.count").increment();
         return Response.noContent().build();
     }
 

@@ -1,13 +1,16 @@
 package io.quarkus.sample;
 
 import io.quarkus.test.common.QuarkusTestResource;
-import io.quarkus.test.junit.NativeImageTest;
+// import io.quarkus.test.junit.NativeImageTest;
 import io.restassured.common.mapper.TypeRef;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.MediaType;
+
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.*;
 
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
+// import javax.ws.rs.core.HttpHeaders;
+// import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 import static io.restassured.RestAssured.get;
@@ -15,7 +18,7 @@ import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.core.Is.is;
 
-@NativeImageTest
+// @NativeImageTest
 @QuarkusTestResource(DatabaseResource.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Disabled("Waiting for https://github.com/quarkusio/quarkus/issues/14264")
