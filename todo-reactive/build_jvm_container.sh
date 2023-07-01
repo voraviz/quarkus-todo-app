@@ -1,5 +1,5 @@
 #!/bin/bash
-CONTAINER_NAME=todo-reactive
+CONTAINER_NAME=quay.io/voravitl/todo-reactive
 TAG=v1
 TYPE=jvm
 CONTAINER_RUNTIME=podman
