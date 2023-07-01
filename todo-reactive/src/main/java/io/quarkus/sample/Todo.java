@@ -1,7 +1,6 @@
 package io.quarkus.sample;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 
 import jakarta.persistence.Column;
