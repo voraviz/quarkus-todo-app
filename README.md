@@ -19,7 +19,7 @@
 - Start OpenTelemetry and All-in-One Jaeger with Docker Compose
   
   ```bash
-  cd todo/etc/compose
+  cd etc/compose
   docker-compose up -d
   ```
 
@@ -62,7 +62,6 @@
   - Red Hat OpenShift distributed tracing platform (Jaeger)
 
     ```bash
-    cd todo
     oc create -f etc/openshift/jaeger-sub.yaml
     ```
 
