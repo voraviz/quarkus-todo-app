@@ -28,4 +28,8 @@ spec:  # You need to replace PROJECT with namespace/project name
           processors: [batch]
           exporters: [jaeger]
 #Set jaeger endpoint to jaeger-collector-headless.CONTROL_PLANE.svc:14250 to export to Service Mesh Jaeger
-
+# Export to another OTLP i.e. Tempo
+# otlp:
+#         endpoint: tempo-prod-04-prod-us-east-0.grafana.net:443
+#         headers:
+#           authorization: Basic <base64 of user and password> # or token <token>
