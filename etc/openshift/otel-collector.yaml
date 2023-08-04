@@ -32,4 +32,4 @@ spec:  # You need to replace PROJECT with namespace/project name
 # otlp:
 #         endpoint: tempo-prod-04-prod-us-east-0.grafana.net:443
 #         headers:
-#           authorization: Basic <base64 of user and password> # or token <token>
+#           authorization: Basic <base64 of user and password> # or Bearer <token>
