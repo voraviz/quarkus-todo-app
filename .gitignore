@@ -1,4 +1,4 @@
-.vscode/*
+.vscode/settings.json
 **/.java-version
 **/.vscode
 # Created by https://www.toptal.com/developers/gitignore/api/osx
