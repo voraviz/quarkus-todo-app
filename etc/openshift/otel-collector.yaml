@@ -1,35 +1,46 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
-  name: otel
-spec:  # You need to replace PROJECT with namespace/project name
-  mode: deployment
+  labels:
+    app.kubernetes.io/managed-by: opentelemetry-operator
+spec:
+  observability:
+    metrics:
+      enableMetrics: true
   config: |
     receivers:
       otlp:
-        protocols:
+        protocols: 
           grpc:
           http:
 
     exporters:
-      jaeger:
-        endpoint: jaeger-collector-headless.PROJECT.svc:14250
+      otlp:
+        endpoint: "jaeger-collector-headless:4317"
         tls:
-          ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
           insecure: true
-      
-    processors:
-      batch:
 
     service:
       pipelines:
         traces:
           receivers: [otlp]
-          processors: [batch]
-          exporters: [jaeger]
-#Set jaeger endpoint to jaeger-collector-headless.CONTROL_PLANE.svc:14250 to export to Service Mesh Jaeger
-# Export to another OTLP i.e. Tempo
-# otlp:
-#         endpoint: tempo-prod-04-prod-us-east-0.grafana.net:443
-#         headers:
-#           authorization: Basic <base64 of user and password> # or Bearer <token>
+          exporters: [otlp]
+  mode: deployment
+  resources: {}
+  minReplicas: 1
+  managementState: managed
+  upgradeStrategy: none
+  ingress:
+    route: {}
+  autoscaler:
+    maxReplicas: 4
+    minReplicas: 2
+    targetCPUUtilization: 90
+  targetAllocator:
+    prometheusCR:
+      scrapeInterval: 30s
+    resources: {}
+  replicas: 1
+  updateStrategy: {}
+  podDisruptionBudget:
+    maxUnavailable: 1
