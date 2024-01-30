@@ -9,5 +9,5 @@ spec:
       containers:
       - name: todo
         env:
-        - name: quarkus.opentelemetry.tracer.exporter.otlp.endpoint
-          value: http://otel-collector:4317
+        - name: quarkus.otel.exporter.otlp.endpoint
+          value: http://otel-collector-headless:4317
