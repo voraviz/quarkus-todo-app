@@ -5,10 +5,11 @@
     - [OTEL and Jaeger](#otel-and-jaeger)
     - [To-Do App](#to-do-app)
     - [Test](#test)
-  - [OpenShift - OpenTelementry](#openshift---opentelementry)
+  - [OpenShift - OpenTelementry with Jaeger](#openshift---opentelementry-with-jaeger)
     - [Install Operators](#install-operators)
     - [Deploy to-do app](#deploy-to-do-app)
     - [Test](#test-1)
+  - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
   - [OpenShift - Service Mesh with OpenTelemetry](#openshift---service-mesh-with-opentelemetry)
     - [Install Operators](#install-operators-1)
     - [Configure Service Mesh](#configure-service-mesh)
@@ -53,7 +54,7 @@
   
     ![](images/jaeger-console-select-statement.png)
   
-## OpenShift - OpenTelementry
+## OpenShift - OpenTelementry with Jaeger
 
 ### Install Operators
 
@@ -80,9 +81,9 @@
    Result
 
    ```bash
-    NAME                               DISPLAY                                                 VERSION    REPLACES                           PHASE
-    jaeger-operator.v1.39.0-3          Red Hat OpenShift distributed tracing platform          1.39.0-3   jaeger-operator.v1.34.1-5          Succeeded
-    opentelemetry-operator.v0.63.1-4   Red Hat OpenShift distributed tracing data collection   0.63.1-4   opentelemetry-operator.v0.60.0-2   Succeeded
+    NAME                               DISPLAY                                          VERSION    REPLACES                           PHASE
+    jaeger-operator.v1.51.0-1          Red Hat OpenShift distributed tracing platform   1.51.0-1   jaeger-operator.v1.47.1-5          Succeeded
+    opentelemetry-operator.v0.89.0-3   Red Hat build of OpenTelemetry                   0.89.0-3   opentelemetry-operator.v0.81.1-5   Succeeded
    ```
 
    OpenShift Console
@@ -95,7 +96,7 @@
   oc new-project todo
   ```
 
-- Create [Jaeger instance](todo/etc/openshift/jaeger.yaml)
+- Create [Jaeger instance](etc/openshift/jaeger.yaml)
   
   ```bash
   oc create -f etc/openshift/jaeger.yaml -n todo 
@@ -104,7 +105,7 @@
   Check
 
   ```bash
-  oc get po -l app.kubernetes.io/name=jaeger -n todo
+  watch oc get po -l app.kubernetes.io/name=jaeger -n todo
   ```
 
   Result 
@@ -114,7 +115,7 @@
   jaeger-867dcf97bd-xpjwq   2/2     Running   0          15s
   ```
 
-- Create [OTEL instance](todo/etc/openshift/otel-collector.yaml)
+- Create [OTEL instance](etc/openshift/otel-collector.yaml)
   
   Snippet from CRD
   
@@ -136,13 +137,13 @@
   ```
   
   ```bash
-  cat etc/openshift/otel-collector.yaml | sed 's/PROJECT/'$(oc project -q)'/' | oc create -n todo -f -
+  cat etc/openshift/otel-collector.yaml | sed 's/PROJECT/'$(oc project -q)'/' | oc apply -n todo -f -
   ```
 
   Check 
 
   ```bash
-  oc get po -l app.kubernetes.io/component=opentelemetry-collector -n todo
+  watch oc get po -l app.kubernetes.io/component=opentelemetry-collector -n todo
   ```
 
   Result
@@ -167,7 +168,7 @@
       containers:
       - name: todo
         env:
-        - name: quarkus.opentelemetry.tracer.exporter.otlp.endpoint
+        - name: quarkus.otel.exporter.otlp.traces.endpoint
           value: http://otel-collector:4317
   ```
   
@@ -201,6 +202,7 @@
   
   ![](images/jaeger-todo-trace-sql-statement.png)
 
+## OpenShift - OpenTelemetry with Tempo
 ## OpenShift - Service Mesh with OpenTelemetry
 
 ### Install Operators
