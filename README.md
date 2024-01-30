@@ -120,20 +120,18 @@
   Snippet from CRD
   
   ```yaml
-  mode: deployment
-  config: |
-    receivers:
-      otlp:
-        protocols:
-          grpc:
-          http:
+    config: |
+      receivers:
+        otlp:
+          protocols: 
+            grpc:
+            http:
 
-    exporters:
-      jaeger:
-        endpoint: jaeger-collector-headless.PROJECT.svc:14250
-        tls:
-          ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
-          insecure: true
+      exporters:
+        otlp:
+          endpoint: "jaeger-collector-headless:4317"
+          tls:
+            insecure: true
   ```
   
   ```bash
@@ -164,12 +162,15 @@
 - Snippet from deployment with env for OTEL
 
   ```yaml
+  spec:
+    replicas: 1
+    template:
       spec:
-      containers:
-      - name: todo
-        env:
-        - name: quarkus.otel.exporter.otlp.traces.endpoint
-          value: http://otel-collector:4317
+        containers:
+        - name: todo
+          env:
+          - name: quarkus.otel.exporter.otlp.endpoint
+            value: http://otel-collector-headless:4317
   ```
   
 - Deploy with kustomize
