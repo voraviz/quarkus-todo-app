@@ -134,10 +134,12 @@
             insecure: true
   ```
   
-  ```bash
+  <!-- ```bash
   cat etc/openshift/otel-collector.yaml | sed 's/PROJECT/'$(oc project -q)'/' | oc apply -n todo -f -
+  ``` -->
+  ```bash
+  oc create -f etc/openshift/otel-collector.yaml -n todo
   ```
-
   Check 
 
   ```bash
