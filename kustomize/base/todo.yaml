@@ -47,10 +47,10 @@ spec:
         resources:
           requests:
             cpu: "0.05"
-            memory: 40Mi
+            memory: 200Mi
           limits:
             cpu: "0.1"
-            memory: 200Mi
+            memory: 400Mi
         env:
         - name: quarkus.http.access-log.enabled
           value: "true"  
