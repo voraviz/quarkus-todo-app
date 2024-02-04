@@ -1,6 +1,6 @@
 #!/bin/bash
 START_BUILD_APP=$(date +%s)
-./mvnw package -Pnative -Dquarkus.native.native-image-xmx=7g -DskipTests=true
+mvn clean install -Dnative -Dquarkus.native.container-build=true -DskipTests=true
 #-Dquarkus.native.additional-build-args="--static","--libc=musl"
 END_BUILD_APP=$(date +%s)
 BUILD_APP_TIME=$(expr ${END_BUILD_APP} - ${START_BUILD_APP})
