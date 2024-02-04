@@ -9,7 +9,7 @@
     - [Install Operators](#install-operators)
     - [Deploy to-do app](#deploy-to-do-app)
     - [Test](#test-1)
-  - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
+  - [OpenShift - OpenTelemetry with Tempo \[WIP\]](#openshift---opentelemetry-with-tempo-wip)
   - [OpenShift - Service Mesh with OpenTelemetry](#openshift---service-mesh-with-opentelemetry)
     - [Install Operators](#install-operators-1)
     - [Configure Service Mesh](#configure-service-mesh)
@@ -205,7 +205,46 @@
   
   ![](images/jaeger-todo-trace-sql-statement.png)
 
-## OpenShift - OpenTelemetry with Tempo
+## OpenShift - OpenTelemetry with Tempo [WIP]
+- Create S3 compatiable bucket on ODF
+  
+  - Admin Console
+    - Navigate to Storage -> Object Storage -> Object Bucket Claims
+    - Create ObjectBucketClaim
+    - Claim Name: *loki*
+    - StorageClass: *openshift-storage.nooba.io*
+    - BucketClass: *nooba-default-bucket-class*
+  
+  - Use oc command with [YAML](etc/openshift/tempo-odf-bucket.yaml)              
+    
+    ```bash
+    oc create -f etc/openshift/tempo-odf-bucket.yaml
+
+
+    
+- Retrieve configuration into environment variables
+  
+  ``bash
+   S3_BUCKET=$(oc get ObjectBucketClaim tempo -n openshift-storage -o jsonpath='{.spec.bucketName}')
+   REGION="''"
+   ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
+   SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
+   ENDPOINT="https://s3.openshift-storage.svc:443"
+  ```
+
+- Create secret
+  
+  ```bash
+  oc create secret generic tempo-s3 \
+    --from-literal=name=tempo \
+    --from-literal=bucket=$S3_BUCKET  \
+    --from-literal=endpoint=$ENDPOINT \
+    --from-literal=access_key_id=$ACCESS_KEY_ID \
+    --from-literal=access_key_secret=$SECRET_ACCESS_KEY \
+    -n todo
+  ```
+- WIP
+- 
 ## OpenShift - Service Mesh with OpenTelemetry
 
 ### Install Operators
