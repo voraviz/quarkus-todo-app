@@ -3,6 +3,7 @@ kind: OpenTelemetryCollector
 metadata:
   labels:
     app.kubernetes.io/managed-by: opentelemetry-operator
+  name: otel  
 spec:
   observability:
     metrics:
