@@ -1,8 +1,8 @@
 #!/bin/sh
 CONTAINER_NAME=todo
 TAG=native
-#TYPE=native
-TYPE=multistage
+TYPE=native
+#TYPE=multistage
 CONTAINER_RUNTIME=podman
 podman --version 1>/dev/null 2>&1
 if [ $? -ne 0 ];
