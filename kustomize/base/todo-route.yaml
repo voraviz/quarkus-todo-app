@@ -12,3 +12,5 @@ spec:
     name: todo
     weight: 100
   wildcardPolicy: None
+  tls: 
+    termination: edge
