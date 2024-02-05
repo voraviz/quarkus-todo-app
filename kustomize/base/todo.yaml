@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: todo
-        image: quay.io/voravitl/todo:otel
+        image: quay.io/voravitl/todo:otel-native
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
