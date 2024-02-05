@@ -1,6 +1,6 @@
 #!/bin/sh
 CONTAINER_NAME=todo
-TAG=native
+TAG=otel-native
 TYPE=native
 #TYPE=multistage
 CONTAINER_RUNTIME=podman
