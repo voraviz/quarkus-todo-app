@@ -59,7 +59,7 @@ spec:
         - name: quarkus.hibernate-orm.database.generation
           value: none
         - name: quarkus.http.cors
-          value: "true"
+          value: "false"
         readinessProbe:
           httpGet:
             path: /q/health/ready
