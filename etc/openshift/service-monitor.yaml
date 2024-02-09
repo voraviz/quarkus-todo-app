@@ -8,10 +8,10 @@ spec:
     port: http
     path: /q/metrics
     scheme: http
-  - interval: 30s
-    port: http
-    path: /q/metrics/application
-    scheme: http
+  # - interval: 30s
+  #   port: http
+  #   path: /q/metrics/application
+  #   scheme: http
   selector:
     matchLabels:
       app: todo
