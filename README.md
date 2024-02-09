@@ -219,7 +219,15 @@
     
     ```bash
     oc create -f etc/openshift/tempo-odf-bucket.yaml
+    oc get objectbucketclaim.objectbucket.io/tempo -n openshift-storage
+    ```
 
+    Output
+
+    ```bash
+    NAME    STORAGE-CLASS                 PHASE   AGE
+    tempo   openshift-storage.noobaa.io   Bound   18s
+    ```
 
     
 - Retrieve configuration into environment variables
@@ -229,7 +237,7 @@
    REGION="''"
    ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
    SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
-   ENDPOINT="https://s3.openshift-storage.svc:443"
+   ENDPOINT="https://$(oc get route s3 -n openshift-storage -o jsonpath='{.spec.host}'):443"
   ```
 
 - Create secret
@@ -243,8 +251,25 @@
     --from-literal=access_key_secret=$SECRET_ACCESS_KEY \
     -n todo
   ```
+- Create TempoStack
+  
+  ```bash
+  oc create -f etc/openshift/tempo-stack.yaml
+  oc get po -l  app.kubernetes.io/instance=tempo -n todo
+  ```
+  
+  Output
+
+  ```bash
+  NAME                                          READY   STATUS    RESTARTS   AGE
+  tempo-tempo-compactor-6b6cf64484-gt69n        1/1     Running   0          3m47s
+  tempo-tempo-distributor-c894c4f74-plhnv       1/1     Running   0          3m47s
+  tempo-tempo-ingester-0                        1/1     Running   0          3m47s
+  tempo-tempo-querier-6d8f9f6685-zgjch          1/1     Running   0          3m47s
+  tempo-tempo-query-frontend-58497bdb78-fvxf4   2/2     Running   0          3m47s
+  ```
 - WIP
-- 
+- WIP
 ## OpenShift - Service Mesh with OpenTelemetry
 
 ### Install Operators
