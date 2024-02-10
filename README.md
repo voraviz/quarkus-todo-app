@@ -239,7 +239,12 @@
    SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
    ENDPOINT="https://$(oc get route s3 -n openshift-storage -o jsonpath='{.spec.host}'):443"
   ```
-
+- Create project
+  
+  ```bash
+  oc new-project todo-tempo
+  PROJECT=todo-tempo
+  ```
 - Create secret
   
   ```bash
@@ -249,27 +254,55 @@
     --from-literal=endpoint=$ENDPOINT \
     --from-literal=access_key_id=$ACCESS_KEY_ID \
     --from-literal=access_key_secret=$SECRET_ACCESS_KEY \
-    -n todo
+    -n $PROJECT
   ```
 - Create TempoStack
   
   ```bash
-  oc create -f etc/openshift/tempo-stack.yaml
-  oc get po -l  app.kubernetes.io/instance=tempo -n todo
+  cat etc/openshift/tempo-stack.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+  oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
   ```
   
   Output
 
   ```bash
-  NAME                                          READY   STATUS    RESTARTS   AGE
-  tempo-tempo-compactor-6b6cf64484-gt69n        1/1     Running   0          3m47s
-  tempo-tempo-distributor-c894c4f74-plhnv       1/1     Running   0          3m47s
-  tempo-tempo-ingester-0                        1/1     Running   0          3m47s
-  tempo-tempo-querier-6d8f9f6685-zgjch          1/1     Running   0          3m47s
-  tempo-tempo-query-frontend-58497bdb78-fvxf4   2/2     Running   0          3m47s
+  NAME                                             READY   STATUS    RESTARTS   AGE
+  tempo-simplest-compactor-5c5d9df594-8n8pf        1/1     Running   0          2m44s
+  tempo-simplest-distributor-6df8c5884d-jqpcs      1/1     Running   0          2m44s
+  tempo-simplest-gateway-5fd5b6df7f-cj8b9          2/2     Running   0          2m44s
+  tempo-simplest-ingester-0                        1/1     Running   0          2m44s
+  tempo-simplest-querier-869d85cf99-njjbg          1/1     Running   0          2m44s
+  tempo-simplest-query-frontend-864c9594fb-9nv2v   2/2     Running   0          2m44s
   ```
-- WIP
-- WIP
+
+- Create OTEL collector
+  
+  ```bash
+  cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+  oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
+  ```
+  
+  Output
+  
+  ```bash
+  NAME                             READY   STATUS    RESTARTS   AGE
+  otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
+  ```
+
+- Deploy todo app
+
+  ```bash
+  oc apply -n $PROJECT -k kustomize/overlays/otel
+  ```
+  
+  Add some todo to todo app
+
+- Open Jaeger Console provided by Tempo
+  
+  ```bash
+  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/api/traces/v1/dev/search"
+  ```
+
 ## OpenShift - Service Mesh with OpenTelemetry
 
 ### Install Operators

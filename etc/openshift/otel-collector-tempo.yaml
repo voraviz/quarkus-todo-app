@@ -1,47 +1,40 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
-  labels:
-    app.kubernetes.io/managed-by: opentelemetry-operator
-  name: otel  
+  name: otel
 spec:
-  observability:
-    metrics:
-      enableMetrics: true
-  config: |
-    receivers:
-      otlp:
-        protocols: 
-          grpc:
-          http:
+    serviceAccount: otel-collector
+    config: |
+      extensions:
+        bearertokenauth:
+          filename: "/var/run/secrets/kubernetes.io/serviceaccount/token"
+      exporters:
+        # Export the dev tenant traces to a Tempo instance
+        otlp/dev:
+          endpoint: tempo-simplest-gateway.PROJECT.svc.cluster.local:8090
+          tls:
+            insecure: false
+            ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
+          auth:
+            authenticator: bearertokenauth
+          headers:
+            X-Scope-OrgID: "dev"
 
-    exporters:
-      otlp:
-        endpoint: "tempo-tempo-distributor:4317"
-        tls:
-          insecure: true
+      receivers:
+        otlp:
+          protocols:
+            grpc:
+            http:
+        jaeger:
+          protocols:
+            thrift_binary:
+            thrift_compact:
+            thrift_http:
+            grpc:
 
-    service:
-      pipelines:
-        traces:
-          receivers: [otlp]
-          exporters: [otlp]
-  mode: deployment
-  resources: {}
-  minReplicas: 1
-  managementState: managed
-  upgradeStrategy: none
-  ingress:
-    route: {}
-  autoscaler:
-    maxReplicas: 4
-    minReplicas: 2
-    targetCPUUtilization: 90
-  targetAllocator:
-    prometheusCR:
-      scrapeInterval: 30s
-    resources: {}
-  replicas: 1
-  updateStrategy: {}
-  podDisruptionBudget:
-    maxUnavailable: 1
+      service:
+        extensions: [bearertokenauth]
+        pipelines:
+          traces:
+            receivers: [otlp, jaeger]
+            exporters: [otlp/dev]
