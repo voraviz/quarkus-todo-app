@@ -9,7 +9,7 @@
     - [Install Operators](#install-operators)
     - [Deploy to-do app](#deploy-to-do-app)
     - [Test](#test-1)
-  - [OpenShift - OpenTelemetry with Tempo \[WIP\]](#openshift---opentelemetry-with-tempo-wip)
+  - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
   - [OpenShift - Service Mesh with OpenTelemetry \[Need to retest with Lastest OSSM\]](#openshift---service-mesh-with-opentelemetry-need-to-retest-with-lastest-ossm)
     - [Install Operators](#install-operators-1)
     - [Configure Service Mesh](#configure-service-mesh)
@@ -205,7 +205,7 @@
   
   ![](images/jaeger-todo-trace-sql-statement.png)
 
-## OpenShift - OpenTelemetry with Tempo [WIP]
+## OpenShift - OpenTelemetry with Tempo
 - Create S3 compatiable bucket on ODF
   
   - Admin Console
