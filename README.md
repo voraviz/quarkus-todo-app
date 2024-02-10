@@ -5,11 +5,14 @@
     - [OTEL and Jaeger](#otel-and-jaeger)
     - [To-Do App](#to-do-app)
     - [Test](#test)
-  - [OpenShift - OpenTelementry with Jaeger](#openshift---opentelementry-with-jaeger)
+  - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
+    - [Prepare Object Storage (S3 Compatible)](#prepare-object-storage-s3-compatible)
+    - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
+    - [Deploy Todo App and Test](#deploy-todo-app-and-test)
+  - [OpenShift - OpenTelementry with Jaeger \[Deprecated soon\]](#openshift---opentelementry-with-jaeger-deprecated-soon)
     - [Install Operators](#install-operators)
     - [Deploy to-do app](#deploy-to-do-app)
     - [Test](#test-1)
-  - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
   - [OpenShift - Service Mesh with OpenTelemetry \[Need to retest with Lastest OSSM\]](#openshift---service-mesh-with-opentelemetry-need-to-retest-with-lastest-ossm)
     - [Install Operators](#install-operators-1)
     - [Configure Service Mesh](#configure-service-mesh)
@@ -54,7 +57,122 @@
   
     ![](images/jaeger-console-select-statement.png)
   
-## OpenShift - OpenTelementry with Jaeger
+## OpenShift - OpenTelemetry with Tempo
+- Install Operators
+    - Red Hat OpenShift distributed tracing data collection (OTEL)
+
+    ```bash
+    oc create -f etc/openshift/otel-sub.yaml
+    ```
+    - Tempo Operator by Red Hat
+  
+### Prepare Object Storage (S3 Compatible)
+- Create S3 compatiable bucket on ODF
+  
+  - Admin Console
+    - Navigate to Storage -> Object Storage -> Object Bucket Claims
+    - Create ObjectBucketClaim
+    - Claim Name: *loki*
+    - StorageClass: *openshift-storage.nooba.io*
+    - BucketClass: *nooba-default-bucket-class*
+  
+  - Use oc command with [YAML](etc/openshift/tempo-odf-bucket.yaml)              
+    
+    ```bash
+    oc create -f etc/openshift/tempo-odf-bucket.yaml
+    oc get objectbucketclaim.objectbucket.io/tempo -n openshift-storage
+    ```
+
+    Output
+
+    ```bash
+    NAME    STORAGE-CLASS                 PHASE   AGE
+    tempo   openshift-storage.noobaa.io   Bound   18s
+    ```
+
+    
+- Retrieve configuration into environment variables
+  
+  ``bash
+   S3_BUCKET=$(oc get ObjectBucketClaim tempo -n openshift-storage -o jsonpath='{.spec.bucketName}')
+   REGION="''"
+   ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
+   SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
+   ENDPOINT="https://$(oc get route s3 -n openshift-storage -o jsonpath='{.spec.host}'):443"
+  ```
+### Deploy and configure Tempo
+- Create project
+  
+  ```bash
+  oc new-project todo-tempo
+  PROJECT=todo-tempo
+  ```
+- Create secret
+  
+  ```bash
+  oc create secret generic tempo-s3 \
+    --from-literal=name=tempo \
+    --from-literal=bucket=$S3_BUCKET  \
+    --from-literal=endpoint=$ENDPOINT \
+    --from-literal=access_key_id=$ACCESS_KEY_ID \
+    --from-literal=access_key_secret=$SECRET_ACCESS_KEY \
+    -n $PROJECT
+  ```
+- Create TempoStack
+  
+  ```bash
+  cat etc/openshift/tempo-stack.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+  oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
+  ```
+  
+  Output
+
+  ```bash
+  NAME                                             READY   STATUS    RESTARTS   AGE
+  tempo-simplest-compactor-5c5d9df594-8n8pf        1/1     Running   0          2m44s
+  tempo-simplest-distributor-6df8c5884d-jqpcs      1/1     Running   0          2m44s
+  tempo-simplest-gateway-5fd5b6df7f-cj8b9          2/2     Running   0          2m44s
+  tempo-simplest-ingester-0                        1/1     Running   0          2m44s
+  tempo-simplest-querier-869d85cf99-njjbg          1/1     Running   0          2m44s
+  tempo-simplest-query-frontend-864c9594fb-9nv2v   2/2     Running   0          2m44s
+  ```
+### Deploy and configure OpenTelemetry
+- Create OTEL collector
+  
+  ```bash
+  cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+  oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
+  ```
+  
+  Output
+  
+  ```bash
+  NAME                             READY   STATUS    RESTARTS   AGE
+  otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
+  ```
+### Deploy Todo App and Test
+- Deploy todo app
+
+  ```bash
+  oc apply -n $PROJECT -k kustomize/overlays/otel
+  ```
+  
+  Add some todo to todo app
+
+- Open Jaeger Console provided by Tempo
+  
+  ```bash
+  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/api/traces/v1/dev/search"
+  ```
+
+  Sample 
+
+  ![](images/jaeger-with-tempo.png)
+
+
+Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
+
+## OpenShift - OpenTelementry with Jaeger [Deprecated soon]
 
 ### Install Operators
 
@@ -205,110 +323,7 @@
   
   ![](images/jaeger-todo-trace-sql-statement.png)
 
-## OpenShift - OpenTelemetry with Tempo
-- Create S3 compatiable bucket on ODF
-  
-  - Admin Console
-    - Navigate to Storage -> Object Storage -> Object Bucket Claims
-    - Create ObjectBucketClaim
-    - Claim Name: *loki*
-    - StorageClass: *openshift-storage.nooba.io*
-    - BucketClass: *nooba-default-bucket-class*
-  
-  - Use oc command with [YAML](etc/openshift/tempo-odf-bucket.yaml)              
-    
-    ```bash
-    oc create -f etc/openshift/tempo-odf-bucket.yaml
-    oc get objectbucketclaim.objectbucket.io/tempo -n openshift-storage
-    ```
 
-    Output
-
-    ```bash
-    NAME    STORAGE-CLASS                 PHASE   AGE
-    tempo   openshift-storage.noobaa.io   Bound   18s
-    ```
-
-    
-- Retrieve configuration into environment variables
-  
-  ``bash
-   S3_BUCKET=$(oc get ObjectBucketClaim tempo -n openshift-storage -o jsonpath='{.spec.bucketName}')
-   REGION="''"
-   ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
-   SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
-   ENDPOINT="https://$(oc get route s3 -n openshift-storage -o jsonpath='{.spec.host}'):443"
-  ```
-- Create project
-  
-  ```bash
-  oc new-project todo-tempo
-  PROJECT=todo-tempo
-  ```
-- Create secret
-  
-  ```bash
-  oc create secret generic tempo-s3 \
-    --from-literal=name=tempo \
-    --from-literal=bucket=$S3_BUCKET  \
-    --from-literal=endpoint=$ENDPOINT \
-    --from-literal=access_key_id=$ACCESS_KEY_ID \
-    --from-literal=access_key_secret=$SECRET_ACCESS_KEY \
-    -n $PROJECT
-  ```
-- Create TempoStack
-  
-  ```bash
-  cat etc/openshift/tempo-stack.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
-  oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
-  ```
-  
-  Output
-
-  ```bash
-  NAME                                             READY   STATUS    RESTARTS   AGE
-  tempo-simplest-compactor-5c5d9df594-8n8pf        1/1     Running   0          2m44s
-  tempo-simplest-distributor-6df8c5884d-jqpcs      1/1     Running   0          2m44s
-  tempo-simplest-gateway-5fd5b6df7f-cj8b9          2/2     Running   0          2m44s
-  tempo-simplest-ingester-0                        1/1     Running   0          2m44s
-  tempo-simplest-querier-869d85cf99-njjbg          1/1     Running   0          2m44s
-  tempo-simplest-query-frontend-864c9594fb-9nv2v   2/2     Running   0          2m44s
-  ```
-
-- Create OTEL collector
-  
-  ```bash
-  cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
-  oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
-  ```
-  
-  Output
-  
-  ```bash
-  NAME                             READY   STATUS    RESTARTS   AGE
-  otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
-  ```
-
-- Deploy todo app
-
-  ```bash
-  oc apply -n $PROJECT -k kustomize/overlays/otel
-  ```
-  
-  Add some todo to todo app
-
-- Open Jaeger Console provided by Tempo
-  
-  ```bash
-  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/api/traces/v1/dev/search"
-  ```
-
-  Sample 
-
-  ![](images/jaeger-with-tempo.png)
-
-
-Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
 ## OpenShift - Service Mesh with OpenTelemetry [Need to retest with Lastest OSSM]
 
