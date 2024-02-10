@@ -10,7 +10,7 @@
     - [Deploy to-do app](#deploy-to-do-app)
     - [Test](#test-1)
   - [OpenShift - OpenTelemetry with Tempo \[WIP\]](#openshift---opentelemetry-with-tempo-wip)
-  - [OpenShift - Service Mesh with OpenTelemetry](#openshift---service-mesh-with-opentelemetry)
+  - [OpenShift - Service Mesh with OpenTelemetry \[Need to retest with Lastest OSSM\]](#openshift---service-mesh-with-opentelemetry-need-to-retest-with-lastest-ossm)
     - [Install Operators](#install-operators-1)
     - [Configure Service Mesh](#configure-service-mesh)
 
@@ -303,7 +303,11 @@
   echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/api/traces/v1/dev/search"
   ```
 
-## OpenShift - Service Mesh with OpenTelemetry
+  Sample 
+
+  ![](images/jaeger-with-tempo.png)
+
+## OpenShift - Service Mesh with OpenTelemetry [Need to retest with Lastest OSSM]
 
 ### Install Operators
 
@@ -324,7 +328,7 @@
   servicemeshoperator.v2.3.1         Red Hat OpenShift Service Mesh                          2.3.1-0    servicemeshoperator.v2.3.0         Succeeded
   ```
 
-### Configure Service Mesh
+### Configure Service Mesh 
 - Create Namespace for control plane
   
   ```bash
