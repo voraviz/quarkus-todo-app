@@ -98,7 +98,7 @@
    REGION="''"
    ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
    SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
-   ENDPOINT="https://$(oc get route s3 -n openshift-storage -o jsonpath='{.spec.host}'):443"
+   ENDPOINT="http://s3.openshift-storage.svc.cluster.local:80"
   ```
 ### Deploy and configure Tempo
 - Create project
@@ -119,7 +119,7 @@
     -n $PROJECT
   ```
 
-  *Remark: This config use ODF S3 route for TempoStack because service certificate is not trusted CA and cannot find the way to skip TLS verification*
+  <!-- *Remark: This config use ODF S3 route for TempoStack because service certificate is not trusted CA and cannot find the way to skip TLS verification* -->
 
 - Create [TempoStack](etc/openshift/tempo-stack.yaml) with dev and prod tenant along with required roles.
   
