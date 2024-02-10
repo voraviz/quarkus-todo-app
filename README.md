@@ -171,7 +171,10 @@
   Jaeger Console 
 
   ![](images/jaeger-with-tempo.png)
-
+  
+  SQL Statement
+  
+  ![](images/jaeger-with-tempo-1.png)
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
