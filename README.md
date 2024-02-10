@@ -107,7 +107,7 @@
   oc new-project todo-tempo
   PROJECT=todo-tempo
   ```
-- Create secret
+- Create secret for TempoStack to access S3 bucket
   
   ```bash
   oc create secret generic tempo-s3 \
@@ -118,7 +118,10 @@
     --from-literal=access_key_secret=$SECRET_ACCESS_KEY \
     -n $PROJECT
   ```
-- Create TempoStack
+
+  *Remark: This config use ODF S3 route for TempoStack because service certificate is not trusted CA and cannot find the way to skip TLS verification*
+
+- Create [TempoStack](etc/openshift/tempo-stack.yaml) with dev and prod tenant along with required roles.
   
   ```bash
   cat etc/openshift/tempo-stack.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
@@ -137,7 +140,7 @@
   tempo-simplest-query-frontend-864c9594fb-9nv2v   2/2     Running   0          2m44s
   ```
 ### Deploy and configure OpenTelemetry
-- Create OTEL collector
+- Create [OTEL collector](etc/openshift/otel-collector-tempo.yaml) with exporter point to Tempo's gateway with dev tenant
   
   ```bash
   cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
@@ -159,13 +162,13 @@
   
   Add some todo to todo app
 
-- Open Jaeger Console provided by Tempo
+- Open Jaeger Console provided by Tempo to access dev tenant
   
   ```bash
   echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/api/traces/v1/dev/search"
   ```
 
-  Sample 
+  Jaeger Console 
 
   ![](images/jaeger-with-tempo.png)
 
