@@ -307,6 +307,9 @@
 
   ![](images/jaeger-with-tempo.png)
 
+
+Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
+
 ## OpenShift - Service Mesh with OpenTelemetry [Need to retest with Lastest OSSM]
 
 ### Install Operators
