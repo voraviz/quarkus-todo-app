@@ -16,6 +16,8 @@ import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+
+import java.time.Instant;
 import java.util.List;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -50,11 +52,14 @@ public class TodoResource {
     public List<Todo> getAll() {
         LOG.info("getAll");
         registry.counter("io.quarkus.sample.TodoResource.getAll.count").increment();
-        Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
-        return timer.record(() -> {
-            return Todo.listAll(Sort.by("order"));
-        });
-        
+        if (ApplicationConfig.IS_READY.get()){
+            Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
+            return timer.record(() -> {
+                return Todo.listAll(Sort.by("order"));
+            });
+        }else{
+            throw new WebApplicationException();
+        }       
     }
 
     @GET
@@ -136,6 +141,35 @@ public class TodoResource {
         entity.delete();
         registry.counter("io.quarkus.sample.TodoResource.deleteOne.count").increment();
         return Response.noContent().build();
+    }
+
+
+    @GET
+    @Path("/not_ready")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Operation(summary = "Set Readiness to false")
+    @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.TEXT_PLAIN))
+    public Response notReadyApp() {
+        LOG.info("Set Readiness to false");
+        ApplicationConfig.IS_READY.set(false);
+        return Response.ok().encoding("text/plain")
+        .entity("Readiness: false")
+            // .expires(Date.from(Instant.now().plus(Duration.ofMillis(0))))
+            .build();
+    }
+
+    @GET
+    @Path("/ready")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Operation(summary = "Set Readiness to true")
+    @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.TEXT_PLAIN))
+    public Response readyApp() {
+        LOG.info("Set Readiness to true");
+        ApplicationConfig.IS_READY.set(true);
+        return Response.ok().encoding("text/plain")
+        .entity("Readiness: true")
+            // .expires(Date.from(Instant.now().plus(Duration.ofMillis(0))))
+            .build();
     }
 
 }
