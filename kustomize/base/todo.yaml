@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: todo
-        image: quay.io/voravitl/todo:otel
+        image: quay.io/voravitl/todo:otel-native
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -47,10 +47,10 @@ spec:
         resources:
           requests:
             cpu: "0.1"
-            memory: 200Mi
+            memory: 100Mi
           limits:
             cpu: "0.2"
-            memory: 450Mi
+            memory: 300Mi
         env:
         - name: quarkus.http.access-log.enabled
           value: "true"  
