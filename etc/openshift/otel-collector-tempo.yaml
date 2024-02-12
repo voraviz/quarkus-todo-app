@@ -4,7 +4,13 @@ metadata:
   name: otel
 spec:
     serviceAccount: otel-collector
+    observability:
+      metrics:
+        enableMetrics: true
     config: |
+      connectors:
+        spanmetrics: 
+          metrics_flush_interval: 15s
       extensions:
         bearertokenauth:
           filename: "/var/run/secrets/kubernetes.io/serviceaccount/token"
@@ -19,6 +25,13 @@ spec:
             authenticator: bearertokenauth
           headers:
             X-Scope-OrgID: "dev"
+        
+        # The Prometheus exporter is used to export metrics in the Prometheus format.
+        prometheus: 
+          endpoint: 0.0.0.0:8889
+          add_metric_suffixes: false
+          resource_to_telemetry_conversion:
+            enabled: true
 
       receivers:
         otlp:
@@ -37,4 +50,7 @@ spec:
         pipelines:
           traces:
             receivers: [otlp, jaeger]
-            exporters: [otlp/dev]
+            exporters: [otlp/dev, spanmetrics]
+          metrics:
+           receivers: [spanmetrics] 
+           exporters: [prometheus]

@@ -191,8 +191,31 @@
 
       ![](images/trace-graph-02.png)
   
-  - Jaeger UI Monitor [WIP]
-  
+  - Jaeger UI Monitor
+    
+    ![](images/jaeger-monitor-1.png)
+
+    Configure one todo pod to return 500
+
+    ```bash
+    TODO_POD=$(oc get po -l app=todo -n $PROJECT  -o custom-columns='Name:.metadata.name' --no-headers | head -n 1)
+    oc exec $TODO_POD -n $PROJECT -- curl -v http://localhost:8080/api/not_ready
+    ```
+
+    Create some workload and check Jaeger UI 
+
+    ```bash
+    siege -c 5 -t 3m http://$(oc get route todo -n $PROJECT -o jsonpath='{.spec.host}')
+    ```
+
+    ![](images/jaeger-monitor-2.png)
+
+    Configure that todo pod to normal operation
+
+    ```bash
+    oc exec $TODO_POD -n $PROJECT -- curl -v http://localhost:8080/api/ready
+    ```
+
 - Grafana Dashboard [WIP]
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
