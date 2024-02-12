@@ -61,10 +61,15 @@
 - Install Operators
     - Red Hat OpenShift distributed tracing data collection (OTEL)
 
-    ```bash
-    oc create -f etc/openshift/otel-sub.yaml
-    ```
+      ```bash
+      oc create -f etc/openshift/otel-sub.yaml
+      ```
+
     - Tempo Operator by Red Hat
+
+      ```bash
+      oc create -f etc/openshift/tempo-sub.yaml
+      ``` 
   
 ### Prepare Object Storage (S3 Compatible)
 - Create S3 compatiable bucket on ODF
@@ -168,13 +173,27 @@
   echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/api/traces/v1/dev/search"
   ```
 
-  Jaeger Console 
+- Jaeger UI 
 
   ![](images/jaeger-with-tempo.png)
   
-  SQL Statement
+  - View SQL Statement
   
-  ![](images/jaeger-with-tempo-1.png)
+    ![](images/jaeger-with-tempo-1.png)
+
+  - Trace Graph
+  
+    - Select Trace Graph
+      
+      ![](images/trace-graph-01.png)
+
+    - Trace Graph
+
+      ![](images/trace-graph-02.png)
+  
+  - Jaeger UI Monitor [WIP]
+  
+- Grafana Dashboard [WIP]
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
