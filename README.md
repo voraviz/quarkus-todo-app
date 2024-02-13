@@ -205,7 +205,7 @@
     Create some workload and check Jaeger UI 
 
     ```bash
-    siege -c 5 -t 3m http://$(oc get route todo -n $PROJECT -o jsonpath='{.spec.host}')
+    siege -c 5 -t 3m http://$(oc get route todo -n $PROJECT -o jsonpath='{.spec.host}')/api
     ```
 
     ![](images/jaeger-monitor-2.png)
