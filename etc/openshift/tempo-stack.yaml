@@ -11,7 +11,10 @@ spec:
     secret:
       name: tempo-s3
       type: s3
-  storageSize: 1Gi
+  storageSize: 10Gi
+  retention:
+    global:
+      traces: 72h # Default is 48 hours
   tenants:
     mode: openshift
     authentication:
