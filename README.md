@@ -6,8 +6,10 @@
     - [To-Do App](#to-do-app)
     - [Test](#test)
   - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
+    - [Operators Insallation](#operators-insallation)
     - [Prepare Object Storage (S3 Compatible)](#prepare-object-storage-s3-compatible)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
+    - [Enable User Workload Monitor](#enable-user-workload-monitor)
     - [Deploy Todo App and Test](#deploy-todo-app-and-test)
   - [OpenShift - OpenTelementry with Jaeger \[Deprecated soon\]](#openshift---opentelementry-with-jaeger-deprecated-soon)
     - [Install Operators](#install-operators)
@@ -58,6 +60,9 @@
     ![](images/jaeger-console-select-statement.png)
   
 ## OpenShift - OpenTelemetry with Tempo
+- If you are too busy to read the following steps just run this [script](setup-tempo-demo.sh)
+
+### Operators Insallation
 - Install Operators
     - Red Hat OpenShift distributed tracing data collection (OTEL)
 
@@ -130,6 +135,7 @@
   
   ```bash
   cat etc/openshift/tempo-stack.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+  oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
   oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
   ```
   
@@ -149,6 +155,7 @@
   
   ```bash
   cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+  oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
   oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
   ```
   
@@ -158,14 +165,46 @@
   NAME                             READY   STATUS    RESTARTS   AGE
   otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
   ```
+### Enable User Workload Monitor
+
+User workload Monitor is required for Jarger Monitor tab
+
+  ```bash
+  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
+  cat etc/openshift/cluster-monitoring-config.yaml | sed 's/storageClassName:.*/storageClassName: '$DEFAULT_STORAGE_CLASS'/' | oc apply -f  -
+  sleep 60
+  oc -n openshift-user-workload-monitoring wait --for condition=ready \
+    --timeout=180s pod -l app.kubernetes.io/name=prometheus
+  oc -n openshift-user-workload-monitoring wait --for condition=ready \
+    --timeout=180s pod -l app.kubernetes.io/name=thanos-ruler
+  oc get pvc -n openshift-monitoring
+  ```
+
 ### Deploy Todo App and Test
 - Deploy todo app
 
   ```bash
   oc apply -n $PROJECT -k kustomize/overlays/otel
+  oc wait --for condition=ready --timeout=180s pod -l app=todo-db  -n $PROJECT 
+  oc wait --for condition=ready --timeout=180s pod -l app=todo  -n $PROJECT 
+  ```
+
+  Output
+  
+  ```bash
+  pod/todo-db-59bc56d568-xbxbp condition met
+  pod/todo-64c6b8d9df-dq6bm condition met
+  pod/todo-64c6b8d9df-hbhmh condition met
+  pod/todo-64c6b8d9df-l9nxl condition met
+  pod/todo-64c6b8d9df-nmqts condition met
+  pod/todo-64c6b8d9df-t9sn9 condition met
   ```
   
-  Add some todo to todo app
+- Add some todo to todo app
+
+  ```bash
+  
+  ```
 
 - Open Jaeger Console provided by Tempo to access dev tenant
   
@@ -205,7 +244,7 @@
     Create some workload and check Jaeger UI 
 
     ```bash
-    siege -c 5 -t 3m http://$(oc get route todo -n $PROJECT -o jsonpath='{.spec.host}')/api
+    siege -c 5 -t 3m https://$(oc get route todo -n $PROJECT -o jsonpath='{.spec.host}')/api
     ```
 
     ![](images/jaeger-monitor-2.png)
