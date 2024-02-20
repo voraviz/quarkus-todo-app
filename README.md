@@ -8,6 +8,7 @@
   - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
     - [Operators Insallation](#operators-insallation)
     - [Prepare Object Storage (S3 Compatible)](#prepare-object-storage-s3-compatible)
+    - [Deploy and configure Tempo](#deploy-and-configure-tempo)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
     - [Enable User Workload Monitor](#enable-user-workload-monitor)
     - [Deploy Todo App and Test](#deploy-todo-app-and-test)
@@ -103,7 +104,7 @@
     
 - Retrieve configuration into environment variables
   
-  ``bash
+   ```bash
    S3_BUCKET=$(oc get ObjectBucketClaim tempo -n openshift-storage -o jsonpath='{.spec.bucketName}')
    REGION="''"
    ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
