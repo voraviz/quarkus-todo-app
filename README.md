@@ -201,10 +201,10 @@ User workload Monitor is required for Jarger Monitor tab
   pod/todo-64c6b8d9df-t9sn9 condition met
   ```
   
-- Add some todo to todo app
+- Add some todos to todo app
 
   ```bash
-  
+  WIP
   ```
 
 - Open Jaeger Console provided by Tempo to access dev tenant
@@ -257,6 +257,14 @@ User workload Monitor is required for Jarger Monitor tab
     ```
 
 - Grafana Dashboard [WIP]
+
+  - Config datasource
+    
+    ![](images/grafana-tempo-datasource-config.png)
+
+  - Show trace
+ 
+    ![](images/grafana-tempo-show-trace.png)
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
