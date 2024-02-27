@@ -263,12 +263,12 @@ User workload Monitor is required for Jarger Monitor tab
     
     | Parameter | Value |  
     |-----------|-------|
-    |URL | https://tempo-<name>-query-frontend.<project>.svc.cluster.local:3200 |
+    |URL | https://tempo-{name}-query-frontend.{namespace}.svc.cluster.local:3200 |
     |TLS Client Auth | true | 
     |Skip Verify TLS | true | 
-    |ServerName | tempo-<name>-query-frontend.<project>.svc.cluster.local |  
-    |Client Cert| oc get secret tempo-<name>-query-frontend-mtls -n <project> -o jsonpath='{.data.tls\\.crt}'|base64 -d |  
-    |Client Key | oc get secret tempo-<name>-query-frontend-mtls -n <project> -o jsonpath='{.data.tls\\.key}'|base64 -d |  
+    |ServerName | tempo-{name}-query-frontend.<project>.svc.cluster.local |  
+    |Client Cert| oc get secret tempo-{name}-query-frontend-mtls -n {namespace} -o jsonpath='{.data.tls\\.crt}'|base64 -d |  
+    |Client Key | oc get secret tempo-{name}-query-frontend-mtls -n {namespace} -o jsonpath='{.data.tls\\.key}'|base64 -d |  
 
 
     ![](images/grafana-tempo-datasource-config.png)
