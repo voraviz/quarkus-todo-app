@@ -256,11 +256,22 @@ User workload Monitor is required for Jarger Monitor tab
     oc exec $TODO_POD -n $PROJECT -- curl -v http://localhost:8080/api/ready
     ```
 
-- Grafana Dashboard [WIP]
-
-  - Config datasource
+- Grafana Dashboard with Tempo
+  - Install Grafana Operator
+  - Create Grafana instance
+  - Config Tempo datasource
     
+    | Parameter | Value |  
+    |-----------|-------|
+    |URL | https://tempo-<name>-query-frontend.<project>.svc.cluster.local:3200 |
+    |TLS Client Auth | true | 
+    |ServerName | tempo-<name>-query-frontend.<project>.svc.cluster.local |  
+    |Client Cert| oc get secret tempo-<name>-query-frontend-mtls -n <project> -o jsonpath='{.data.tls\\.crt}'|base64 -d |  
+    |Client Key | oc get secret tempo-<name>-query-frontend-mtls -n <project> -o jsonpath='{.data.tls\\.key}'|base64 -d |  
+
+
     ![](images/grafana-tempo-datasource-config.png)
+
 
   - Show trace
  
