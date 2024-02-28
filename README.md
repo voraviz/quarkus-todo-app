@@ -12,6 +12,8 @@
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
     - [Enable User Workload Monitor](#enable-user-workload-monitor)
     - [Deploy Todo App and Test](#deploy-todo-app-and-test)
+    - [Jaeger UI](#jaeger-ui)
+    - [Access Tempo from Grafana](#access-tempo-from-grafana)
   - [OpenShift - OpenTelementry with Jaeger \[Deprecated soon\]](#openshift---opentelementry-with-jaeger-deprecated-soon)
     - [Install Operators](#install-operators)
     - [Deploy to-do app](#deploy-to-do-app)
@@ -206,6 +208,7 @@ User workload Monitor is required for Jarger Monitor tab
   ```bash
   WIP
   ```
+### Jaeger UI
 
 - Open Jaeger Console provided by Tempo to access dev tenant
   
@@ -256,6 +259,8 @@ User workload Monitor is required for Jarger Monitor tab
     oc exec $TODO_POD -n $PROJECT -- curl -v http://localhost:8080/api/ready
     ```
 
+### Access Tempo from Grafana
+
 - Grafana Dashboard with Tempo
   - Install Grafana Operator
   - Create Grafana instance
@@ -266,16 +271,32 @@ User workload Monitor is required for Jarger Monitor tab
     |URL | https://tempo-{name}-query-frontend.{namespace}.svc.cluster.local:3200 |
     |TLS Client Auth | true | 
     |Skip Verify TLS | true | 
+    
+    TLS Configuration
+
+    | Parameter | Value |  
+    |-----------|-------|
     |ServerName | tempo-{name}-query-frontend.<project>.svc.cluster.local |  
     |Client Cert| oc get secret tempo-{name}-query-frontend-mtls -n {namespace} -o jsonpath='{.data.tls\\.crt}'\|base64 -d |  
     |Client Key | oc get secret tempo-{name}-query-frontend-mtls -n {namespace} -o jsonpath='{.data.tls\\.key}'\|base64 -d |  
+    
+    Custom HTTP Header
+
+    | Parameter | Value |  
+    |-----------|-------|
+    |X-Scope-OrgID | Tenant ID specified in tempo configuration |
+    
 
 
     ![](images/grafana-tempo-datasource-config.png)
 
 
-  - Show trace
- 
+  - Show trace by select Explore menu
+    
+    ![](images/grafana-explore-tempo.png)
+
+    Trace details
+    
     ![](images/grafana-tempo-show-trace.png)
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
