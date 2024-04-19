@@ -8,6 +8,8 @@
   - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
     - [Operators Insallation](#operators-insallation)
     - [Prepare Object Storage (S3 Compatible)](#prepare-object-storage-s3-compatible)
+      - [Create S3 compatiable bucket on ODF](#create-s3-compatiable-bucket-on-odf)
+      - [Use existing S3 bucket from image registry](#use-existing-s3-bucket-from-image-registry)
     - [Deploy and configure Tempo](#deploy-and-configure-tempo)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
     - [Enable User Workload Monitor](#enable-user-workload-monitor)
@@ -80,39 +82,51 @@
       ``` 
   
 ### Prepare Object Storage (S3 Compatible)
-- Create S3 compatiable bucket on ODF
+####  Create S3 compatiable bucket on ODF
   
-  - Admin Console
-    - Navigate to Storage -> Object Storage -> Object Bucket Claims
-    - Create ObjectBucketClaim
-    - Claim Name: *loki*
-    - StorageClass: *openshift-storage.nooba.io*
-    - BucketClass: *nooba-default-bucket-class*
+- Admin Console
+  - Navigate to Storage -> Object Storage -> Object Bucket Claims
+  - Create ObjectBucketClaim
+  - Claim Name: *loki*
+  - StorageClass: *openshift-storage.nooba.io*
+  - BucketClass: *nooba-default-bucket-class*
   
-  - Use oc command with [YAML](etc/openshift/tempo-odf-bucket.yaml)              
+- Use oc command with [YAML](etc/openshift/tempo-odf-bucket.yaml)              
     
-    ```bash
-    oc create -f etc/openshift/tempo-odf-bucket.yaml
-    oc get objectbucketclaim.objectbucket.io/tempo -n openshift-storage
-    ```
+  ```bash
+  oc create -f etc/openshift/tempo-odf-bucket.yaml
+  oc get objectbucketclaim.objectbucket.io/tempo -n openshift-storage
+  ```
 
-    Output
+  Output
 
-    ```bash
-    NAME    STORAGE-CLASS                 PHASE   AGE
-    tempo   openshift-storage.noobaa.io   Bound   18s
-    ```
-
+   ```bash
+  NAME    STORAGE-CLASS                 PHASE   AGE
+  tempo   openshift-storage.noobaa.io   Bound   18s
+  ```
     
 - Retrieve configuration into environment variables
-  
-   ```bash
-   S3_BUCKET=$(oc get ObjectBucketClaim tempo -n openshift-storage -o jsonpath='{.spec.bucketName}')
-   REGION="''"
-   ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
-   SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
-   ENDPOINT="http://s3.openshift-storage.svc.cluster.local:80"
+    
+  ```bash
+  S3_BUCKET=$(oc get ObjectBucketClaim tempo -n openshift-storage -o jsonpath='{.spec.bucketName}')
+  REGION="''"
+  ACCESS_KEY_ID=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'|base64 -d)
+  SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
+  ENDPOINT="http://s3.openshift-storage.svc.cluster.local:80"
   ```
+
+####  Use existing S3 bucket from image registry
+- Retrieve S3 configuration that already configured with OpenShift's internal image registry
+  
+  ```bash
+  S3_BUCKET=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.bucket}' -n openshift-image-registry)
+  REGION=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.region}' -n openshift-image-registry)
+  ACCESS_KEY_ID=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_access_key_id|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
+  SECRET_ACCESS_KEY=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_secret_access_key|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
+  ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
+  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
+  ```
+
 ### Deploy and configure Tempo
 - Create project
   
@@ -154,14 +168,24 @@
   tempo-simplest-query-frontend-864c9594fb-9nv2v   2/2     Running   0          2m44s
   ```
 ### Deploy and configure OpenTelemetry
-- Create [OTEL collector](etc/openshift/otel-collector-tempo.yaml) with exporter point to Tempo's gateway with dev tenant
+- Create [OTEL collector](etc/openshift/otel-collector-sidecar-tempo.yaml) with exporter point to Tempo's gateway with dev tenant
   
-  ```bash
-  cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
-  oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
-  oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
-  ```
+  - Sending trace without sidecar
   
+    ```bash
+    cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+    oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
+    oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
+    ```
+  
+  - Sending trace with sidecar
+  
+    ```bash
+    cat etc/openshift/otel-collector-sidecar-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+    oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
+    oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
+    ```
+
   Output
   
   ```bash
@@ -213,7 +237,7 @@ User workload Monitor is required for Jarger Monitor tab
 - Open Jaeger Console provided by Tempo to access dev tenant
   
   ```bash
-  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/api/traces/v1/dev/search"
+  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/dev"
   ```
 
 - Jaeger UI 

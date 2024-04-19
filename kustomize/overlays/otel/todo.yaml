@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 5
   template:
-    spec:
+    spec: # sidecar.opentelemetry.io/inject: "true" 
       containers:
       - name: todo
         env:
