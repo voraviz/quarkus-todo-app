@@ -166,9 +166,7 @@
 - Create [TempoStack](etc/openshift/tempo-stack-single-tenant.yaml) with dev and prod tenant along with required roles.
   
   ```bash
-  cat etc/openshift/tempo-stack-single-tenant.yaml \
-   | sed 's/PROJECT/'$PROJECT'/' \ 
-   | oc apply -n $PROJECT -f -
+  cat etc/openshift/tempo-stack-single-tenant.yaml | sed 's/PROJECT/'$PROJECT'/'  | oc apply -n $PROJECT -f -
   oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
   oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
   ```
