@@ -80,6 +80,20 @@
       ```bash
       oc create -f etc/openshift/tempo-sub.yaml
       ``` 
+
+    - Verify
+      
+      ```bash
+      oc get csv -n openshift-operators
+      ```
+
+      Output
+
+      ```bash
+      NAME                                DISPLAY                          VERSION     REPLACES                            PHASE
+      opentelemetry-operator.v0.107.0-4   Red Hat build of OpenTelemetry   0.107.0-4   opentelemetry-operator.v0.102.0-3   Succeeded
+      tempo-operator.v0.13.0-1            Tempo Operator                   0.13.0-1    tempo-operator.v0.10.0-8            Succeeded
+      ```
   
 ### Prepare Object Storage (S3 Compatible)
 ####  Create S3 compatiable bucket on ODF
@@ -134,8 +148,9 @@
   oc new-project todo-tempo
   PROJECT=todo-tempo
   ```
+
 - Create secret for TempoStack to access S3 bucket
-  
+  Remark: S3 bucket is not required if you use TempoMonolithic with in-memory storage
   ```bash
   oc create secret generic tempo-s3 \
     --from-literal=name=tempo \
@@ -148,10 +163,12 @@
 
   <!-- *Remark: This config use ODF S3 route for TempoStack because service certificate is not trusted CA and cannot find the way to skip TLS verification* -->
 
-- Create [TempoStack](etc/openshift/tempo-stack.yaml) with dev and prod tenant along with required roles.
+- Create [TempoStack](etc/openshift/tempo-stack-single-tenant.yaml) with dev and prod tenant along with required roles.
   
   ```bash
-  cat etc/openshift/tempo-stack.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+  cat etc/openshift/tempo-stack-single-tenant.yaml \
+   | sed 's/PROJECT/'$PROJECT'/' \ 
+   | oc apply -n $PROJECT -f -
   oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
   oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
   ```
@@ -167,13 +184,18 @@
   tempo-simplest-querier-869d85cf99-njjbg          1/1     Running   0          2m44s
   tempo-simplest-query-frontend-864c9594fb-9nv2v   2/2     Running   0          2m44s
   ```
+
+ 
+- For Multi-tenant use [tempo-stack-multi-tenant.yaml](etc/openshift/tempo-stack-multi-tenant.yaml)
+  
+
 ### Deploy and configure OpenTelemetry
-- Create [OTEL collector](etc/openshift/otel-collector-sidecar-tempo.yaml) with exporter point to Tempo's gateway with dev tenant
+- Create [OTEL collector](etc/openshift/otel-collector-single-tenant.yaml) with exporter point to Tempo's gateway with dev tenant
   
   - Sending trace without sidecar
   
     ```bash
-    cat etc/openshift/otel-collector-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+    cat etc/openshift/otel-collector-single-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
     oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
     oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
     ```
@@ -237,7 +259,7 @@ User workload Monitor is required for Jarger Monitor tab
 - Open Jaeger Console provided by Tempo to access dev tenant
   
   ```bash
-  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/dev"
+  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')"
   ```
 
 - Jaeger UI 
