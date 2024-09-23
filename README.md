@@ -348,6 +348,10 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
 - Install Cluster Observability Operator
 - Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
   
+  ![](images/observability-tracer-ui.png)  
+
+  UIPlugin CRD
+  
   ```yaml
   apiVersion: observability.openshift.io/v1alpha1
   kind: UIPlugin
@@ -355,7 +359,8 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
     name: distributed-tracing
   spec:
     type: DistributedTracing
-  ``` 
+  ```
+
 - Tracing UI
 
   ![](images/tracing-UI.png)  

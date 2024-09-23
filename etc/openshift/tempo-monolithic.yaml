@@ -4,11 +4,14 @@ metadata:
   name: simplest
 spec:
   observability:
+    # metrics:
+    #   prometheusRules:
+    #     enabled: true
+    #   serviceMonitors:
+    #     enabled: true
     metrics:
-      prometheusRules:
-        enabled: true
-      serviceMonitors:
-        enabled: true
+      createServiceMonitors: true
+      createPrometheusRules: true
   ingestion:
     otlp:
       grpc:
@@ -34,8 +37,6 @@ spec:
     traces:
       backend: pv
   template:
-    gateway:
-      enabled: false
     queryFrontend:
       jaegerQuery:
         enabled: true
