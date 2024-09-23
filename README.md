@@ -10,18 +10,15 @@
     - [Prepare Object Storage (S3 Compatible)](#prepare-object-storage-s3-compatible)
       - [Create S3 compatiable bucket on ODF](#create-s3-compatiable-bucket-on-odf)
       - [Use existing S3 bucket from image registry](#use-existing-s3-bucket-from-image-registry)
+    - [Enable User Workload Monitor](#enable-user-workload-monitor)
     - [Deploy and configure Tempo](#deploy-and-configure-tempo)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
-    - [Enable User Workload Monitor](#enable-user-workload-monitor)
     - [Deploy Todo App and Test](#deploy-todo-app-and-test)
     - [Jaeger UI](#jaeger-ui)
     - [Access Tempo from Grafana](#access-tempo-from-grafana)
-  - [OpenShift - OpenTelementry with Jaeger \[Deprecated soon\]](#openshift---opentelementry-with-jaeger-deprecated-soon)
-    - [Install Operators](#install-operators)
-    - [Deploy to-do app](#deploy-to-do-app)
-    - [Test](#test-1)
+  - [Tracing UI](#tracing-ui)
   - [OpenShift - Service Mesh with OpenTelemetry \[Need to retest with Lastest OSSM\]](#openshift---service-mesh-with-opentelemetry-need-to-retest-with-lastest-ossm)
-    - [Install Operators](#install-operators-1)
+    - [Install Operators](#install-operators)
     - [Configure Service Mesh](#configure-service-mesh)
 
 ## Local Deployment
@@ -140,6 +137,20 @@
   ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
   DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
   ```
+### Enable User Workload Monitor
+
+User workload Monitor is required for Jarger Monitor tab
+
+  ```bash
+  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
+  cat etc/openshift/cluster-monitoring-config.yaml | sed 's/storageClassName:.*/storageClassName: '$DEFAULT_STORAGE_CLASS'/' | oc apply -f  -
+  sleep 60
+  oc -n openshift-user-workload-monitoring wait --for condition=ready \
+    --timeout=180s pod -l app.kubernetes.io/name=prometheus
+  oc -n openshift-user-workload-monitoring wait --for condition=ready \
+    --timeout=180s pod -l app.kubernetes.io/name=thanos-ruler
+  oc get pvc -n openshift-monitoring
+  ```
 
 ### Deploy and configure Tempo
 - Create project
@@ -174,13 +185,12 @@
   Output
 
   ```bash
-  NAME                                             READY   STATUS    RESTARTS   AGE
-  tempo-simplest-compactor-5c5d9df594-8n8pf        1/1     Running   0          2m44s
-  tempo-simplest-distributor-6df8c5884d-jqpcs      1/1     Running   0          2m44s
-  tempo-simplest-gateway-5fd5b6df7f-cj8b9          2/2     Running   0          2m44s
-  tempo-simplest-ingester-0                        1/1     Running   0          2m44s
-  tempo-simplest-querier-869d85cf99-njjbg          1/1     Running   0          2m44s
-  tempo-simplest-query-frontend-864c9594fb-9nv2v   2/2     Running   0          2m44s
+  NAME                                            READY   STATUS    RESTARTS   AGE
+  tempo-simplest-compactor-7456cc7bd5-kvmfq       1/1     Running   0          75s
+  tempo-simplest-distributor-6999c54b75-6s9d6     1/1     Running   0          75s
+  tempo-simplest-ingester-0                       1/1     Running   0          75s
+  tempo-simplest-querier-6c55d8cb46-wkhkn         1/1     Running   0          75s
+  tempo-simplest-query-frontend-67df8c694-v9sh6   3/3     Running   0          75s
   ```
 
  
@@ -212,20 +222,8 @@
   NAME                             READY   STATUS    RESTARTS   AGE
   otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
   ```
-### Enable User Workload Monitor
+- For Multi-tenant use [otel-collector-multi-tenant.yaml](etc/openshift/otel-collector-multi-tenant.yaml)
 
-User workload Monitor is required for Jarger Monitor tab
-
-  ```bash
-  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
-  cat etc/openshift/cluster-monitoring-config.yaml | sed 's/storageClassName:.*/storageClassName: '$DEFAULT_STORAGE_CLASS'/' | oc apply -f  -
-  sleep 60
-  oc -n openshift-user-workload-monitoring wait --for condition=ready \
-    --timeout=180s pod -l app.kubernetes.io/name=prometheus
-  oc -n openshift-user-workload-monitoring wait --for condition=ready \
-    --timeout=180s pod -l app.kubernetes.io/name=thanos-ruler
-  oc get pvc -n openshift-monitoring
-  ```
 
 ### Deploy Todo App and Test
 - Deploy todo app
@@ -345,7 +343,24 @@ User workload Monitor is required for Jarger Monitor tab
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
-## OpenShift - OpenTelementry with Jaeger [Deprecated soon]
+## Tracing UI
+*Remark: Tracing UI only work with multi tenant configuraion*
+- Install Cluster Observability Operator
+- Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
+  
+  ```yaml
+  apiVersion: observability.openshift.io/v1alpha1
+  kind: UIPlugin
+  metadata:
+    name: distributed-tracing
+  spec:
+    type: DistributedTracing
+  ``` 
+- Tracing UI
+
+  ![](images/tracing-UI.png)  
+
+<!-- ## OpenShift - OpenTelementry with Jaeger [Deprecated soon]
 
 ### Install Operators
 
@@ -428,7 +443,7 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
   <!-- ```bash
   cat etc/openshift/otel-collector.yaml | sed 's/PROJECT/'$(oc project -q)'/' | oc apply -n todo -f -
   ``` -->
-  ```bash
+  <!-- ```bash
   oc create -f etc/openshift/otel-collector.yaml -n todo
   ```
   Check 
@@ -494,7 +509,7 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
 
 - View trace
   
-  ![](images/jaeger-todo-trace-sql-statement.png)
+  ![](images/jaeger-todo-trace-sql-statement.png) -->
 
 
 
