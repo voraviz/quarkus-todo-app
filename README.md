@@ -252,10 +252,18 @@ User workload Monitor is required for Jarger Monitor tab
   ```
 ### Jaeger UI
 
-- Open Jaeger Console provided by Tempo to access dev tenant
+- Open Jaeger Console provided by Tempo to access Jaeger
   
+  - Single Tenant 
+
   ```bash
   echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')"
+  ```
+
+  - Multi-tenant 
+  
+  ```bash
+  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/dev"
   ```
 
 - Jaeger UI 
