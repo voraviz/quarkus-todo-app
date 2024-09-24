@@ -35,10 +35,11 @@ spec:
       batch:
         send_batch_size: 10000
         timeout: 10s
-
+      resourcedetection:
+        detectors: [openshift]
+        timeout: 2s
     exporters:
       otlp/dev:
-        #endpoint: tempo-simplest-distributor.PROJECT.svc.cluster.local:4317
         endpoint: tempo-simplest-gateway:8090
         tls:
           insecure: true
@@ -66,50 +67,3 @@ spec:
         metrics:
           receivers: [spanmetrics]
           exporters: [prometheus]
-    # config: |
-    #   connectors:
-    #     spanmetrics: 
-    #       metrics_flush_interval: 15s
-    #   extensions:
-    #     bearertokenauth:
-    #       filename: "/var/run/secrets/kubernetes.io/serviceaccount/token"
-    #   exporters:
-    #     # Export the dev tenant traces to a Tempo instance
-    #     otlp/dev:
-    #       endpoint: tempo-simplest-gateway.PROJECT.svc.cluster.local:8090
-    #       tls:
-    #         insecure: false
-    #         ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
-    #       auth:
-    #         authenticator: bearertokenauth
-    #       headers:
-    #         X-Scope-OrgID: "dev"
-        
-    #     # The Prometheus exporter is used to export metrics in the Prometheus format.
-    #     prometheus: 
-    #       endpoint: 0.0.0.0:8889
-    #       add_metric_suffixes: false
-    #       resource_to_telemetry_conversion:
-    #         enabled: true
-
-    #   receivers:
-    #     otlp:
-    #       protocols:
-    #         grpc:
-    #         http:
-    #     jaeger:
-    #       protocols:
-    #         thrift_binary:
-    #         thrift_compact:
-    #         thrift_http:
-    #         grpc:
-
-    #   service:
-    #     extensions: [bearertokenauth]
-    #     pipelines:
-    #       traces:
-    #         receivers: [otlp, jaeger]
-    #         exporters: [otlp/dev, spanmetrics]
-    #       metrics:
-    #        receivers: [spanmetrics] 
-    #        exporters: [prometheus]
