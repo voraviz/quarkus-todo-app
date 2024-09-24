@@ -198,9 +198,9 @@ User workload Monitor is required for Jarger Monitor tab
   
 
 ### Deploy and configure OpenTelemetry
-- Create [OTEL collector](etc/openshift/otel-collector-single-tenant.yaml) with exporter point to Tempo's gateway with dev tenant
+- Create **OTEL Collector** with exporter point to Tempo
   
-  - Sending trace without sidecar
+  - Create [OTEL Collector](etc/openshift/otel-collector-single-tenant.yaml)
   
     ```bash
     cat etc/openshift/otel-collector-single-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
@@ -208,13 +208,16 @@ User workload Monitor is required for Jarger Monitor tab
     oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
     ```
   
-  - Sending trace with sidecar
+  - Create [OTEL Collector](etc/openshift/otel-collector-sidecar-multi-tenant.yaml) with sending trace throgh sidecar (multi-tenant)
   
     ```bash
-    cat etc/openshift/otel-collector-sidecar-tempo.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+    cat etc/openshift/otel-collector-sidecar-multi-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
     oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
     oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
     ```
+    
+    Remark:
+  -  OTEL Collector will detect for annotaion *sidecar.opentelemetry.io/inject: "true"* to injecting sidecar to pod
 
   Output
   
@@ -222,11 +225,11 @@ User workload Monitor is required for Jarger Monitor tab
   NAME                             READY   STATUS    RESTARTS   AGE
   otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
   ```
-- For Multi-tenant use [otel-collector-multi-tenant.yaml](etc/openshift/otel-collector-multi-tenant.yaml)
+- For Multi-tenant (without sidecar) use [otel-collector-multi-tenant.yaml](etc/openshift/otel-collector-multi-tenant.yaml)
 
 
 ### Deploy Todo App and Test
-- Deploy todo app
+- Deploy todo app with Kustomize
 
   ```bash
   oc apply -n $PROJECT -k kustomize/overlays/otel
@@ -234,7 +237,10 @@ User workload Monitor is required for Jarger Monitor tab
   oc wait --for condition=ready --timeout=180s pod -l app=todo  -n $PROJECT 
   ```
 
-  Output
+  Remark:
+  For sidecar moe use  *kustomize/overlays/otel-localhost*
+ 
+ Output
   
   ```bash
   pod/todo-db-59bc56d568-xbxbp condition met
@@ -245,11 +251,11 @@ User workload Monitor is required for Jarger Monitor tab
   pod/todo-64c6b8d9df-t9sn9 condition met
   ```
   
-- Add some todos to todo app
+<!-- - Add some todos to todo app
 
   ```bash
   WIP
-  ```
+  ``` -->
 ### Jaeger UI
 
 - Open Jaeger Console provided by Tempo to access Jaeger
