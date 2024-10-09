@@ -17,7 +17,7 @@
     - [Jaeger UI](#jaeger-ui)
     - [Access Tempo from Grafana](#access-tempo-from-grafana)
   - [Tracing UI](#tracing-ui)
-  - [OpenShift - Service Mesh with OpenTelemetry \[Need to retest with Lastest OSSM\]](#openshift---service-mesh-with-opentelemetry-need-to-retest-with-lastest-ossm)
+  - [OpenShift - Service Mesh with OpenTelemetry \[Wait for OSSM 3.0\]](#openshift---service-mesh-with-opentelemetry-wait-for-ossm-30)
     - [Install Operators](#install-operators)
     - [Configure Service Mesh](#configure-service-mesh)
 
@@ -195,12 +195,19 @@ User workload Monitor is required for Jarger Monitor tab
 
  
 - For Multi-tenant use [tempo-stack-multi-tenant.yaml](etc/openshift/tempo-stack-multi-tenant.yaml)
-  
+   
+  ```bash
+  cat etc/openshift/tempo-stack-multi-tenant.yaml | sed 's/PROJECT/'$PROJECT'/'  | oc apply -n $PROJECT -f -
+  oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
+  oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
+  ```
 
 ### Deploy and configure OpenTelemetry
 - Create **OTEL Collector** with exporter point to Tempo
+
+- OTEL collector without sidecar
   
-  - Create [OTEL Collector](etc/openshift/otel-collector-single-tenant.yaml)
+  - Create [OTEL Collector Single Tenant](etc/openshift/otel-collector-single-tenant.yaml)
   
     ```bash
     cat etc/openshift/otel-collector-single-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
@@ -208,7 +215,23 @@ User workload Monitor is required for Jarger Monitor tab
     oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
     ```
   
-  - Create [OTEL Collector](etc/openshift/otel-collector-sidecar-multi-tenant.yaml) with sending trace throgh sidecar (multi-tenant)
+  - Create [OTEL Collector Multi-Tenant](etc/openshift/otel-collector-multi-tenant.yaml)
+  
+    ```bash
+    cat etc/openshift/otel-collector-multi-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
+    oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
+    oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
+    ```
+
+  Output
+  
+  ```bash
+  NAME                             READY   STATUS    RESTARTS   AGE
+  otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
+  ```
+
+- OTEL collector with sidecar 
+  Create [OTEL Collector](etc/openshift/otel-collector-sidecar-multi-tenant.yaml) with sending trace throgh sidecar (multi-tenant)
   
     ```bash
     cat etc/openshift/otel-collector-sidecar-multi-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
@@ -217,15 +240,10 @@ User workload Monitor is required for Jarger Monitor tab
     ```
     
     Remark:
-  -  OTEL Collector will detect for annotaion *sidecar.opentelemetry.io/inject: "true"* to injecting sidecar to pod
+    OTEL Collector will detect for annotaion *sidecar.opentelemetry.io/inject: "true"* to injecting sidecar to pod
 
-  Output
-  
-  ```bash
-  NAME                             READY   STATUS    RESTARTS   AGE
-  otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
-  ```
-- For Multi-tenant (without sidecar) use [otel-collector-multi-tenant.yaml](etc/openshift/otel-collector-multi-tenant.yaml)
+
+<!-- - For Multi-tenant (without sidecar) use [otel-collector-multi-tenant.yaml](etc/openshift/otel-collector-multi-tenant.yaml) -->
 
 
 ### Deploy Todo App and Test
@@ -358,7 +376,7 @@ User workload Monitor is required for Jarger Monitor tab
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
 ## Tracing UI
-*Remark: Tracing UI only work with multi tenant configuraion*
+*Remark: Tracing UI only work with multi-tenant configuraion*
 - Install Cluster Observability Operator
 - Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
   
@@ -377,7 +395,15 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
 
 - Tracing UI
 
-  ![](images/tracing-UI.png)  
+  ![](images/tracing-UI.png) 
+
+  - Gantt Chart
+
+  ![](images/traceing-UI-gantt-chart-01.png) 
+
+  - Drill down to SQL statement
+  
+  ![](images/traceing-UI-gantt-chart-02.png)
 
 <!-- ## OpenShift - OpenTelementry with Jaeger [Deprecated soon]
 
@@ -532,7 +558,7 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
 
 
 
-## OpenShift - Service Mesh with OpenTelemetry [Need to retest with Lastest OSSM]
+## OpenShift - Service Mesh with OpenTelemetry [Wait for OSSM 3.0]
 
 ### Install Operators
 
@@ -542,15 +568,21 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
   oc create -f etc/openshift/service-mesh-sub.yaml
   oc create -f etc/openshift/kiali-sub.yaml
   ```
+  Verify operators are installed
 
+  ```bash
+  oc get csv -n openshift-operators
+  ```
+  
   Result
 
   ```bash
-  NAME                               DISPLAY                                                 VERSION    REPLACES                           PHASE
-  jaeger-operator.v1.39.0-3          Red Hat OpenShift distributed tracing platform          1.39.0-3   jaeger-operator.v1.34.1-5          Succeeded
-  kiali-operator.v1.57.5             Kiali Operator                                          1.57.5     kiali-operator.v1.57.3             Succeeded
-  opentelemetry-operator.v0.63.1-4   Red Hat OpenShift distributed tracing data collection   0.63.1-4   opentelemetry-operator.v0.60.0-2   Succeeded
-  servicemeshoperator.v2.3.1         Red Hat OpenShift Service Mesh                          2.3.1-0    servicemeshoperator.v2.3.0         Succeeded
+  NAME                                   DISPLAY                          VERSION     REPLACES                               PHASE
+  cluster-observability-operator.0.4.0   Cluster Observability Operator   0.4.0       cluster-observability-operator.0.3.2   Succeeded
+  kiali-operator.v1.89.1                 Kiali Operator                   1.89.1      kiali-operator.v1.73.10                Succeeded
+  opentelemetry-operator.v0.107.0-4      Red Hat build of OpenTelemetry   0.107.0-4   opentelemetry-operator.v0.102.0-3      Succeeded
+  servicemeshoperator.v2.6.1             Red Hat OpenShift Service Mesh   2.6.1-0     servicemeshoperator.v2.6.0             Succeeded
+  tempo-operator.v0.13.0-1               Tempo Operator                   0.13.0-1    tempo-operator.v0.10.0-8               Succeeded
   ```
 
 ### Configure Service Mesh 
