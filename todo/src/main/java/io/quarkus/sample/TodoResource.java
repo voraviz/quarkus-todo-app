@@ -43,16 +43,29 @@ public class TodoResource {
         return Response.ok().build();
     }
 
+    /**
+     * This method is responsible for fetching all Todo items in the database.
+     * It logs access info, increments a counter for monitoring purposes,
+     * and records the time taken to execute the query. The items are returned
+     * sorted by their "order" field.
+     *
+     * @return A list of Todo items sorted by their order.
+     */
     @GET
     @Operation(summary = "List All Tasks")
     @APIResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON))
     public List<Todo> getAll() {
+        // Log the method access
         LOG.info("getAll");
+        
+        // Increment the counter to monitor method access frequency
         registry.counter("io.quarkus.sample.TodoResource.getAll.count").increment();
+        
+        // Create and start a timer to measure the execution time of fetching all Todos
         Timer timer = registry.timer("io.quarkus.sample.TodoResource.getAll.time");
         return timer.record(() -> {
             return Todo.listAll(Sort.by("order"));
-        });     
+        });
     }
 
     @GET
@@ -141,10 +154,6 @@ public class TodoResource {
         }
         entity.delete();
         return Response.noContent().build();
+        });
        }
-
-        );           
-        
-    }
-
 }
