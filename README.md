@@ -8,15 +8,14 @@
   - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
     - [Operators Insallation](#operators-insallation)
     - [Prepare Object Storage (S3 Compatible)](#prepare-object-storage-s3-compatible)
-      - [Create S3 compatiable bucket on ODF](#create-s3-compatiable-bucket-on-odf)
-      - [Use existing S3 bucket from image registry](#use-existing-s3-bucket-from-image-registry)
-    - [Enable User Workload Monitor](#enable-user-workload-monitor)
+      - [Leverage existing S3 bucket (from image registry)](#leverage-existing-s3-bucket-from-image-registry)
+      - [OpenShift Data Foundatation](#openshift-data-foundatation)
     - [Deploy and configure Tempo](#deploy-and-configure-tempo)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
-    - [Deploy Todo App and Test](#deploy-todo-app-and-test)
-    - [Jaeger UI](#jaeger-ui)
-    - [Access Tempo from Grafana](#access-tempo-from-grafana)
+    - [Jaeger UI (Depecrated)](#jaeger-ui-depecrated)
+    - [Deploy Todo App](#deploy-todo-app)
   - [Tracing UI](#tracing-ui)
+    - [Access Tempo from Grafana](#access-tempo-from-grafana)
   - [OpenShift - Service Mesh with OpenTelemetry \[Wait for OSSM 3.0\]](#openshift---service-mesh-with-opentelemetry-wait-for-ossm-30)
     - [Install Operators](#install-operators)
     - [Configure Service Mesh](#configure-service-mesh)
@@ -62,23 +61,22 @@
     ![](images/jaeger-console-select-statement.png)
   
 ## OpenShift - OpenTelemetry with Tempo
-- If you are too busy to read the following steps just run this [script](setup-tempo-demo.sh)
-
+<!-- - If you are too busy to read the following steps just run this [script](setup-tempo-demo.sh) -->
 ### Operators Insallation
 - Install Operators
-    - Red Hat OpenShift distributed tracing data collection (OTEL)
+    - [Distributed Tracing Data Collection Operator](etc/openshift/otel-sub.yaml) (OTEL)
 
       ```bash
       oc create -f etc/openshift/otel-sub.yaml
       ```
 
-    - Tempo Operator by Red Hat
+    - [Tempo Operator](etc/openshift/tempo-sub.yaml) by Red Hat
 
       ```bash
       oc create -f etc/openshift/tempo-sub.yaml
       ``` 
 
-    - Verify
+    - Verify operators are installed successfully
       
       ```bash
       oc get csv -n openshift-operators
@@ -88,12 +86,23 @@
 
       ```bash
       NAME                                DISPLAY                          VERSION     REPLACES                            PHASE
-      opentelemetry-operator.v0.107.0-4   Red Hat build of OpenTelemetry   0.107.0-4   opentelemetry-operator.v0.102.0-3   Succeeded
-      tempo-operator.v0.13.0-1            Tempo Operator                   0.13.0-1    tempo-operator.v0.10.0-8            Succeeded
+      opentelemetry-operator.v0.119.0-1   Red Hat build of OpenTelemetry   0.119.0-1   opentelemetry-operator.v0.113.0-2   Succeeded
+      tempo-operator.v0.15.3-1            Tempo Operator                   0.15.3-1    tempo-operator.v0.14.1-2            Succeeded
       ```
   
 ### Prepare Object Storage (S3 Compatible)
-####  Create S3 compatiable bucket on ODF
+####  Leverage existing S3 bucket (from image registry)
+- For Demo only, Retrieve S3 configuration that already configured with OpenShift's internal image registry
+  
+  ```bash
+  S3_BUCKET=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.bucket}' -n openshift-image-registry)
+  REGION=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.region}' -n openshift-image-registry)
+  ACCESS_KEY_ID=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_access_key_id|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
+  SECRET_ACCESS_KEY=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_secret_access_key|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
+  ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
+  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
+  ```
+####  OpenShift Data Foundatation
   
 - Admin Console
   - Navigate to Storage -> Object Storage -> Object Bucket Claims
@@ -126,32 +135,6 @@
   ENDPOINT="http://s3.openshift-storage.svc.cluster.local:80"
   ```
 
-####  Use existing S3 bucket from image registry
-- Retrieve S3 configuration that already configured with OpenShift's internal image registry
-  
-  ```bash
-  S3_BUCKET=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.bucket}' -n openshift-image-registry)
-  REGION=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.region}' -n openshift-image-registry)
-  ACCESS_KEY_ID=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_access_key_id|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
-  SECRET_ACCESS_KEY=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_secret_access_key|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
-  ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
-  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
-  ```
-### Enable User Workload Monitor
-
-User workload Monitor is required for Jarger Monitor tab
-
-  ```bash
-  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
-  cat etc/openshift/cluster-monitoring-config.yaml | sed 's/storageClassName:.*/storageClassName: '$DEFAULT_STORAGE_CLASS'/' | oc apply -f  -
-  sleep 60
-  oc -n openshift-user-workload-monitoring wait --for condition=ready \
-    --timeout=180s pod -l app.kubernetes.io/name=prometheus
-  oc -n openshift-user-workload-monitoring wait --for condition=ready \
-    --timeout=180s pod -l app.kubernetes.io/name=thanos-ruler
-  oc get pvc -n openshift-monitoring
-  ```
-
 ### Deploy and configure Tempo
 - Create project
   
@@ -174,27 +157,18 @@ User workload Monitor is required for Jarger Monitor tab
 
   <!-- *Remark: This config use ODF S3 route for TempoStack because service certificate is not trusted CA and cannot find the way to skip TLS verification* -->
 
-- Create [TempoStack](etc/openshift/tempo-stack-single-tenant.yaml) with dev and prod tenant along with required roles.
+- Create [TempoStack](etc/openshift/tempo-stack-multi-tenant.yaml) with dev and prod tenant along with required roles.
   
-  ```bash
+  <!-- ```bash
   cat etc/openshift/tempo-stack-single-tenant.yaml | sed 's/PROJECT/'$PROJECT'/'  | oc apply -n $PROJECT -f -
   oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
   oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
-  ```
+  ``` -->
   
-  Output
-
-  ```bash
-  NAME                                            READY   STATUS    RESTARTS   AGE
-  tempo-simplest-compactor-7456cc7bd5-kvmfq       1/1     Running   0          75s
-  tempo-simplest-distributor-6999c54b75-6s9d6     1/1     Running   0          75s
-  tempo-simplest-ingester-0                       1/1     Running   0          75s
-  tempo-simplest-querier-6c55d8cb46-wkhkn         1/1     Running   0          75s
-  tempo-simplest-query-frontend-67df8c694-v9sh6   3/3     Running   0          75s
-  ```
+  
 
  
-- For Multi-tenant use [tempo-stack-multi-tenant.yaml](etc/openshift/tempo-stack-multi-tenant.yaml)
+<!-- - For Multi-tenant use [tempo-stack-multi-tenant.yaml](etc/openshift/tempo-stack-multi-tenant.yaml) -->
    
   ```bash
   cat etc/openshift/tempo-stack-multi-tenant.yaml | sed 's/PROJECT/'$PROJECT'/'  | oc apply -n $PROJECT -f -
@@ -202,18 +176,31 @@ User workload Monitor is required for Jarger Monitor tab
   oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
   ```
 
+  Output
+
+  ```bash
+  NAME                                             READY   STATUS    RESTARTS   AGE
+  tempo-simplest-compactor-75cd999cf8-44hcx        1/1     Running   0          73s
+  tempo-simplest-distributor-54d977fb9b-s8lkt      1/1     Running   0          74s
+  tempo-simplest-gateway-59b998db56-zkbbm          2/2     Running   0          73s
+  tempo-simplest-ingester-0                        1/1     Running   0          74s
+  tempo-simplest-querier-5dc6ddcc89-689q4          1/1     Running   0          73s
+  tempo-simplest-query-frontend-85c4795b76-8t62j   3/3     Running   0          73s
+  ```
+
+
 ### Deploy and configure OpenTelemetry
 - Create **OTEL Collector** with exporter point to Tempo
 
 - OTEL collector without sidecar
   
-  - Create [OTEL Collector Single Tenant](etc/openshift/otel-collector-single-tenant.yaml)
+  <!-- - Create [OTEL Collector Single Tenant](etc/openshift/otel-collector-single-tenant.yaml)
   
     ```bash
     cat etc/openshift/otel-collector-single-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
     oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
     oc get po -l  app.kubernetes.io/managed-by=opentelemetry-operator -n $PROJECT
-    ```
+    ``` -->
   
   - Create [OTEL Collector Multi-Tenant](etc/openshift/otel-collector-multi-tenant.yaml)
   
@@ -230,8 +217,8 @@ User workload Monitor is required for Jarger Monitor tab
   otel-collector-dcfcbfcfc-c2f96   1/1     Running   0          2m37s
   ```
 
-- OTEL collector with sidecar 
-  Create [OTEL Collector](etc/openshift/otel-collector-sidecar-multi-tenant.yaml) with sending trace throgh sidecar (multi-tenant)
+<!-- - OTEL collector with sidecar 
+  Create [OTEL Collector](etc/openshift/otel-collector-sidecar-multi-tenant.yaml) with sending trace through sidecar (multi-tenant)
   
     ```bash
     cat etc/openshift/otel-collector-sidecar-multi-tenant.yaml | sed 's/PROJECT/'$PROJECT'/' | oc apply -n $PROJECT -f -
@@ -240,41 +227,12 @@ User workload Monitor is required for Jarger Monitor tab
     ```
     
     Remark:
-    OTEL Collector will detect for annotaion *sidecar.opentelemetry.io/inject: "true"* to injecting sidecar to pod
+    OTEL Collector will detect for annotaion *sidecar.opentelemetry.io/inject: "true"* to injecting sidecar to pod -->
 
 
 <!-- - For Multi-tenant (without sidecar) use [otel-collector-multi-tenant.yaml](etc/openshift/otel-collector-multi-tenant.yaml) -->
 
-
-### Deploy Todo App and Test
-- Deploy todo app with Kustomize
-
-  ```bash
-  oc apply -n $PROJECT -k kustomize/overlays/otel
-  oc wait --for condition=ready --timeout=180s pod -l app=todo-db  -n $PROJECT 
-  oc wait --for condition=ready --timeout=180s pod -l app=todo  -n $PROJECT 
-  ```
-
-  Remark:
-  For sidecar moe use  *kustomize/overlays/otel-localhost*
- 
- Output
-  
-  ```bash
-  pod/todo-db-59bc56d568-xbxbp condition met
-  pod/todo-64c6b8d9df-dq6bm condition met
-  pod/todo-64c6b8d9df-hbhmh condition met
-  pod/todo-64c6b8d9df-l9nxl condition met
-  pod/todo-64c6b8d9df-nmqts condition met
-  pod/todo-64c6b8d9df-t9sn9 condition met
-  ```
-  
-<!-- - Add some todos to todo app
-
-  ```bash
-  WIP
-  ``` -->
-### Jaeger UI
+### Jaeger UI (Depecrated)
 
 - Open Jaeger Console provided by Tempo to access Jaeger
   
@@ -290,6 +248,18 @@ User workload Monitor is required for Jarger Monitor tab
   echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')/dev"
   ```
 
+- User workload Monitor is required for  Monitor tab in Jaeger console
+
+  ```bash
+  DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
+  cat etc/openshift/cluster-monitoring-config.yaml | sed 's/storageClassName:.*/storageClassName: '$DEFAULT_STORAGE_CLASS'/' | oc apply -f  -
+  sleep 60
+  oc -n openshift-user-workload-monitoring wait --for condition=ready \
+    --timeout=180s pod -l app.kubernetes.io/name=prometheus
+  oc -n openshift-user-workload-monitoring wait --for condition=ready \
+    --timeout=180s pod -l app.kubernetes.io/name=thanos-ruler
+  oc get pvc -n openshift-monitoring
+  ```
 - Jaeger UI 
 
   ![](images/jaeger-with-tempo.png)
@@ -332,6 +302,57 @@ User workload Monitor is required for Jarger Monitor tab
     ```bash
     oc exec $TODO_POD -n $PROJECT -- curl -v http://localhost:8080/api/ready
     ```
+### Deploy Todo App
+- Deploy todo app with Kustomize
+
+  ```bash
+  oc apply -n $PROJECT -k kustomize/overlays/otel
+  oc wait --for condition=ready --timeout=180s pod -l app=todo-db  -n $PROJECT 
+  oc wait --for condition=ready --timeout=180s pod -l app=todo  -n $PROJECT 
+  ```
+
+  <!-- Remark:
+  For sidecar mode use  *kustomize/overlays/inject-java-agent* -->
+ 
+ Output
+  
+  ```bash
+  pod/todo-db-59bc56d568-xbxbp condition met
+  pod/todo-64c6b8d9df-dq6bm condition met
+  pod/todo-64c6b8d9df-hbhmh condition met
+  pod/todo-64c6b8d9df-l9nxl condition met
+  pod/todo-64c6b8d9df-nmqts condition met
+  pod/todo-64c6b8d9df-t9sn9 condition met
+  ```
+## Tracing UI
+*Remark: Tracing UI only work with multi-tenant configuraion*
+- Install Cluster Observability Operator
+- Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
+  
+  ![](images/observability-tracer-ui.png)  
+
+  UIPlugin CRD
+  
+  ```yaml
+  apiVersion: observability.openshift.io/v1alpha1
+  kind: UIPlugin
+  metadata:
+    name: distributed-tracing
+  spec:
+    type: DistributedTracing
+  ```
+
+- Tracing UI
+
+  ![](images/tracing-UI.png) 
+
+  - Gantt Chart
+
+  ![](images/traceing-UI-gantt-chart-01.png) 
+
+  - Drill down to SQL statement
+  
+  ![](images/traceing-UI-gantt-chart-02.png)
 
 ### Access Tempo from Grafana
 
@@ -375,35 +396,7 @@ User workload Monitor is required for Jarger Monitor tab
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
-## Tracing UI
-*Remark: Tracing UI only work with multi-tenant configuraion*
-- Install Cluster Observability Operator
-- Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
-  
-  ![](images/observability-tracer-ui.png)  
 
-  UIPlugin CRD
-  
-  ```yaml
-  apiVersion: observability.openshift.io/v1alpha1
-  kind: UIPlugin
-  metadata:
-    name: distributed-tracing
-  spec:
-    type: DistributedTracing
-  ```
-
-- Tracing UI
-
-  ![](images/tracing-UI.png) 
-
-  - Gantt Chart
-
-  ![](images/traceing-UI-gantt-chart-01.png) 
-
-  - Drill down to SQL statement
-  
-  ![](images/traceing-UI-gantt-chart-02.png)
 
 <!-- ## OpenShift - OpenTelementry with Jaeger [Deprecated soon]
 
