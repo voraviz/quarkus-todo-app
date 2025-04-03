@@ -13,9 +13,11 @@
     - [Deploy and configure Tempo](#deploy-and-configure-tempo)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
     - [Deploy Todo App](#deploy-todo-app)
-  - [Tracing UI](#tracing-ui)
-  - [Jaeger UI (Depecrated)](#jaeger-ui-depecrated)
-  - [Configure Tempo from Grafana](#configure-tempo-from-grafana)
+    - [Tracing Console](#tracing-console)
+      - [Tracing UI](#tracing-ui)
+      - [Jaeger UI (Depecrated)](#jaeger-ui-depecrated)
+      - [Grafana](#grafana)
+    - [Auto-Instrumentation](#auto-instrumentation)
 
 ## Local Deployment
 
@@ -250,7 +252,8 @@
   pod/todo-64c6b8d9df-nmqts condition met
   pod/todo-64c6b8d9df-t9sn9 condition met
   ```
-## Tracing UI
+### Tracing Console
+#### Tracing UI
 *Remark: Tracing UI only work with multi-tenant configuraion*
 - Install Cluster Observability Operator
 - Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
@@ -281,7 +284,7 @@
   ![](images/traceing-UI-gantt-chart-02.png)
 
 
-## Jaeger UI (Depecrated)
+#### Jaeger UI (Depecrated)
 
 - Open Jaeger Console provided by Tempo to access Jaeger
   
@@ -354,7 +357,7 @@
 
 
 
-## Configure Tempo from Grafana
+#### Grafana
 
 - Grafana Dashboard with Tempo
   - Install Grafana Operator
@@ -396,7 +399,41 @@
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
+### Auto-Instrumentation
+OpenTelemetry can automatically instrument an application without manual code changes for Go, Java, Node.js, Python, .NET and Apache HTTP Server.
 
+- Create [Instrumentation](etc/openshift/java-instrumentation.yaml) CRD
+  
+  ```bash
+  oc create -f etc/openshift/java-instrumentation.yaml -n $PROJECT
+  ```
+
+- Deploy todo app version that does not included OpenTelemetry library
+  
+  ```bash
+  oc apply -k kustomize/overlays/inject-java-agent -n $PROJECT
+  ```
+
+  Init-Container will be injected if deployment has following annotation for pod
+
+  ```yaml
+  instrumentation.opentelemetry.io/inject-java: "true"
+  ```
+
+- Pod will be created with init-container
+  
+  ![](images/otel-init-container.png)
+
+- Check todo pod log that java agent is loaded.
+  
+  ```bash
+  Defaulted container "todo" out of: todo, opentelemetry-auto-instrumentation-java (init)
+  INFO exec -a "java" java -Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -cp "." -jar /deployments/quarkus-run.jar
+  INFO running in /deployments
+  Picked up JAVA_TOOL_OPTIONS:  -javaagent:/otel-auto-instrumentation-java/javaagent.jar
+  OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+  [otel.javaagent 2025-04-03 10:14:02:705 +0000] [main] INFO io.opentelemetry.javaagent.tooling.VersionLogger - opentelemetry-javaagent - version: 1.33.6
+  ```
 
 <!-- ## OpenShift - OpenTelementry with Jaeger [Deprecated soon]
 
