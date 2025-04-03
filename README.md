@@ -288,11 +288,11 @@
 
 - Open Jaeger Console provided by Tempo to access Jaeger
   
-  - Single Tenant 
+  <!-- - Single Tenant 
 
   ```bash
   echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')"
-  ```
+  ``` -->
 
   - Multi-tenant 
   
