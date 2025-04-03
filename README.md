@@ -12,13 +12,10 @@
       - [OpenShift Data Foundatation](#openshift-data-foundatation)
     - [Deploy and configure Tempo](#deploy-and-configure-tempo)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
-    - [Jaeger UI (Depecrated)](#jaeger-ui-depecrated)
     - [Deploy Todo App](#deploy-todo-app)
   - [Tracing UI](#tracing-ui)
-    - [Access Tempo from Grafana](#access-tempo-from-grafana)
-  - [OpenShift - Service Mesh with OpenTelemetry \[Wait for OSSM 3.0\]](#openshift---service-mesh-with-opentelemetry-wait-for-ossm-30)
-    - [Install Operators](#install-operators)
-    - [Configure Service Mesh](#configure-service-mesh)
+  - [Jaeger UI (Depecrated)](#jaeger-ui-depecrated)
+  - [Configure Tempo from Grafana](#configure-tempo-from-grafana)
 
 ## Local Deployment
 
@@ -231,8 +228,60 @@
 
 
 <!-- - For Multi-tenant (without sidecar) use [otel-collector-multi-tenant.yaml](etc/openshift/otel-collector-multi-tenant.yaml) -->
+### Deploy Todo App
+- Deploy todo app with Kustomize
 
-### Jaeger UI (Depecrated)
+  ```bash
+  oc apply -n $PROJECT -k kustomize/overlays/otel
+  oc wait --for condition=ready --timeout=180s pod -l app=todo-db  -n $PROJECT 
+  oc wait --for condition=ready --timeout=180s pod -l app=todo  -n $PROJECT 
+  ```
+
+  <!-- Remark:
+  For sidecar mode use  *kustomize/overlays/inject-java-agent* -->
+ 
+ Output
+  
+  ```bash
+  pod/todo-db-59bc56d568-xbxbp condition met
+  pod/todo-64c6b8d9df-dq6bm condition met
+  pod/todo-64c6b8d9df-hbhmh condition met
+  pod/todo-64c6b8d9df-l9nxl condition met
+  pod/todo-64c6b8d9df-nmqts condition met
+  pod/todo-64c6b8d9df-t9sn9 condition met
+  ```
+## Tracing UI
+*Remark: Tracing UI only work with multi-tenant configuraion*
+- Install Cluster Observability Operator
+- Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
+  
+  ![](images/observability-tracer-ui.png)  
+
+  UIPlugin CRD
+  
+  ```yaml
+  apiVersion: observability.openshift.io/v1alpha1
+  kind: UIPlugin
+  metadata:
+    name: distributed-tracing
+  spec:
+    type: DistributedTracing
+  ```
+
+- Tracing UI
+
+  ![](images/tracing-UI.png) 
+
+  - Gantt Chart
+
+  ![](images/traceing-UI-gantt-chart-01.png) 
+
+  - Drill down to SQL statement
+  
+  ![](images/traceing-UI-gantt-chart-02.png)
+
+
+## Jaeger UI (Depecrated)
 
 - Open Jaeger Console provided by Tempo to access Jaeger
   
@@ -302,59 +351,10 @@
     ```bash
     oc exec $TODO_POD -n $PROJECT -- curl -v http://localhost:8080/api/ready
     ```
-### Deploy Todo App
-- Deploy todo app with Kustomize
 
-  ```bash
-  oc apply -n $PROJECT -k kustomize/overlays/otel
-  oc wait --for condition=ready --timeout=180s pod -l app=todo-db  -n $PROJECT 
-  oc wait --for condition=ready --timeout=180s pod -l app=todo  -n $PROJECT 
-  ```
 
-  <!-- Remark:
-  For sidecar mode use  *kustomize/overlays/inject-java-agent* -->
- 
- Output
-  
-  ```bash
-  pod/todo-db-59bc56d568-xbxbp condition met
-  pod/todo-64c6b8d9df-dq6bm condition met
-  pod/todo-64c6b8d9df-hbhmh condition met
-  pod/todo-64c6b8d9df-l9nxl condition met
-  pod/todo-64c6b8d9df-nmqts condition met
-  pod/todo-64c6b8d9df-t9sn9 condition met
-  ```
-## Tracing UI
-*Remark: Tracing UI only work with multi-tenant configuraion*
-- Install Cluster Observability Operator
-- Create UIPlugin with name *distributed-tracing* and type *DistributedTracing*
-  
-  ![](images/observability-tracer-ui.png)  
 
-  UIPlugin CRD
-  
-  ```yaml
-  apiVersion: observability.openshift.io/v1alpha1
-  kind: UIPlugin
-  metadata:
-    name: distributed-tracing
-  spec:
-    type: DistributedTracing
-  ```
-
-- Tracing UI
-
-  ![](images/tracing-UI.png) 
-
-  - Gantt Chart
-
-  ![](images/traceing-UI-gantt-chart-01.png) 
-
-  - Drill down to SQL statement
-  
-  ![](images/traceing-UI-gantt-chart-02.png)
-
-### Access Tempo from Grafana
+## Configure Tempo from Grafana
 
 - Grafana Dashboard with Tempo
   - Install Grafana Operator
@@ -551,7 +551,7 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
 
 
 
-## OpenShift - Service Mesh with OpenTelemetry [Wait for OSSM 3.0]
+<!-- ## OpenShift - Service Mesh with OpenTelemetry [Wait for OSSM 3.0]
 
 ### Install Operators
 
@@ -668,4 +668,4 @@ Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operato
   
   You can search Trace ID from Jaeger Console
 
-  ![](images/jaeger-search-by-trace-id.png)
+  ![](images/jaeger-search-by-trace-id.png) -->
