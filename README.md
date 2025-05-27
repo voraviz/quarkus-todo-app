@@ -7,10 +7,13 @@
     - [Test](#test)
   - [OpenShift - OpenTelemetry with Tempo](#openshift---opentelemetry-with-tempo)
     - [Operators Insallation](#operators-insallation)
-    - [Prepare Object Storage (S3 Compatible)](#prepare-object-storage-s3-compatible)
-      - [Leverage existing S3 bucket (from image registry)](#leverage-existing-s3-bucket-from-image-registry)
-      - [OpenShift Data Foundatation](#openshift-data-foundatation)
     - [Deploy and configure Tempo](#deploy-and-configure-tempo)
+      - [TempoMonolithic](#tempomonolithic)
+      - [TempoStack](#tempostack)
+        - [Object Storage](#object-storage)
+          - [Leverage existing S3 bucket (from image registry)](#leverage-existing-s3-bucket-from-image-registry)
+          - [OpenShift Data Foundatation](#openshift-data-foundatation)
+        - [Create TempoStack](#create-tempostack)
     - [Deploy and configure OpenTelemetry](#deploy-and-configure-opentelemetry)
     - [Deploy Todo App](#deploy-todo-app)
     - [Tracing Console](#tracing-console)
@@ -89,8 +92,45 @@
       tempo-operator.v0.15.3-1            Tempo Operator                   0.15.3-1    tempo-operator.v0.14.1-2            Succeeded
       ```
   
-### Prepare Object Storage (S3 Compatible)
-####  Leverage existing S3 bucket (from image registry)
+### Deploy and configure Tempo
+- Create project
+  
+  ```bash
+  PROJECT=todo-tempo
+  oc new-project $PROJECT
+  ```
+#### TempoMonolithic
+- Create [TempoMonolithic](etc/openshift/tempo-monolithic.yaml)
+  
+
+  ```bash
+  cat etc/openshift/tempo-monolithic.yaml | sed 's/PROJECT/'$PROJECT'/'  | oc apply -n $PROJECT -f -
+  oc wait --for condition=ready --timeout=180s pod -l app.kubernetes.io/managed-by=tempo-operator  -n $PROJECT 
+    oc get po -l  app.kubernetes.io/managed-by=tempo-operator -n $PROJECT
+  ```
+
+  Output
+
+  ```bash
+  NAME                              READY   STATUS    RESTARTS   AGE
+  tempo-simplest-0                  5/5     Running   0          8m4s
+  ```
+- Check for PVC
+
+  ```bash
+  oc get pvc -n $PROJECT
+  ``` 
+
+  Output
+    
+  ```bash
+  NAME                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+  tempo-storage-tempo-simplest-0   Bound    pvc-dd520567-3921-418b-8e43-73984f09ac42   2Gi        RWO            gp3-csi
+  ```
+
+#### TempoStack
+##### Object Storage
+######  Leverage existing S3 bucket (from image registry)
 - For Demo only, Retrieve S3 configuration that already configured with OpenShift's internal image registry
   
   ```bash
@@ -101,7 +141,7 @@
   ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
   DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
   ```
-####  OpenShift Data Foundatation
+######  OpenShift Data Foundatation
   
 - Admin Console
   - Navigate to Storage -> Object Storage -> Object Bucket Claims
@@ -133,14 +173,7 @@
   SECRET_ACCESS_KEY=$(oc get secret tempo -n openshift-storage -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'|base64 -d)
   ENDPOINT="http://s3.openshift-storage.svc.cluster.local:80"
   ```
-
-### Deploy and configure Tempo
-- Create project
-  
-  ```bash
-  oc new-project todo-tempo
-  PROJECT=todo-tempo
-  ```
+##### Create TempoStack
 
 - Create secret for TempoStack to access S3 bucket
   Remark: S3 bucket is not required if you use TempoMonolithic with in-memory storage
@@ -439,59 +472,6 @@ OpenTelemetry can automatically instrument an application without manual code ch
     annotations:
       instrumentation.opentelemetry.io/inject-java: "true"
   ```
-  - Environment variables
-  
-```yaml
-spec:
-  containers:
-    - env:
-        - name: OTEL_NODE_IP
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: OTEL_POD_IP
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.podIP
-        - name: quarkus.http.access-log.enabled
-          value: "true"
-        - name: quarkus.log.level
-          value: INFO
-        - name: quarkus.hibernate-orm.database.generation
-          value: none
-        - name: quarkus.http.cors
-          value: "false"
-        - name: OTEL_JAVAAGENT_DEBUG
-          value: debug
-        - name: OTEL_METRICS_EXPORTER
-          value: none
-        - name: JAVA_TOOL_OPTIONS
-          value: ' -javaagent:/otel-auto-instrumentation-java/javaagent.jar'
-        - name: OTEL_EXPORTER_OTLP_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_SERVICE_NAME
-          value: todo
-        - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: http://otel-collector-headless:4318
-        - name: OTEL_RESOURCE_ATTRIBUTES_POD_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
-        - name: OTEL_RESOURCE_ATTRIBUTES_NODE_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: spec.nodeName
-        - name: OTEL_PROPAGATORS
-          value: b3
-        - name: OTEL_TRACES_SAMPLER
-          value: always_on
-        - name: OTEL_RESOURCE_ATTRIBUTES
-          value: k8s.container.name=todo,k8s.deployment.name=todo,k8s.namespace.name=app,k8s.node.name=$(OTEL_RESOURCE_ATTRIBUTES_NODE_NAME),k8s.pod.name=$(OTEL_RESOURCE_ATTRIBUTES_POD_NAME),k8s.replicaset.name=todo-5cb54bd5f7,service.instance.id=app.$(OTEL_RESOURCE_ATTRIBUTES_POD_NAME).todo,service.version=otel-native
-```
 
 - Check todo pod log that java agent is loaded.
   
@@ -797,8 +777,8 @@ oc patch deployment/simple-go \
 
 
 
-  oc patch deployment/frontend \
-  -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"true"}}}}}' \
-  -n $PROJECT
-oc set env deploy frontend OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector-headless:4318
+    oc patch deployment/frontend \
+    -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"true"}}}}}' \
+    -n $PROJECT
+  oc set env deploy frontend OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector-headless:4318
   -->
