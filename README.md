@@ -287,12 +287,6 @@
 #### Jaeger UI (Depecrated)
 
 - Open Jaeger Console provided by Tempo to access Jaeger
-  
-  <!-- - Single Tenant 
-
-  ```bash
-  echo "https://$(oc get route tempo-simplest-gateway -n $PROJECT -o jsonpath='{.spec.host}')"
-  ``` -->
 
   - Multi-tenant 
   
@@ -399,6 +393,7 @@
 
 Reference: *[Tempo Document](https://grafana.com/docs/tempo/latest/setup/operator/quickstart/)*
 
+
 ### Auto-Instrumentation
 OpenTelemetry can automatically instrument an application without manual code changes for Go, Java, Node.js, Python, .NET and Apache HTTP Server.
 
@@ -411,9 +406,19 @@ OpenTelemetry can automatically instrument an application without manual code ch
 - Deploy todo app version that does not included OpenTelemetry library
   
   ```bash
-  oc apply -k kustomize/overlays/inject-java-agent -n $PROJECT
+  oc apply -k kustomize/base -n $PROJECT
   ```
 
+- Patch deployment and set environment variable
+
+  ```bash
+  oc patch deployment/todo \
+  -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"true"}}}}}' \
+  -n $PROJECT
+  oc set env deploy todo \
+  quarkus.otel.exporter.otlp.endpoint=http://otel-collector-headless:4317 -n $PROJECT
+  ```  
+  
   Init-Container will be injected if deployment has following annotation for pod
 
   ```yaml
@@ -423,6 +428,70 @@ OpenTelemetry can automatically instrument an application without manual code ch
 - Pod will be created with init-container
   
   ![](images/otel-init-container.png)
+
+
+- Check OTEL configuration in pod configuration
+  - Annotation
+  ```yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      instrumentation.opentelemetry.io/inject-java: "true"
+  ```
+  - Environment variables
+  
+```yaml
+spec:
+  containers:
+    - env:
+        - name: OTEL_NODE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: OTEL_POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: quarkus.http.access-log.enabled
+          value: "true"
+        - name: quarkus.log.level
+          value: INFO
+        - name: quarkus.hibernate-orm.database.generation
+          value: none
+        - name: quarkus.http.cors
+          value: "false"
+        - name: OTEL_JAVAAGENT_DEBUG
+          value: debug
+        - name: OTEL_METRICS_EXPORTER
+          value: none
+        - name: JAVA_TOOL_OPTIONS
+          value: ' -javaagent:/otel-auto-instrumentation-java/javaagent.jar'
+        - name: OTEL_EXPORTER_OTLP_PROTOCOL
+          value: http/protobuf
+        - name: OTEL_SERVICE_NAME
+          value: todo
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://otel-collector-headless:4318
+        - name: OTEL_RESOURCE_ATTRIBUTES_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: OTEL_RESOURCE_ATTRIBUTES_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: OTEL_PROPAGATORS
+          value: b3
+        - name: OTEL_TRACES_SAMPLER
+          value: always_on
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: k8s.container.name=todo,k8s.deployment.name=todo,k8s.namespace.name=app,k8s.node.name=$(OTEL_RESOURCE_ATTRIBUTES_NODE_NAME),k8s.pod.name=$(OTEL_RESOURCE_ATTRIBUTES_POD_NAME),k8s.replicaset.name=todo-5cb54bd5f7,service.instance.id=app.$(OTEL_RESOURCE_ATTRIBUTES_POD_NAME).todo,service.version=otel-native
+```
 
 - Check todo pod log that java agent is loaded.
   
@@ -706,3 +775,30 @@ OpenTelemetry can automatically instrument an application without manual code ch
   You can search Trace ID from Jaeger Console
 
   ![](images/jaeger-search-by-trace-id.png) -->
+
+
+
+  <!--
+
+  oc patch deployment/backend \
+  -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"true"}}}}}' \
+  -n $PROJECT
+  oc set env deploy backend \
+  quarkus.otel.exporter.otlp.endpoint=http://otel-collector-headless:4317 -n $PROJECT
+
+
+oc patch deployment/simple-go \
+  -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-go":"true"}}}}}' \
+  -n $PROJECT
+
+oc patch deployment/simple-go \
+  -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/otel-go-auto-target-exe":"/app/api"}}}}}' \
+  -n $PROJECT
+
+
+
+  oc patch deployment/frontend \
+  -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"true"}}}}}' \
+  -n $PROJECT
+oc set env deploy frontend OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector-headless:4318
+  -->
