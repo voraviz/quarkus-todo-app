@@ -64,16 +64,18 @@ spec:
           httpGet:
             path: /q/health/ready
             port: 8080
-          initialDelaySeconds: 15
+          initialDelaySeconds: 10
           periodSeconds: 60
           successThreshold: 1
-          failureThreshold: 3  
+          failureThreshold: 1
         livenessProbe:
           httpGet:
             path: /q/health/live
             port: 8080
           initialDelaySeconds: 10
           periodSeconds: 600
+          successThreshold: 1
+          failureThreshold: 1
         securityContext:
           seccompProfile: #"RuntimeDefault" or "Localhost"
             type: RuntimeDefault
