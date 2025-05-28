@@ -1,13 +1,34 @@
-#namePrefix: prod-
-commonAnnotations:
-  description: This is Dev environment
-apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+# CommonLabels will be added to all resources and selectors
+# commonLabels:
+#   app: todo
 resources:
 - ../../base
-labels:
-- includeSelectors: true
-  pairs:
-    environment: dev
+images:
+  - name: quay.io/voravitl/todo 
+    newName: quay.io/voravitl/todo 
+    newTag: otel 
 patches:
-- path: todo.yaml
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: quarkus.otel.exporter.otlp.endpoint
+        value: "http://otel-collector-headless:4317"
+    - op: replace
+      path: /spec/template/spec/containers/0/readinessProbe/failureThreshold
+      value: 3
+    - op: replace
+      path: /spec/template/spec/containers/0/readinessProbe/successThreshold
+      value: 1
+    - op: replace
+      path: /spec/template/spec/containers/0/livenessProbe/failureThreshold
+      value: 3
+    - op: replace
+      path: /spec/template/spec/containers/0/livenessProbe/successThreshold
+      value: 1
+  target:
+    kind: Deployment
+    name: todo
+    version: v1
