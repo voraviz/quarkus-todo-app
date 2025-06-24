@@ -1,11 +1,14 @@
 #namePrefix: prod-
-commonLabels:
-  environment: prod
 commonAnnotations:
   description: This is Production environment
-bases:
-- ../../base
 resources:
 - todo-hpa.yaml
-patchesStrategicMerge:
-- todo.yaml
+- ../../base
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+- includeSelectors: true
+  pairs:
+    environment: prod
+patches:
+- path: todo.yaml
