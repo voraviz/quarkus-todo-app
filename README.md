@@ -17,6 +17,18 @@
   mvn quarkus:dev
   ```
 
+  Remark: If you use OSX with Podman, you may need to run following [commands](https://github.com/quarkusio/quarkus/issues/22919#:~:text=brew%20install%20podman%0Apodman%20machine%20init%20%2Dv%20%24HOME%3A%24HOME%0Asudo%20/opt/homebrew/Cellar/podman/4.0.3/bin/podman%2Dmac%2Dhelper%20install%0Apodman%20machine%20set%20%2D%2Drootful%0Apodman%20machine%20start%0Apodman%20machine%20ssh%0Asudo%20%2Di%0Arpm%2Dostree%20install%20qemu%2Duser%2Dstatic%0Asystemctl%20reboot)
+
+  ```bash
+  sudo /opt/homebrew/Cellar/podman/<version>/bin/podman-mac-helper install
+  podman machine set --rootful
+  podman machine start
+  podman machine ssh
+  sudo -i
+  rpm-ostree install qemu-user-static
+  systemctl reboot
+  ```
+
   Output
 
   ```bash
