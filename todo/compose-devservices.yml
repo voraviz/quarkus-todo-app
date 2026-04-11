@@ -1,0 +1,14 @@
+services:
+  db:
+    image: docker.io/library/postgres:18
+    healthcheck:
+      test: pg_isready -U todo -d todoPassw0rd
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    ports:
+      - '5432'
+    environment:
+      POSTGRES_USER: todo
+      POSTGRES_PASSWORD: todoPassw0rd
+      POSTGRES_DB: todo
