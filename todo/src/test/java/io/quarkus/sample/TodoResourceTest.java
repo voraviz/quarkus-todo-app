@@ -14,7 +14,10 @@ import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 import static io.restassured.RestAssured.*;
-import static junit.framework.TestCase.assertEquals;
+// import io.quarkus.test.junit.QuarkusTest;
+// import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.core.Is.is;
 
 @QuarkusTest
