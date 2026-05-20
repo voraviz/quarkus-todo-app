@@ -1,7 +1,7 @@
 #!/bin/sh
 CONTAINER_NAME=quay.io/voravitl/todo
 PLATFORM=linux/amd64,linux/arm64
-TAG=otel
+TAG=otel-multi-arch
 #TAG=multi-arch-fips
 DOCKERFILE=hummingbird
 #DOCKERFILE=hummingbird-fips
