@@ -1,7 +1,7 @@
 #!/bin/bash
 CONTAINER_NAME=quay.io/voravitl/todo
 TAG=otel
-TYPE=jvm
+TYPE=hummingbird
 CONTAINER_RUNTIME=podman
 podman --version 1>/dev/null 2>&1
 if [ $? -ne 0 ];

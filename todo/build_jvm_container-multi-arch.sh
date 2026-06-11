@@ -1,7 +1,7 @@
 #!/bin/sh
 CONTAINER_NAME=quay.io/voravitl/todo
 PLATFORM=linux/amd64,linux/arm64
-TAG=otel-multi-arch
+TAG=otel
 #TAG=multi-arch-fips
 DOCKERFILE=hummingbird
 #DOCKERFILE=hummingbird-fips
@@ -22,7 +22,7 @@ then
 fi
 $CONTAINER_RUNTIME build --platform $PLATFORM  --manifest \
 $IMAGE -f src/main/docker/Dockerfile.$DOCKERFILE  .
-$CONTAINER_RUNTIME manifest push $IMAGE 
+$CONTAINER_RUNTIME manifest push $IMAGE
 ARCH=$($CONTAINER_RUNTIME manifest inspect ${CONTAINER_NAME}:${TAG} | jq -r '.manifests[].platform.architecture')
 printf "${CONTAINER_NAME}:${TAG} architectures:\n\r $ARCH"
 # if [ $? -eq 0 ];
