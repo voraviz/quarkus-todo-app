@@ -22,7 +22,7 @@ then
 fi
 $CONTAINER_RUNTIME build --platform $PLATFORM  --manifest \
 $IMAGE -f src/main/docker/Dockerfile.$DOCKERFILE  .
-$CONTAINER_RUNTIME manifest push $IMAGE 
+$CONTAINER_RUNTIME manifest push $IMAGE
 ARCH=$($CONTAINER_RUNTIME manifest inspect ${CONTAINER_NAME}:${TAG} | jq -r '.manifests[].platform.architecture')
 printf "${CONTAINER_NAME}:${TAG} architectures:\n\r $ARCH"
 # if [ $? -eq 0 ];
