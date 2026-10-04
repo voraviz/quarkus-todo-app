@@ -2,7 +2,7 @@
 CONTAINER_NAME=quay.io/voravitl/todo
 PLATFORM=linux/amd64,linux/arm64
 TAG=${1:-multi-arch} #otel,latest,hi — pass as first arg to override
-DOCKERFILE=hummingbird #jvm,hummingbird
+DOCKERFILE=jvm #jvm,hummingbird
 IMAGE=$CONTAINER_NAME:$TAG
 CONTAINER_RUNTIME=podman
 podman --version 1>/dev/null 2>&1
@@ -49,7 +49,7 @@ fi
 # local build succeeded.
 ARCH=$(skopeo inspect --raw docker://${CONTAINER_NAME}:${TAG} | jq -r '.manifests[].platform.architecture')
 printf "${CONTAINER_NAME}:${TAG} architectures (verified on registry):\n%s\n" "$ARCH"
-
+printf "**** Don't manually push this tag with podman push ****"
 # #!/bin/sh
 # CONTAINER_NAME=quay.io/voravitl/todo
 # PLATFORM=linux/amd64,linux/arm64
