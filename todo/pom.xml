@@ -29,6 +29,11 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <!-- OpenTelemetry -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-opentelemetry</artifactId>
+    </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy</artifactId>
