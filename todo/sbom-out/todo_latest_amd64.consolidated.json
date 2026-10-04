@@ -1,0 +1,2024 @@
+[
+  {
+    "id": "CVE-2005-2541",
+    "pkg": "tar",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2017-6519",
+    "pkg": "avahi-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2020-12413",
+    "pkg": "nspr",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2020-12413",
+    "pkg": "nss",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2020-12413",
+    "pkg": "nss-softokn",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2020-12413",
+    "pkg": "nss-softokn-freebl",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2020-12413",
+    "pkg": "nss-sysinit",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2020-12413",
+    "pkg": "nss-util",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2021-25317",
+    "pkg": "cups-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2021-3572",
+    "pkg": "python3-pip-wheel",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2021-46195",
+    "pkg": "libgcc",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2021-46195",
+    "pkg": "libstdc++",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2022-27943",
+    "pkg": "libgcc",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2022-27943",
+    "pkg": "libstdc++",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2022-3219",
+    "pkg": "gnupg2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2022-41409",
+    "pkg": "pcre2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2022-41409",
+    "pkg": "pcre2-syntax",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-30571",
+    "pkg": "libarchive",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-32636",
+    "pkg": "glib2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-39804",
+    "pkg": "tar",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-4156",
+    "pkg": "gawk",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-4504",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-45322",
+    "pkg": "libxml2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-45803",
+    "pkg": "python3-pip-wheel",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-50495",
+    "pkg": "ncurses-base",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2023-50495",
+    "pkg": "ncurses-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-0232",
+    "pkg": "sqlite-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-11053",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-11053",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-13176",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-41996",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7264",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7264",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7531",
+    "pkg": "nspr",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7531",
+    "pkg": "nss",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7531",
+    "pkg": "nss-softokn",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7531",
+    "pkg": "nss-softokn-freebl",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7531",
+    "pkg": "nss-sysinit",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-7531",
+    "pkg": "nss-util",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-9681",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2024-9681",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-11468",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-11468",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-12781",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-12781",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-13034",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-13034",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-13462",
+    "pkg": "python3",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-13462",
+    "pkg": "python3-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-13837",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-13837",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-14017",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-14017",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-14524",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-14524",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-15079",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-15079",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-15224",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-15224",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-15282",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-15282",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-1632",
+    "pkg": "libarchive",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-1795",
+    "pkg": "python3",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-1795",
+    "pkg": "python3-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-27113",
+    "pkg": "libxml2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-28164",
+    "pkg": "java-25-openjdk-crypto-adapter",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-28164",
+    "pkg": "java-25-openjdk-headless",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-30258",
+    "pkg": "gnupg2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-3360",
+    "pkg": "glib2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-4516",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-4516",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-50181",
+    "pkg": "python3-pip-wheel",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-50182",
+    "pkg": "python3-pip-wheel",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-5915",
+    "pkg": "libarchive",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-5916",
+    "pkg": "libarchive",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-5917",
+    "pkg": "libarchive",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-5918",
+    "pkg": "libarchive",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-59529",
+    "pkg": "avahi-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-60753",
+    "pkg": "libarchive",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-64118",
+    "pkg": "tar",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-66382",
+    "pkg": "expat",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-66418",
+    "pkg": "cups-libs",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-68276",
+    "pkg": "avahi-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-68468",
+    "pkg": "avahi-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-68471",
+    "pkg": "avahi-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-68972",
+    "pkg": "gnupg2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-7039",
+    "pkg": "glib2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-70873",
+    "pkg": "sqlite-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2025-9232",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0672",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0672",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0864",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0864",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0988",
+    "pkg": "glib2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0989",
+    "pkg": "libxml2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0990",
+    "pkg": "libxml2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-0992",
+    "pkg": "libxml2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-102010",
+    "pkg": "libgcc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-102010",
+    "pkg": "libstdc++",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-102633",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-103111",
+    "pkg": "pcre2",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-103111",
+    "pkg": "pcre2-syntax",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-103242",
+    "pkg": "rpm",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-103242",
+    "pkg": "rpm-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-11850",
+    "pkg": "krb5-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-11856",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-11856",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-11972",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-11972",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-12345",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-12345",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-13346",
+    "pkg": "python3-pip-wheel",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-13595",
+    "pkg": "libblkid",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-13595",
+    "pkg": "libmount",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-13595",
+    "pkg": "libsmartcols",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-13595",
+    "pkg": "libuuid",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-1484",
+    "pkg": "glib2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-1485",
+    "pkg": "glib2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-1489",
+    "pkg": "glib2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-1502",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-1502",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-15028",
+    "pkg": "libarchive",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-15059",
+    "pkg": "systemd-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-1757",
+    "pkg": "libxml2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18374",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18374",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18374",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18503",
+    "pkg": "python3",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18503",
+    "pkg": "python3-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18739",
+    "pkg": "popt",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18743",
+    "pkg": "popt",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18839",
+    "pkg": "popt",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18924",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-18924",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19542",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19542",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19542",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19553",
+    "pkg": "python3",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19553",
+    "pkg": "python3-libs",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19672",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19672",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19931",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-19931",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-21441",
+    "pkg": "cups-libs",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-22185",
+    "pkg": "openldap",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-22693",
+    "pkg": "java-25-openjdk-crypto-adapter",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-22693",
+    "pkg": "java-25-openjdk-headless",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-22695",
+    "pkg": "java-25-openjdk-crypto-adapter",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-22695",
+    "pkg": "java-25-openjdk-headless",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-22801",
+    "pkg": "java-25-openjdk-crypto-adapter",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-22801",
+    "pkg": "java-25-openjdk-headless",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-2297",
+    "pkg": "python3",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-2297",
+    "pkg": "python3-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-24401",
+    "pkg": "avahi-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-24515",
+    "pkg": "expat",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-24883",
+    "pkg": "gnupg2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-25068",
+    "pkg": "alsa-lib",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-25645",
+    "pkg": "python3-pip-wheel",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-2673",
+    "pkg": "openssl-fips-provider",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-2673",
+    "pkg": "openssl-fips-provider-so",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27171",
+    "pkg": "java-25-openjdk-crypto-adapter",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27171",
+    "pkg": "java-25-openjdk-headless",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27171",
+    "pkg": "zlib",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27447",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27456",
+    "pkg": "libblkid",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27456",
+    "pkg": "libmount",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27456",
+    "pkg": "libsmartcols",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-27456",
+    "pkg": "libuuid",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-28387",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-28388",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-28389",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-31789",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-32284",
+    "pkg": "python3-pip-wheel",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3276",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3276",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-32776",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-32777",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-32778",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-33056",
+    "pkg": "tar",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-34743",
+    "pkg": "xz-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-34757",
+    "pkg": "java-25-openjdk-crypto-adapter",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-34757",
+    "pkg": "java-25-openjdk-headless",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3479",
+    "pkg": "python3",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3479",
+    "pkg": "python3-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-34933",
+    "pkg": "avahi-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-34978",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-34979",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-34990",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-35189",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-35191",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3644",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3644",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3784",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-3784",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-39314",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-39316",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-40930",
+    "pkg": "java-25-openjdk-crypto-adapter",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-40930",
+    "pkg": "java-25-openjdk-headless",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4105",
+    "pkg": "systemd-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-41079",
+    "pkg": "cups-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-41080",
+    "pkg": "expat",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-41990",
+    "pkg": "libgcrypt",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4224",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4224",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-42250",
+    "pkg": "bzip2-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-42308",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-42308",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-42765",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-42772",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4360",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4360",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4426",
+    "pkg": "libarchive",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-44605",
+    "pkg": "rpm",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-44605",
+    "pkg": "rpm-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-45409",
+    "pkg": "python3-pip-wheel",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4873",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-4873",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-50812",
+    "pkg": "sqlite-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-53613",
+    "pkg": "libblkid",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-53613",
+    "pkg": "libmount",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-53613",
+    "pkg": "libsmartcols",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-53613",
+    "pkg": "libuuid",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-53655",
+    "pkg": "tar",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-54872",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-54873",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-54875",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5545",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5545",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56109",
+    "pkg": "alsa-lib",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56131",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56391",
+    "pkg": "coreutils-single",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56404",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56405",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56406",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56407",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-56412",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-57062",
+    "pkg": "gnupg2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5713",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5713",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5745",
+    "pkg": "libarchive",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5773",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5773",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-5958",
+    "pkg": "sed",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-59871",
+    "pkg": "tar",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-59875",
+    "pkg": "tar",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6019",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6019",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6253",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6253",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6276",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6276",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6368",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6368",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6368",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6429",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6429",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6791",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6791",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-6791",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-7168",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-7168",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-7210",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-7210",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-72897",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-75803",
+    "pkg": "openssl-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-75804",
+    "pkg": "openssl-libs",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-75805",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-75806",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-76641",
+    "pkg": "expat",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-76957",
+    "pkg": "expat",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-77117",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-77117",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-77117",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-77696",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-7774",
+    "pkg": "python3",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-7774",
+    "pkg": "python3-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-78367",
+    "pkg": "rpm",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-78367",
+    "pkg": "rpm-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-80230",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-80230",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-80489",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-80489",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-80489",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-82209",
+    "pkg": "curl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-82209",
+    "pkg": "libcurl-minimal",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-82327",
+    "pkg": "libsolv",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-84782",
+    "pkg": "openssl-libs",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-84783",
+    "pkg": "openssl-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-84837",
+    "pkg": "rpm",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-84837",
+    "pkg": "rpm-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86145",
+    "pkg": "pcre2",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86145",
+    "pkg": "pcre2-syntax",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86469",
+    "pkg": "glib2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8674",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8674",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8674",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86805",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86805",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86805",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-87875",
+    "pkg": "cups-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-87876",
+    "pkg": "cups-libs",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89092",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89092",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89092",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89156",
+    "pkg": "pcre2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89156",
+    "pkg": "pcre2-syntax",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89157",
+    "pkg": "pcre2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89157",
+    "pkg": "pcre2-syntax",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89158",
+    "pkg": "pcre2",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89158",
+    "pkg": "pcre2-syntax",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89160",
+    "pkg": "pcre2",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89160",
+    "pkg": "pcre2-syntax",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89161",
+    "pkg": "pcre2",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89161",
+    "pkg": "pcre2-syntax",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8924",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8924",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8932",
+    "pkg": "curl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8932",
+    "pkg": "libcurl-minimal",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-90781",
+    "pkg": "alsa-lib",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-9149",
+    "pkg": "libsolv",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-9150",
+    "pkg": "libsolv",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95519",
+    "pkg": "rpm",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95519",
+    "pkg": "rpm-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95520",
+    "pkg": "rpm",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95520",
+    "pkg": "rpm-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95521",
+    "pkg": "rpm",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95521",
+    "pkg": "rpm-libs",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95619",
+    "pkg": "libgcc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95619",
+    "pkg": "libstdc++",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95818",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95818",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95818",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-96674",
+    "pkg": "alsa-lib",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-96675",
+    "pkg": "alsa-lib",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-97399",
+    "pkg": "glibc",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-97399",
+    "pkg": "glibc-common",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-97399",
+    "pkg": "glibc-minimal-langpack",
+    "severity": "Low",
+    "source": "only:grype"
+  }
+]

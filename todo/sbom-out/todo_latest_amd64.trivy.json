@@ -1,0 +1,2548 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.72.0"
+  },
+  "ReportID": "01a0f6e3-ff37-7e63-aa1e-80caa85db089",
+  "CreatedAt": "2026-10-01T16:55:32.279944+07:00",
+  "ArtifactName": "sbom-out/todo_latest_amd64.cdx.json",
+  "ArtifactType": "cyclonedx",
+  "Metadata": {
+    "OS": {
+      "Family": "rhel",
+      "Name": "9.8"
+    }
+  },
+  "Results": [
+    {
+      "Target": "Java",
+      "Class": "lang-pkgs",
+      "Type": "jar",
+      "Packages": [
+        {
+          "ID": "com.aayushatharva.brotli4j:brotli4j:1.23.0",
+          "Name": "com.aayushatharva.brotli4j:brotli4j",
+          "Identifier": {
+            "PURL": "pkg:maven/com.aayushatharva.brotli4j/brotli4j@1.23.0",
+            "UID": "d19bc35389ebe69b",
+            "BOMRef": "pkg:maven/com.aayushatharva.brotli4j/brotli4j@1.23.0?package-id=b599199b7a77e508"
+          },
+          "Version": "1.23.0"
+        },
+        {
+          "ID": "com.aayushatharva.brotli4j:native-osx-aarch64:1.23.0",
+          "Name": "com.aayushatharva.brotli4j:native-osx-aarch64",
+          "Identifier": {
+            "PURL": "pkg:maven/com.aayushatharva.brotli4j/native-osx-aarch64@1.23.0",
+            "UID": "5064a55709428bcc",
+            "BOMRef": "pkg:maven/com.aayushatharva.brotli4j/native-osx-aarch64@1.23.0?package-id=fe76f0a27ac368bf"
+          },
+          "Version": "1.23.0"
+        },
+        {
+          "ID": "com.aayushatharva.brotli4j:service:1.23.0",
+          "Name": "com.aayushatharva.brotli4j:service",
+          "Identifier": {
+            "PURL": "pkg:maven/com.aayushatharva.brotli4j/service@1.23.0",
+            "UID": "6a04bc2d065e5db8",
+            "BOMRef": "pkg:maven/com.aayushatharva.brotli4j/service@1.23.0?package-id=57cc5b003e6e966f"
+          },
+          "Version": "1.23.0"
+        },
+        {
+          "ID": "com.fasterxml.jackson.core:jackson-annotations:2.21",
+          "Name": "com.fasterxml.jackson.core:jackson-annotations",
+          "Identifier": {
+            "PURL": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21",
+            "UID": "a159b087e0cb5ca",
+            "BOMRef": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?package-id=319bb3b0d80d6735"
+          },
+          "Version": "2.21",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "com.fasterxml.jackson.core:jackson-core:2.21.7",
+          "Name": "com.fasterxml.jackson.core:jackson-core",
+          "Identifier": {
+            "PURL": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.7",
+            "UID": "919e107d8931f7fe",
+            "BOMRef": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.7?package-id=d448d1cc37aedd14"
+          },
+          "Version": "2.21.7",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "com.fasterxml.jackson.core:jackson-databind:2.21.7",
+          "Name": "com.fasterxml.jackson.core:jackson-databind",
+          "Identifier": {
+            "PURL": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.7",
+            "UID": "7a00b92428fbb2de",
+            "BOMRef": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.7?package-id=b66467224d5cbc6d"
+          },
+          "Version": "2.21.7",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.21.7",
+          "Name": "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml",
+          "Identifier": {
+            "PURL": "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.21.7",
+            "UID": "ae664771c7441599",
+            "BOMRef": "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.21.7?package-id=44d3fc317f3ed2a7"
+          },
+          "Version": "2.21.7",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "com.fasterxml:classmate:1.7.1",
+          "Name": "com.fasterxml:classmate",
+          "Identifier": {
+            "PURL": "pkg:maven/com.fasterxml/classmate@1.7.1",
+            "UID": "16e424af3691c73b",
+            "BOMRef": "pkg:maven/com.fasterxml/classmate@1.7.1?package-id=edfe8a73f83d0b53"
+          },
+          "Version": "1.7.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "com.github.ben-manes.caffeine.jcache:jcache:3.2.4",
+          "Name": "com.github.ben-manes.caffeine.jcache:jcache",
+          "Identifier": {
+            "PURL": "pkg:maven/com.github.ben-manes.caffeine.jcache/jcache@3.2.4",
+            "UID": "decc451c4dd1cc94",
+            "BOMRef": "pkg:maven/com.github.ben-manes.caffeine.jcache/jcache@3.2.4?package-id=347cadec0267d51b"
+          },
+          "Version": "3.2.4",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "com.github.ben-manes.caffeine:caffeine:3.2.4",
+          "Name": "com.github.ben-manes.caffeine:caffeine",
+          "Identifier": {
+            "PURL": "pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.4",
+            "UID": "766e45583689bbf4",
+            "BOMRef": "pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.4?package-id=c2b9ad3b4c66f776"
+          },
+          "Version": "3.2.4",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "com.google.errorprone:error_prone_annotations:2.49.0",
+          "Name": "com.google.errorprone:error_prone_annotations",
+          "Identifier": {
+            "PURL": "pkg:maven/com.google.errorprone/error_prone_annotations@2.49.0",
+            "UID": "67f11a8fad71da07",
+            "BOMRef": "pkg:maven/com.google.errorprone/error_prone_annotations@2.49.0?package-id=4f3f80008b69a978"
+          },
+          "Version": "2.49.0",
+          "Licenses": [
+            "\"Apache 2.0\";link=\"http://www.apache.org/licenses/LICENSE-2.0.txt\""
+          ]
+        },
+        {
+          "ID": "com.sun.istack:istack-commons-runtime:4.1.2",
+          "Name": "com.sun.istack:istack-commons-runtime",
+          "Identifier": {
+            "PURL": "pkg:maven/com.sun.istack/istack-commons-runtime@4.1.2",
+            "UID": "3583ef932d470cbb",
+            "BOMRef": "pkg:maven/com.sun.istack/istack-commons-runtime@4.1.2?package-id=d5cc41cad0d6111b"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "ID": "com.typesafe:config:1.4.7",
+          "Name": "com.typesafe:config",
+          "Identifier": {
+            "PURL": "pkg:maven/com.typesafe/config@1.4.7",
+            "UID": "95b3741b6a7224a3",
+            "BOMRef": "pkg:maven/com.typesafe/config@1.4.7?package-id=3789119af7b81264"
+          },
+          "Version": "1.4.7",
+          "Licenses": [
+            "https://www.apache.org/licenses/LICENSE-2.0;description=Apache-2.0"
+          ]
+        },
+        {
+          "ID": "commons-io:commons-io:2.22.0",
+          "Name": "commons-io:commons-io",
+          "Identifier": {
+            "PURL": "pkg:maven/commons-io/commons-io@2.22.0",
+            "UID": "d4f83ca1f4699021",
+            "BOMRef": "pkg:maven/commons-io/commons-io@2.22.0?package-id=b85fdf01421a06c6"
+          },
+          "Version": "2.22.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.agroal:agroal-api:3.2.1",
+          "Name": "io.agroal:agroal-api",
+          "Identifier": {
+            "PURL": "pkg:maven/io.agroal/agroal-api@3.2.1",
+            "UID": "63a55e048b34e7ed",
+            "BOMRef": "pkg:maven/io.agroal/agroal-api@3.2.1?package-id=67bac4a8d5764da7"
+          },
+          "Version": "3.2.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.agroal:agroal-narayana:3.2.1",
+          "Name": "io.agroal:agroal-narayana",
+          "Identifier": {
+            "PURL": "pkg:maven/io.agroal/agroal-narayana@3.2.1",
+            "UID": "19a5a8352a12b4db",
+            "BOMRef": "pkg:maven/io.agroal/agroal-narayana@3.2.1?package-id=d515914dff1a7ad1"
+          },
+          "Version": "3.2.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.agroal:agroal-pool:3.2.1",
+          "Name": "io.agroal:agroal-pool",
+          "Identifier": {
+            "PURL": "pkg:maven/io.agroal/agroal-pool@3.2.1",
+            "UID": "e84560d0254e4ee3",
+            "BOMRef": "pkg:maven/io.agroal/agroal-pool@3.2.1?package-id=31659b48b8aad767"
+          },
+          "Version": "3.2.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.micrometer:micrometer-commons:1.17.1",
+          "Name": "io.micrometer:micrometer-commons",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-commons@1.17.1",
+            "UID": "a7f3a4d55febaedf",
+            "BOMRef": "pkg:maven/io.micrometer/micrometer-commons@1.17.1?package-id=7280aff43046ee7f"
+          },
+          "Version": "1.17.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.micrometer:micrometer-core:1.17.1",
+          "Name": "io.micrometer:micrometer-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-core@1.17.1",
+            "UID": "4e94c00fe641a0ee",
+            "BOMRef": "pkg:maven/io.micrometer/micrometer-core@1.17.1?package-id=f30e8dafb9f09371"
+          },
+          "Version": "1.17.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.micrometer:micrometer-observation:1.17.1",
+          "Name": "io.micrometer:micrometer-observation",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-observation@1.17.1",
+            "UID": "d1bd414b25ef89f7",
+            "BOMRef": "pkg:maven/io.micrometer/micrometer-observation@1.17.1?package-id=6d275b3ad873d729"
+          },
+          "Version": "1.17.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.micrometer:micrometer-registry-prometheus-simpleclient:1.17.1",
+          "Name": "io.micrometer:micrometer-registry-prometheus-simpleclient",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-registry-prometheus-simpleclient@1.17.1",
+            "UID": "196fc533c26e61e9",
+            "BOMRef": "pkg:maven/io.micrometer/micrometer-registry-prometheus-simpleclient@1.17.1?package-id=8a51c5011a121862"
+          },
+          "Version": "1.17.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-buffer:4.1.138.Final",
+          "Name": "io.netty:netty-buffer",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-buffer@4.1.138.Final",
+            "UID": "6221b241cb82dd13",
+            "BOMRef": "pkg:maven/io.netty/netty-buffer@4.1.138.Final?package-id=a22b83aa728c2195"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-codec:4.1.138.Final",
+          "Name": "io.netty:netty-codec",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-codec@4.1.138.Final",
+            "UID": "d3d0d6c50a3de21e",
+            "BOMRef": "pkg:maven/io.netty/netty-codec@4.1.138.Final?package-id=68d36cd1f556aa6b"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-codec-dns:4.1.138.Final",
+          "Name": "io.netty:netty-codec-dns",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-codec-dns@4.1.138.Final",
+            "UID": "5f4da19650514097",
+            "BOMRef": "pkg:maven/io.netty/netty-codec-dns@4.1.138.Final?package-id=a23596887cf50f24"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-codec-haproxy:4.1.138.Final",
+          "Name": "io.netty:netty-codec-haproxy",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-codec-haproxy@4.1.138.Final",
+            "UID": "a944a400671948e4",
+            "BOMRef": "pkg:maven/io.netty/netty-codec-haproxy@4.1.138.Final?package-id=70ab17e6557a89ab"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-codec-http:4.1.138.Final",
+          "Name": "io.netty:netty-codec-http",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-codec-http@4.1.138.Final",
+            "UID": "b377c490f5a7b999",
+            "BOMRef": "pkg:maven/io.netty/netty-codec-http@4.1.138.Final?package-id=7cf7a7c60cc7d993"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-codec-http2:4.1.138.Final",
+          "Name": "io.netty:netty-codec-http2",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-codec-http2@4.1.138.Final",
+            "UID": "488b082a7950609f",
+            "BOMRef": "pkg:maven/io.netty/netty-codec-http2@4.1.138.Final?package-id=9d0191b0b7be6283"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-codec-socks:4.1.138.Final",
+          "Name": "io.netty:netty-codec-socks",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-codec-socks@4.1.138.Final",
+            "UID": "aa00979e0e976691",
+            "BOMRef": "pkg:maven/io.netty/netty-codec-socks@4.1.138.Final?package-id=50bfe5df3cc76fc6"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-common:4.1.138.Final",
+          "Name": "io.netty:netty-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-common@4.1.138.Final",
+            "UID": "29ad83103e74e113",
+            "BOMRef": "pkg:maven/io.netty/netty-common@4.1.138.Final?package-id=ea2d66f966262d7a"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "DependsOn": [
+            "org.jctools:jctools-core:4.0.5"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-handler:4.1.138.Final",
+          "Name": "io.netty:netty-handler",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-handler@4.1.138.Final",
+            "UID": "4700ac6db1b9e497",
+            "BOMRef": "pkg:maven/io.netty/netty-handler@4.1.138.Final?package-id=6d5332e3691dd790"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-handler-proxy:4.1.138.Final",
+          "Name": "io.netty:netty-handler-proxy",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-handler-proxy@4.1.138.Final",
+            "UID": "8dba7402c5640a2",
+            "BOMRef": "pkg:maven/io.netty/netty-handler-proxy@4.1.138.Final?package-id=e68f521e6304938e"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-resolver:4.1.138.Final",
+          "Name": "io.netty:netty-resolver",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-resolver@4.1.138.Final",
+            "UID": "655f161ecdf7369a",
+            "BOMRef": "pkg:maven/io.netty/netty-resolver@4.1.138.Final?package-id=76828272f6a24af5"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-resolver-dns:4.1.138.Final",
+          "Name": "io.netty:netty-resolver-dns",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-resolver-dns@4.1.138.Final",
+            "UID": "a3c85c6aab6e738b",
+            "BOMRef": "pkg:maven/io.netty/netty-resolver-dns@4.1.138.Final?package-id=ca46d852529e90f5"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-tcnative-classes:2.0.84.Final",
+          "Name": "io.netty:netty-tcnative-classes",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-tcnative-classes@2.0.84.Final",
+            "UID": "bfb447e5e2fcbbf6",
+            "BOMRef": "pkg:maven/io.netty/netty-tcnative-classes@2.0.84.Final?package-id=b99f2c5d099b6907"
+          },
+          "Version": "2.0.84.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-transport:4.1.138.Final",
+          "Name": "io.netty:netty-transport",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-transport@4.1.138.Final",
+            "UID": "9040291a01430f06",
+            "BOMRef": "pkg:maven/io.netty/netty-transport@4.1.138.Final?package-id=0ef3f6db3487a0e9"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.netty:netty-transport-native-unix-common:4.1.138.Final",
+          "Name": "io.netty:netty-transport-native-unix-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.netty/netty-transport-native-unix-common@4.1.138.Final",
+            "UID": "aef7e83f2cbd6d59",
+            "BOMRef": "pkg:maven/io.netty/netty-transport-native-unix-common@4.1.138.Final?package-id=d68a6c85a9458f99"
+          },
+          "Version": "4.1.138.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.prometheus:simpleclient:0.16.0",
+          "Name": "io.prometheus:simpleclient",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/simpleclient@0.16.0",
+            "UID": "1f0d1d9d3e1fb0c1",
+            "BOMRef": "pkg:maven/io.prometheus/simpleclient@0.16.0?package-id=2ebceabfa48c13a6"
+          },
+          "Version": "0.16.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.prometheus:simpleclient_common:0.16.0",
+          "Name": "io.prometheus:simpleclient_common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/simpleclient_common@0.16.0",
+            "UID": "80a9704e73892a88",
+            "BOMRef": "pkg:maven/io.prometheus/simpleclient_common@0.16.0?package-id=bdf33ac9143731b5"
+          },
+          "Version": "0.16.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.prometheus:simpleclient_tracer_common:0.16.0",
+          "Name": "io.prometheus:simpleclient_tracer_common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/simpleclient_tracer_common@0.16.0",
+            "UID": "73db171ba4905b66",
+            "BOMRef": "pkg:maven/io.prometheus/simpleclient_tracer_common@0.16.0?package-id=feb6a5791af38964"
+          },
+          "Version": "0.16.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.prometheus:simpleclient_tracer_otel:0.16.0",
+          "Name": "io.prometheus:simpleclient_tracer_otel",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/simpleclient_tracer_otel@0.16.0",
+            "UID": "619ab91cbf2053f0",
+            "BOMRef": "pkg:maven/io.prometheus/simpleclient_tracer_otel@0.16.0?package-id=d39ce4f1cfa49b48"
+          },
+          "Version": "0.16.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.prometheus:simpleclient_tracer_otel_agent:0.16.0",
+          "Name": "io.prometheus:simpleclient_tracer_otel_agent",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/simpleclient_tracer_otel_agent@0.16.0",
+            "UID": "67d9bd6f7455c016",
+            "BOMRef": "pkg:maven/io.prometheus/simpleclient_tracer_otel_agent@0.16.0?package-id=3515d6ca2938ffd2"
+          },
+          "Version": "0.16.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus.arc:arc:3.40.1",
+          "Name": "io.quarkus.arc:arc",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus.arc/arc@3.40.1",
+            "UID": "7f7139890e5d2626",
+            "BOMRef": "pkg:maven/io.quarkus.arc/arc@3.40.1?package-id=5da183e24ec98964"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus.bootstrap.runner.QuarkusEntryPoint:quarkus-run:1.0.0",
+          "Name": "io.quarkus.bootstrap.runner.QuarkusEntryPoint:quarkus-run",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus.bootstrap.runner.QuarkusEntryPoint/quarkus-run@1.0.0",
+            "UID": "1d4f6d30a6cdf4ab",
+            "BOMRef": "pkg:maven/io.quarkus.bootstrap.runner.QuarkusEntryPoint/quarkus-run@1.0.0?package-id=ece13fb82c61bd9e"
+          },
+          "Version": "1.0.0"
+        },
+        {
+          "ID": "io.quarkus.security:quarkus-security:2.3.2",
+          "Name": "io.quarkus.security:quarkus-security",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus.security/quarkus-security@2.3.2",
+            "UID": "aff44d0e7930fa8b",
+            "BOMRef": "pkg:maven/io.quarkus.security/quarkus-security@2.3.2?package-id=421321d53ea54f3b"
+          },
+          "Version": "2.3.2",
+          "Licenses": [
+            "The Apache Software License, Version 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus.vertx.utils:quarkus-vertx-utils:3.40.1",
+          "Name": "io.quarkus.vertx.utils:quarkus-vertx-utils",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus.vertx.utils/quarkus-vertx-utils@3.40.1",
+            "UID": "8ee0649ea27f4aa1",
+            "BOMRef": "pkg:maven/io.quarkus.vertx.utils/quarkus-vertx-utils@3.40.1?package-id=e5c83fd16f7d2395"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-agroal:3.40.1",
+          "Name": "io.quarkus:quarkus-agroal",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-agroal@3.40.1",
+            "UID": "4e5e2b9b79359e29",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-agroal@3.40.1?package-id=e3ceab790f226a7a"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-arc:3.40.1",
+          "Name": "io.quarkus:quarkus-arc",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-arc@3.40.1",
+            "UID": "689fdcc779f59de0",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-arc@3.40.1?package-id=1df944245f4cedbc"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-bootstrap-runner:3.40.1",
+          "Name": "io.quarkus:quarkus-bootstrap-runner",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-bootstrap-runner@3.40.1",
+            "UID": "7ae9a93f0d978c28",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-bootstrap-runner@3.40.1?package-id=277efc0d867d9507"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-caffeine:3.40.1",
+          "Name": "io.quarkus:quarkus-caffeine",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-caffeine@3.40.1",
+            "UID": "cebeab7a002c4fda",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-caffeine@3.40.1?package-id=3569ba6cc8ec8f45"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-classloader-commons:3.40.1",
+          "Name": "io.quarkus:quarkus-classloader-commons",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-classloader-commons@3.40.1",
+            "UID": "4fbe0d8295ae1bb7",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-classloader-commons@3.40.1?package-id=14655cea4a9342e8"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-core:3.40.1",
+          "Name": "io.quarkus:quarkus-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-core@3.40.1",
+            "UID": "ca8cab1d10fd2fb1",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-core@3.40.1?package-id=f893c182a7879bbb"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-credentials:3.40.1",
+          "Name": "io.quarkus:quarkus-credentials",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-credentials@3.40.1",
+            "UID": "39c1af9e85db0d0a",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-credentials@3.40.1?package-id=7d547be34c28e458"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-datasource:3.40.1",
+          "Name": "io.quarkus:quarkus-datasource",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-datasource@3.40.1",
+            "UID": "36e1f7e21b6cc7e2",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-datasource@3.40.1?package-id=a098660ded06ccac"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-datasource-common:3.40.1",
+          "Name": "io.quarkus:quarkus-datasource-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-datasource-common@3.40.1",
+            "UID": "737ad0df5e28ffc6",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-datasource-common@3.40.1?package-id=b9a182504d17e356"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-development-mode-spi:3.40.1",
+          "Name": "io.quarkus:quarkus-development-mode-spi",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-development-mode-spi@3.40.1",
+            "UID": "f8c4d450d88b347b",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-development-mode-spi@3.40.1?package-id=8c01960358d4daf3"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-devservices:3.40.1",
+          "Name": "io.quarkus:quarkus-devservices",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-devservices@3.40.1",
+            "UID": "7bca6f2c2b906e14",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-devservices@3.40.1?package-id=368b3ce880dcd499"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-fs-util:1.4.2",
+          "Name": "io.quarkus:quarkus-fs-util",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-fs-util@1.4.2",
+            "UID": "bb49263778e5fe86",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-fs-util@1.4.2?package-id=d0ecddd38da7f2a5"
+          },
+          "Version": "1.4.2",
+          "Licenses": [
+            "Apache License, Version 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-hibernate-orm:3.40.1",
+          "Name": "io.quarkus:quarkus-hibernate-orm",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-hibernate-orm@3.40.1",
+            "UID": "c69b6fe900614db0",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-hibernate-orm@3.40.1?package-id=c2232199dee76771"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-hibernate-orm-panache:3.40.1",
+          "Name": "io.quarkus:quarkus-hibernate-orm-panache",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-hibernate-orm-panache@3.40.1",
+            "UID": "1c68d3699596ac2d",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-hibernate-orm-panache@3.40.1?package-id=3f180b9b3fe6f517"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-hibernate-orm-panache-common:3.40.1",
+          "Name": "io.quarkus:quarkus-hibernate-orm-panache-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-hibernate-orm-panache-common@3.40.1",
+            "UID": "4cd4b1f3ba989c14",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-hibernate-orm-panache-common@3.40.1?package-id=5827b567110fff6a"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-hibernate-validator:3.40.1",
+          "Name": "io.quarkus:quarkus-hibernate-validator",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-hibernate-validator@3.40.1",
+            "UID": "2746b41c10d8b086",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-hibernate-validator@3.40.1?package-id=db0e4ba5bd4b759f"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-jdbc-postgresql:3.40.1",
+          "Name": "io.quarkus:quarkus-jdbc-postgresql",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-jdbc-postgresql@3.40.1",
+            "UID": "90116a45c369b61f",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-jdbc-postgresql@3.40.1?package-id=60cf981c456a7b9f"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-jsonb:3.40.1",
+          "Name": "io.quarkus:quarkus-jsonb",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-jsonb@3.40.1",
+            "UID": "2b2f2d81748cdcfd",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-jsonb@3.40.1?package-id=072f8d9893fca19a"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-jsonp:3.40.1",
+          "Name": "io.quarkus:quarkus-jsonp",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-jsonp@3.40.1",
+            "UID": "6be807b1be7d1ae1",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-jsonp@3.40.1?package-id=35d2a6942002d014"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-micrometer:3.40.1",
+          "Name": "io.quarkus:quarkus-micrometer",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-micrometer@3.40.1",
+            "UID": "b54a81560bde5d73",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-micrometer@3.40.1?package-id=c7630ff84400c066"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-micrometer-registry-prometheus:3.40.1",
+          "Name": "io.quarkus:quarkus-micrometer-registry-prometheus",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-micrometer-registry-prometheus@3.40.1",
+            "UID": "12dcc336b227b6d5",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-micrometer-registry-prometheus@3.40.1?package-id=376d06f6d6934b53"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-mutiny:3.40.1",
+          "Name": "io.quarkus:quarkus-mutiny",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-mutiny@3.40.1",
+            "UID": "1833f65840002091",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-mutiny@3.40.1?package-id=67db68281c094f56"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-narayana-jta:3.40.1",
+          "Name": "io.quarkus:quarkus-narayana-jta",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-narayana-jta@3.40.1",
+            "UID": "805633f0231c7910",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-narayana-jta@3.40.1?package-id=a5b8f6060ae31624"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-netty:3.40.1",
+          "Name": "io.quarkus:quarkus-netty",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-netty@3.40.1",
+            "UID": "171ae54f42e5d7e5",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-netty@3.40.1?package-id=d04e90453f3466c4"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-panache-common:3.40.1",
+          "Name": "io.quarkus:quarkus-panache-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-panache-common@3.40.1",
+            "UID": "765b9c85f9135aff",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-panache-common@3.40.1?package-id=f87d838f07c06341"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-panache-hibernate-common:3.40.1",
+          "Name": "io.quarkus:quarkus-panache-hibernate-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-panache-hibernate-common@3.40.1",
+            "UID": "74150a8c7e6ec03d",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-panache-hibernate-common@3.40.1?package-id=821e326cdf58ce9e"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-resteasy:3.40.1",
+          "Name": "io.quarkus:quarkus-resteasy",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-resteasy@3.40.1",
+            "UID": "dd9f5d7ccbbbc7",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-resteasy@3.40.1?package-id=76340ab2f12dbae6"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-resteasy-common:3.40.1",
+          "Name": "io.quarkus:quarkus-resteasy-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-resteasy-common@3.40.1",
+            "UID": "c03b36eca59fbce9",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-resteasy-common@3.40.1?package-id=81053247829a3a0f"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-resteasy-jsonb:3.40.1",
+          "Name": "io.quarkus:quarkus-resteasy-jsonb",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-resteasy-jsonb@3.40.1",
+            "UID": "4346383fac6470b0",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-resteasy-jsonb@3.40.1?package-id=bdea9b16199f4871"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-resteasy-server-common:3.40.1",
+          "Name": "io.quarkus:quarkus-resteasy-server-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-resteasy-server-common@3.40.1",
+            "UID": "e54e82536d108b33",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-resteasy-server-common@3.40.1?package-id=266143f5a3f4a533"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-security-runtime-spi:3.40.1",
+          "Name": "io.quarkus:quarkus-security-runtime-spi",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-security-runtime-spi@3.40.1",
+            "UID": "9276bcea0639271",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-security-runtime-spi@3.40.1?package-id=21e8561a9ff65261"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-smallrye-context-propagation:3.40.1",
+          "Name": "io.quarkus:quarkus-smallrye-context-propagation",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-smallrye-context-propagation@3.40.1",
+            "UID": "1f443e50be8abac3",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-smallrye-context-propagation@3.40.1?package-id=bf728bc90b9fd786"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-smallrye-health:3.40.1",
+          "Name": "io.quarkus:quarkus-smallrye-health",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-smallrye-health@3.40.1",
+            "UID": "62fd27edb0ca3cdb",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-smallrye-health@3.40.1?package-id=3c4577fcbe26d77c"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-smallrye-openapi:3.40.1",
+          "Name": "io.quarkus:quarkus-smallrye-openapi",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-smallrye-openapi@3.40.1",
+            "UID": "ec431fdae061cbfb",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-smallrye-openapi@3.40.1?package-id=6e1f40dca65fbb3c"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-swagger-ui:3.40.1",
+          "Name": "io.quarkus:quarkus-swagger-ui",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-swagger-ui@3.40.1",
+            "UID": "74b0e93e542d53f3",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-swagger-ui@3.40.1?package-id=9f2b6645257c63a1"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-tls-registry:3.40.1",
+          "Name": "io.quarkus:quarkus-tls-registry",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-tls-registry@3.40.1",
+            "UID": "9ae98838d5e43e11",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-tls-registry@3.40.1?package-id=17a7e7a16c2dfc6d"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-tls-registry-spi:3.40.1",
+          "Name": "io.quarkus:quarkus-tls-registry-spi",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-tls-registry-spi@3.40.1",
+            "UID": "7da410b656c7883f",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-tls-registry-spi@3.40.1?package-id=f592396dffe5c8e4"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-transaction-annotations:3.40.1",
+          "Name": "io.quarkus:quarkus-transaction-annotations",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-transaction-annotations@3.40.1",
+            "UID": "32f70f5ab6b68c10",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-transaction-annotations@3.40.1?package-id=09e1e0f48c3b42ab"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-value-registry:3.40.1",
+          "Name": "io.quarkus:quarkus-value-registry",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-value-registry@3.40.1",
+            "UID": "231a8c25d7306b23",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-value-registry@3.40.1?package-id=690381f168fb6a8f"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-vertx:3.40.1",
+          "Name": "io.quarkus:quarkus-vertx",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-vertx@3.40.1",
+            "UID": "2b4814cfd6a18c9c",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-vertx@3.40.1?package-id=03d9480a75132ff7"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-vertx-http:3.40.1",
+          "Name": "io.quarkus:quarkus-vertx-http",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-vertx-http@3.40.1",
+            "UID": "9f1a144bcf3c3ee6",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-vertx-http@3.40.1?package-id=20dfa1de57fb742f"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-vertx-latebound-mdc-provider:3.40.1",
+          "Name": "io.quarkus:quarkus-vertx-latebound-mdc-provider",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-vertx-latebound-mdc-provider@3.40.1",
+            "UID": "7f3fe3fdbe510127",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-vertx-latebound-mdc-provider@3.40.1?package-id=11eaf32e7803e801"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.quarkus:quarkus-virtual-threads:3.40.1",
+          "Name": "io.quarkus:quarkus-virtual-threads",
+          "Identifier": {
+            "PURL": "pkg:maven/io.quarkus/quarkus-virtual-threads@3.40.1",
+            "UID": "6c448f4fc91f4d0b",
+            "BOMRef": "pkg:maven/io.quarkus/quarkus-virtual-threads@3.40.1?package-id=498b4117d65f399b"
+          },
+          "Version": "3.40.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "io.smallrye.certs:smallrye-private-key-pem-parser:0.9.4",
+          "Name": "io.smallrye.certs:smallrye-private-key-pem-parser",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.certs/smallrye-private-key-pem-parser@0.9.4",
+            "UID": "518e31bf567ac8c5",
+            "BOMRef": "pkg:maven/io.smallrye.certs/smallrye-private-key-pem-parser@0.9.4?package-id=fb4f657cc68c62d5"
+          },
+          "Version": "0.9.4"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-annotation:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-annotation",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-annotation@2.19.0",
+            "UID": "4c59930b1fec3a1d",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-annotation@2.19.0?package-id=ec1d8bad117411e9"
+          },
+          "Version": "2.19.0",
+          "Licenses": [
+            "Apache License, Version 2.0;link=\"https://www.apache.org/licenses/LICENSE-2.0.txt\""
+          ]
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-classloader:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-classloader",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-classloader@2.19.0",
+            "UID": "6c44fce3ebb89bc",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-classloader@2.19.0?package-id=21407ed4fec9e98f"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-constraint:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-constraint",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-constraint@2.19.0",
+            "UID": "fef87a84eb49c22f",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-constraint@2.19.0?package-id=37c98fb9bbee1828"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-cpu:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-cpu",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-cpu@2.19.0",
+            "UID": "76482ffc3de41b31",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-cpu@2.19.0?package-id=ea1637b40eeff1e2"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-expression:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-expression",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-expression@2.19.0",
+            "UID": "d7e21e822260a478",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-expression@2.19.0?package-id=a2df5bb4f0113f3c"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-function:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-function",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-function@2.19.0",
+            "UID": "8aa0ef6d62714f37",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-function@2.19.0?package-id=af56446f504c2935"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-io:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-io",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-io@2.19.0",
+            "UID": "42ce5473fdcf2d02",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-io@2.19.0?package-id=ffd9fa7e5f2ce8b4"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-net:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-net",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-net@2.19.0",
+            "UID": "fa4625cc3ea980ae",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-net@2.19.0?package-id=c3e1924cd6b21151"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-os:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-os",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-os@2.19.0",
+            "UID": "c4f269d9e7b8e269",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-os@2.19.0?package-id=ef5aba4da12f60b5"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-ref:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-ref",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-ref@2.19.0",
+            "UID": "8bddc043fbb31f92",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-ref@2.19.0?package-id=1e1cdf97c6c9f6ec"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-search:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-search",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-search@2.19.0",
+            "UID": "8358d13ec826db18",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-search@2.19.0?package-id=2c7497bfa1fdb7cc"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.common:smallrye-common-vertx-context:2.19.0",
+          "Name": "io.smallrye.common:smallrye-common-vertx-context",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.common/smallrye-common-vertx-context@2.19.0",
+            "UID": "b87bbca4afb6bf35",
+            "BOMRef": "pkg:maven/io.smallrye.common/smallrye-common-vertx-context@2.19.0?package-id=86068aa662df78ca"
+          },
+          "Version": "2.19.0"
+        },
+        {
+          "ID": "io.smallrye.config:smallrye-config:3.17.2",
+          "Name": "io.smallrye.config:smallrye-config",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.config/smallrye-config@3.17.2",
+            "UID": "86e035861441a670",
+            "BOMRef": "pkg:maven/io.smallrye.config/smallrye-config@3.17.2?package-id=c7aa6a7bc6f33954"
+          },
+          "Version": "3.17.2"
+        },
+        {
+          "ID": "io.smallrye.config:smallrye-config-common:3.17.2",
+          "Name": "io.smallrye.config:smallrye-config-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.config/smallrye-config-common@3.17.2",
+            "UID": "797c02b37170f871",
+            "BOMRef": "pkg:maven/io.smallrye.config/smallrye-config-common@3.17.2?package-id=4abcdf72e8ebcd98"
+          },
+          "Version": "3.17.2"
+        },
+        {
+          "ID": "io.smallrye.config:smallrye-config-core:3.17.2",
+          "Name": "io.smallrye.config:smallrye-config-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.config/smallrye-config-core@3.17.2",
+            "UID": "b4707e3da3225724",
+            "BOMRef": "pkg:maven/io.smallrye.config/smallrye-config-core@3.17.2?package-id=c6cb076d85bbe50e"
+          },
+          "Version": "3.17.2"
+        },
+        {
+          "ID": "io.smallrye.config:smallrye-config-validator:3.17.2",
+          "Name": "io.smallrye.config:smallrye-config-validator",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.config/smallrye-config-validator@3.17.2",
+            "UID": "21b86dd91b0d265e",
+            "BOMRef": "pkg:maven/io.smallrye.config/smallrye-config-validator@3.17.2?package-id=2e2ebfd629197dbf"
+          },
+          "Version": "3.17.2"
+        },
+        {
+          "ID": "io.smallrye.reactive:mutiny:3.3.0",
+          "Name": "io.smallrye.reactive:mutiny",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/mutiny@3.3.0",
+            "UID": "e20ef20851413a13",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/mutiny@3.3.0?package-id=70daa8b2cc8ec9d5"
+          },
+          "Version": "3.3.0",
+          "Licenses": [
+            "Apache License, Version 2.0;description=\"A business-friendly OSS license\";link=\"https://www.apache.org/licenses/LICENSE-2.0.txt\""
+          ]
+        },
+        {
+          "ID": "io.smallrye.reactive:mutiny-smallrye-context-propagation:3.3.0",
+          "Name": "io.smallrye.reactive:mutiny-smallrye-context-propagation",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/mutiny-smallrye-context-propagation@3.3.0",
+            "UID": "19146f5cddfa1ce",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/mutiny-smallrye-context-propagation@3.3.0?package-id=343ae216ca95cb49"
+          },
+          "Version": "3.3.0"
+        },
+        {
+          "ID": "io.smallrye.reactive:mutiny-zero-flow-adapters:1.2.1",
+          "Name": "io.smallrye.reactive:mutiny-zero-flow-adapters",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/mutiny-zero-flow-adapters@1.2.1",
+            "UID": "3d7ff4774831ba8f",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/mutiny-zero-flow-adapters@1.2.1?package-id=8a016d597c70421b"
+          },
+          "Version": "1.2.1",
+          "Licenses": [
+            "Apache License, Version 2.0;link=\"https://www.apache.org/licenses/LICENSE-2.0.txt\""
+          ]
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-mutiny-vertx-auth-common:3.23.1",
+          "Name": "io.smallrye.reactive:smallrye-mutiny-vertx-auth-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-auth-common@3.23.1",
+            "UID": "fe9b7fc2897aa709",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-auth-common@3.23.1?package-id=fb2e887f48f028d9"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-mutiny-vertx-bridge-common:3.23.1",
+          "Name": "io.smallrye.reactive:smallrye-mutiny-vertx-bridge-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-bridge-common@3.23.1",
+            "UID": "58980dc07229878e",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-bridge-common@3.23.1?package-id=1e151025caf2b918"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-mutiny-vertx-core:3.23.1",
+          "Name": "io.smallrye.reactive:smallrye-mutiny-vertx-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-core@3.23.1",
+            "UID": "df97b762b72b535b",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-core@3.23.1?package-id=fb1feac371eefadf"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-mutiny-vertx-runtime:3.23.1",
+          "Name": "io.smallrye.reactive:smallrye-mutiny-vertx-runtime",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-runtime@3.23.1",
+            "UID": "b8510d6d9cee06ff",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-runtime@3.23.1?package-id=5e74c4e1aed44151"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-mutiny-vertx-uri-template:3.23.1",
+          "Name": "io.smallrye.reactive:smallrye-mutiny-vertx-uri-template",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-uri-template@3.23.1",
+            "UID": "ea39bb9792622245",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-uri-template@3.23.1?package-id=96641ca14c558ecf"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-mutiny-vertx-web:3.23.1",
+          "Name": "io.smallrye.reactive:smallrye-mutiny-vertx-web",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-web@3.23.1",
+            "UID": "9fd97322ea24fb7b",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-web@3.23.1?package-id=47a0086b3b803b65"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-mutiny-vertx-web-common:3.23.1",
+          "Name": "io.smallrye.reactive:smallrye-mutiny-vertx-web-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-web-common@3.23.1",
+            "UID": "f6f82b6811eab3d2",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-web-common@3.23.1?package-id=c9623b552a9cfdc7"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-reactive-converter-api:3.0.3",
+          "Name": "io.smallrye.reactive:smallrye-reactive-converter-api",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-reactive-converter-api@3.0.3",
+            "UID": "4da5b60c05adbc72",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-reactive-converter-api@3.0.3?package-id=fc4cb5941174d18e"
+          },
+          "Version": "3.0.3"
+        },
+        {
+          "ID": "io.smallrye.reactive:smallrye-reactive-converter-mutiny:3.0.3",
+          "Name": "io.smallrye.reactive:smallrye-reactive-converter-mutiny",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye.reactive/smallrye-reactive-converter-mutiny@3.0.3",
+            "UID": "f24a57765645f96a",
+            "BOMRef": "pkg:maven/io.smallrye.reactive/smallrye-reactive-converter-mutiny@3.0.3?package-id=06096979f33a3291"
+          },
+          "Version": "3.0.3"
+        },
+        {
+          "ID": "io.smallrye:jandex:3.6.0",
+          "Name": "io.smallrye:jandex",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/jandex@3.6.0",
+            "UID": "549187cd3447557f",
+            "BOMRef": "pkg:maven/io.smallrye/jandex@3.6.0?package-id=1f398bb986ad31e9"
+          },
+          "Version": "3.6.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "io.smallrye:smallrye-context-propagation:2.3.0",
+          "Name": "io.smallrye:smallrye-context-propagation",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-context-propagation@2.3.0",
+            "UID": "b76d8b5f813f9051",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-context-propagation@2.3.0?package-id=ab3ae0094373244d"
+          },
+          "Version": "2.3.0"
+        },
+        {
+          "ID": "io.smallrye:smallrye-context-propagation-api:2.3.0",
+          "Name": "io.smallrye:smallrye-context-propagation-api",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-context-propagation-api@2.3.0",
+            "UID": "e3f1c19d499676d",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-context-propagation-api@2.3.0?package-id=12d9702f5491cd21"
+          },
+          "Version": "2.3.0"
+        },
+        {
+          "ID": "io.smallrye:smallrye-context-propagation-jta:2.3.0",
+          "Name": "io.smallrye:smallrye-context-propagation-jta",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-context-propagation-jta@2.3.0",
+            "UID": "90869b7bebddd150",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-context-propagation-jta@2.3.0?package-id=d2cbd590fc5904e2"
+          },
+          "Version": "2.3.0"
+        },
+        {
+          "ID": "io.smallrye:smallrye-context-propagation-storage:2.3.0",
+          "Name": "io.smallrye:smallrye-context-propagation-storage",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-context-propagation-storage@2.3.0",
+            "UID": "416fe7e705134fa9",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-context-propagation-storage@2.3.0?package-id=b6287123208cbcc4"
+          },
+          "Version": "2.3.0"
+        },
+        {
+          "ID": "io.smallrye:smallrye-fault-tolerance-vertx:6.11.4",
+          "Name": "io.smallrye:smallrye-fault-tolerance-vertx",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-fault-tolerance-vertx@6.11.4",
+            "UID": "689ca5b3f7123507",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-fault-tolerance-vertx@6.11.4?package-id=532bf6cb4520c56d"
+          },
+          "Version": "6.11.4"
+        },
+        {
+          "ID": "io.smallrye:smallrye-health:4.3.0",
+          "Name": "io.smallrye:smallrye-health",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-health@4.3.0",
+            "UID": "f9dce59117cd91ba",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-health@4.3.0?package-id=19b97a1ac96386b6"
+          },
+          "Version": "4.3.0"
+        },
+        {
+          "ID": "io.smallrye:smallrye-health-api:4.3.0",
+          "Name": "io.smallrye:smallrye-health-api",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-health-api@4.3.0",
+            "UID": "a656e56fbfe414e0",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-health-api@4.3.0?package-id=aa7d03a30f52e0d2"
+          },
+          "Version": "4.3.0"
+        },
+        {
+          "ID": "io.smallrye:smallrye-health-provided-checks:4.3.0",
+          "Name": "io.smallrye:smallrye-health-provided-checks",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-health-provided-checks@4.3.0",
+            "UID": "4b9a46fa439ce1fa",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-health-provided-checks@4.3.0?package-id=3d2368f9053ca5e4"
+          },
+          "Version": "4.3.0"
+        },
+        {
+          "ID": "io.smallrye:smallrye-open-api-core:4.3.5",
+          "Name": "io.smallrye:smallrye-open-api-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-open-api-core@4.3.5",
+            "UID": "cae231be24c470f8",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-open-api-core@4.3.5?package-id=1191229095cb2791"
+          },
+          "Version": "4.3.5"
+        },
+        {
+          "ID": "io.smallrye:smallrye-open-api-model:4.3.5",
+          "Name": "io.smallrye:smallrye-open-api-model",
+          "Identifier": {
+            "PURL": "pkg:maven/io.smallrye/smallrye-open-api-model@4.3.5",
+            "UID": "c7192545ddc847e3",
+            "BOMRef": "pkg:maven/io.smallrye/smallrye-open-api-model@4.3.5?package-id=4b5a52b66a7b481b"
+          },
+          "Version": "4.3.5"
+        },
+        {
+          "ID": "io.vertx:vertx-auth-common:4.5.34",
+          "Name": "io.vertx:vertx-auth-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.vertx/vertx-auth-common@4.5.34",
+            "UID": "9567a4cd439e866e",
+            "BOMRef": "pkg:maven/io.vertx/vertx-auth-common@4.5.34?package-id=f1cce29d055d0d64"
+          },
+          "Version": "4.5.34"
+        },
+        {
+          "ID": "io.vertx:vertx-bridge-common:4.5.34",
+          "Name": "io.vertx:vertx-bridge-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.vertx/vertx-bridge-common@4.5.34",
+            "UID": "a62976031fc2968d",
+            "BOMRef": "pkg:maven/io.vertx/vertx-bridge-common@4.5.34?package-id=386989422ce359a3"
+          },
+          "Version": "4.5.34"
+        },
+        {
+          "ID": "io.vertx:vertx-codegen:4.5.34",
+          "Name": "io.vertx:vertx-codegen",
+          "Identifier": {
+            "PURL": "pkg:maven/io.vertx/vertx-codegen@4.5.34",
+            "UID": "178a8d7b4d0cf173",
+            "BOMRef": "pkg:maven/io.vertx/vertx-codegen@4.5.34?package-id=d1d308c007961c1e"
+          },
+          "Version": "4.5.34"
+        },
+        {
+          "ID": "io.vertx:vertx-core:4.5.34",
+          "Name": "io.vertx:vertx-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.vertx/vertx-core@4.5.34",
+            "UID": "94aa97d28a5c1504",
+            "BOMRef": "pkg:maven/io.vertx/vertx-core@4.5.34?package-id=ee5b40a740a4c425"
+          },
+          "Version": "4.5.34",
+          "Licenses": [
+            "Eclipse Public License - v 2.0",
+            "The Apache Software License, Version 2.0"
+          ]
+        },
+        {
+          "ID": "io.vertx:vertx-uri-template:4.5.34",
+          "Name": "io.vertx:vertx-uri-template",
+          "Identifier": {
+            "PURL": "pkg:maven/io.vertx/vertx-uri-template@4.5.34",
+            "UID": "c121dc7969d98dcd",
+            "BOMRef": "pkg:maven/io.vertx/vertx-uri-template@4.5.34?package-id=de673faeceb8bd4f"
+          },
+          "Version": "4.5.34"
+        },
+        {
+          "ID": "io.vertx:vertx-web:4.5.34",
+          "Name": "io.vertx:vertx-web",
+          "Identifier": {
+            "PURL": "pkg:maven/io.vertx/vertx-web@4.5.34",
+            "UID": "29c4d31df0ec4a3c",
+            "BOMRef": "pkg:maven/io.vertx/vertx-web@4.5.34?package-id=7f40132d18b457b0"
+          },
+          "Version": "4.5.34",
+          "Licenses": [
+            "Eclipse Public License - v 2.0",
+            "The Apache Software License, Version 2.0"
+          ]
+        },
+        {
+          "ID": "io.vertx:vertx-web-common:4.5.34",
+          "Name": "io.vertx:vertx-web-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.vertx/vertx-web-common@4.5.34",
+            "UID": "13a127bdc935686d",
+            "BOMRef": "pkg:maven/io.vertx/vertx-web-common@4.5.34?package-id=fb4ddcdd44ac42de"
+          },
+          "Version": "4.5.34"
+        },
+        {
+          "ID": "jakarta.activation:jakarta.activation-api:2.1.4",
+          "Name": "jakarta.activation:jakarta.activation-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.4",
+            "UID": "489cdf2dbfe56106",
+            "BOMRef": "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.4?package-id=922e6d356e4f665f"
+          },
+          "Version": "2.1.4",
+          "Licenses": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "ID": "jakarta.annotation:jakarta.annotation-api:3.0.0",
+          "Name": "jakarta.annotation:jakarta.annotation-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0",
+            "UID": "d1606779f15bdc52",
+            "BOMRef": "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?package-id=a7135fb72facdeda"
+          },
+          "Version": "3.0.0",
+          "Licenses": [
+            "https://www.eclipse.org/legal/epl-2.0, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "jakarta.el:jakarta.el-api:6.0.1",
+          "Name": "jakarta.el:jakarta.el-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.el/jakarta.el-api@6.0.1",
+            "UID": "6c36713d61a8d631",
+            "BOMRef": "pkg:maven/jakarta.el/jakarta.el-api@6.0.1?package-id=1d43f47250208bb8"
+          },
+          "Version": "6.0.1",
+          "Licenses": [
+            "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0",
+          "Name": "jakarta.enterprise:jakarta.enterprise.cdi-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.enterprise/jakarta.enterprise.cdi-api@4.1.0",
+            "UID": "32b11fae99711574",
+            "BOMRef": "pkg:maven/jakarta.enterprise/jakarta.enterprise.cdi-api@4.1.0?package-id=ca2f6da8f49454d6"
+          },
+          "Version": "4.1.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "jakarta.enterprise:jakarta.enterprise.lang-model:4.1.0",
+          "Name": "jakarta.enterprise:jakarta.enterprise.lang-model",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.enterprise/jakarta.enterprise.lang-model@4.1.0",
+            "UID": "5626009e9653a4e1",
+            "BOMRef": "pkg:maven/jakarta.enterprise/jakarta.enterprise.lang-model@4.1.0?package-id=00ba288d6dd7dafb"
+          },
+          "Version": "4.1.0",
+          "Licenses": [
+            "https://apache.org/licenses/LICENSE-2.0.txt"
+          ]
+        },
+        {
+          "ID": "jakarta.inject:jakarta.inject-api:2.0.1",
+          "Name": "jakarta.inject:jakarta.inject-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.inject/jakarta.inject-api@2.0.1",
+            "UID": "392cb674b5eb015c",
+            "BOMRef": "pkg:maven/jakarta.inject/jakarta.inject-api@2.0.1?package-id=baeae82e7d005776"
+          },
+          "Version": "2.0.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "jakarta.interceptor:jakarta.interceptor-api:2.2.0",
+          "Name": "jakarta.interceptor:jakarta.interceptor-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.interceptor/jakarta.interceptor-api@2.2.0",
+            "UID": "8cc1051bce418df9",
+            "BOMRef": "pkg:maven/jakarta.interceptor/jakarta.interceptor-api@2.2.0?package-id=e20a62a7c65a519d"
+          },
+          "Version": "2.2.0",
+          "Licenses": [
+            "http://www.eclipse.org/legal/epl-2.0, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "jakarta.json.bind:jakarta.json.bind-api:3.0.2",
+          "Name": "jakarta.json.bind:jakarta.json.bind-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.json.bind/jakarta.json.bind-api@3.0.2",
+            "UID": "4fa5904ba13b2d1",
+            "BOMRef": "pkg:maven/jakarta.json.bind/jakarta.json.bind-api@3.0.2?package-id=22fc21c53138ac4f"
+          },
+          "Version": "3.0.2",
+          "Licenses": [
+            "https://projects.eclipse.org/license/epl-2.0, https://projects.eclipse.org/license/secondary-gpl-2.0-cp"
+          ]
+        },
+        {
+          "ID": "jakarta.json:jakarta.json-api:2.1.3",
+          "Name": "jakarta.json:jakarta.json-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.json/jakarta.json-api@2.1.3",
+            "UID": "477fb2d22df733a1",
+            "BOMRef": "pkg:maven/jakarta.json/jakarta.json-api@2.1.3?package-id=005d58380e6bfdff"
+          },
+          "Version": "2.1.3",
+          "Licenses": [
+            "https://projects.eclipse.org/license/epl-2.0, https://projects.eclipse.org/license/secondary-gpl-2.0-cp"
+          ]
+        },
+        {
+          "ID": "jakarta.persistence:jakarta.persistence-api:3.2.0",
+          "Name": "jakarta.persistence:jakarta.persistence-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.persistence/jakarta.persistence-api@3.2.0",
+            "UID": "577f18e609da999c",
+            "BOMRef": "pkg:maven/jakarta.persistence/jakarta.persistence-api@3.2.0?package-id=7c087616b8718d8c"
+          },
+          "Version": "3.2.0",
+          "Licenses": [
+            "http://www.eclipse.org/legal/epl-2.0, http://www.eclipse.org/org/documents/edl-v10.php"
+          ]
+        },
+        {
+          "ID": "jakarta.resource:jakarta.resource-api:2.1.0",
+          "Name": "jakarta.resource:jakarta.resource-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.resource/jakarta.resource-api@2.1.0",
+            "UID": "698c6143b9468bd0",
+            "BOMRef": "pkg:maven/jakarta.resource/jakarta.resource-api@2.1.0?package-id=d13bfd6183da0881"
+          },
+          "Version": "2.1.0",
+          "Licenses": [
+            "http://www.eclipse.org/legal/epl-2.0, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "jakarta.servlet:jakarta.servlet-api:6.0.0",
+          "Name": "jakarta.servlet:jakarta.servlet-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.servlet/jakarta.servlet-api@6.0.0",
+            "UID": "ac0722a73b01ce2",
+            "BOMRef": "pkg:maven/jakarta.servlet/jakarta.servlet-api@6.0.0?package-id=1c653b756099f624"
+          },
+          "Version": "6.0.0",
+          "Licenses": [
+            "http://www.eclipse.org/legal/epl-2.0, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "jakarta.transaction:jakarta.transaction-api:2.0.1",
+          "Name": "jakarta.transaction:jakarta.transaction-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.transaction/jakarta.transaction-api@2.0.1",
+            "UID": "9908b7cd74b99a9a",
+            "BOMRef": "pkg:maven/jakarta.transaction/jakarta.transaction-api@2.0.1?package-id=f4542b62f117f79d"
+          },
+          "Version": "2.0.1",
+          "Licenses": [
+            "http://www.eclipse.org/legal/epl-2.0, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "jakarta.validation:jakarta.validation-api:3.1.1",
+          "Name": "jakarta.validation:jakarta.validation-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.validation/jakarta.validation-api@3.1.1",
+            "UID": "fb2a4180ad751233",
+            "BOMRef": "pkg:maven/jakarta.validation/jakarta.validation-api@3.1.1?package-id=0efcd520edd5fe37"
+          },
+          "Version": "3.1.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "jakarta.ws.rs:jakarta.ws.rs-api:3.1.0",
+          "Name": "jakarta.ws.rs:jakarta.ws.rs-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.ws.rs/jakarta.ws.rs-api@3.1.0",
+            "UID": "3bb905008ee7b4b4",
+            "BOMRef": "pkg:maven/jakarta.ws.rs/jakarta.ws.rs-api@3.1.0?package-id=e631fbdec7234324"
+          },
+          "Version": "3.1.0",
+          "Licenses": [
+            "http://www.eclipse.org/legal/epl-2.0, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "jakarta.xml.bind:jakarta.xml.bind-api:4.0.5",
+          "Name": "jakarta.xml.bind:jakarta.xml.bind-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5",
+            "UID": "5c728933adb2b005",
+            "BOMRef": "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5?package-id=c2ac805dcadb3ca3"
+          },
+          "Version": "4.0.5",
+          "Licenses": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "ID": "javax.cache:cache-api:1.1.1",
+          "Name": "javax.cache:cache-api",
+          "Identifier": {
+            "PURL": "pkg:maven/javax.cache/cache-api@1.1.1",
+            "UID": "fd40238c6174c555",
+            "BOMRef": "pkg:maven/javax.cache/cache-api@1.1.1?package-id=18cd67a7251061e9"
+          },
+          "Version": "1.1.1",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "jrt-fs:jrt-fs:25.0.4.1",
+          "Name": "jrt-fs:jrt-fs",
+          "Identifier": {
+            "PURL": "pkg:maven/jrt-fs/jrt-fs@25.0.4.1",
+            "UID": "9cf7b3b3a970b116",
+            "BOMRef": "pkg:maven/jrt-fs/jrt-fs@25.0.4.1?package-id=142f790624273fa4"
+          },
+          "Version": "25.0.4.1"
+        },
+        {
+          "ID": "org.antlr:antlr4-runtime:4.13.2",
+          "Name": "org.antlr:antlr4-runtime",
+          "Identifier": {
+            "PURL": "pkg:maven/org.antlr/antlr4-runtime@4.13.2",
+            "UID": "9cb121f0206a882",
+            "BOMRef": "pkg:maven/org.antlr/antlr4-runtime@4.13.2?package-id=269b68b5e00bddaf"
+          },
+          "Version": "4.13.2",
+          "Licenses": [
+            "https://www.antlr.org/license.html"
+          ]
+        },
+        {
+          "ID": "org.crac:crac:1.5.0",
+          "Name": "org.crac:crac",
+          "Identifier": {
+            "PURL": "pkg:maven/org.crac/crac@1.5.0",
+            "UID": "73b2c66d953d720",
+            "BOMRef": "pkg:maven/org.crac/crac@1.5.0?package-id=e5b345357b9a0c50"
+          },
+          "Version": "1.5.0",
+          "Licenses": [
+            "BSD-2-Clause;link=\"https://opensource.org/licenses/BSD-2-Clause\""
+          ]
+        },
+        {
+          "ID": "org.eclipse.angus:angus-activation:2.0.3",
+          "Name": "org.eclipse.angus:angus-activation",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.angus/angus-activation@2.0.3",
+            "UID": "5a3f4f0aa0c2eb65",
+            "BOMRef": "pkg:maven/org.eclipse.angus/angus-activation@2.0.3?package-id=864fd33616f125d2"
+          },
+          "Version": "2.0.3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "ID": "org.eclipse.microprofile.config:microprofile-config-api:3.1.1",
+          "Name": "org.eclipse.microprofile.config:microprofile-config-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.microprofile.config/microprofile-config-api@3.1.1",
+            "UID": "968c7957bf70860a",
+            "BOMRef": "pkg:maven/org.eclipse.microprofile.config/microprofile-config-api@3.1.1?package-id=e8852bd5732ce1da"
+          },
+          "Version": "3.1.1",
+          "Licenses": [
+            "\"Apache License, Version 2.0\";link=\"https://www.apache.org/licenses/LICENSE-2.0.txt\""
+          ]
+        },
+        {
+          "ID": "org.eclipse.microprofile.context-propagation:microprofile-context-propagation-api:1.3",
+          "Name": "org.eclipse.microprofile.context-propagation:microprofile-context-propagation-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.microprofile.context-propagation/microprofile-context-propagation-api@1.3",
+            "UID": "95d76e2af04fc4ef",
+            "BOMRef": "pkg:maven/org.eclipse.microprofile.context-propagation/microprofile-context-propagation-api@1.3?package-id=41d3bfbc9b31fce3"
+          },
+          "Version": "1.3",
+          "Licenses": [
+            "\"Apache License, Version 2.0\";link=\"https://www.apache.org/licenses/LICENSE-2.0.txt\";description=\"A business-friendly OSS license\""
+          ]
+        },
+        {
+          "ID": "org.eclipse.microprofile.health:microprofile-health-api:4.0.1",
+          "Name": "org.eclipse.microprofile.health:microprofile-health-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.microprofile.health/microprofile-health-api@4.0.1",
+            "UID": "71c4c6698850b881",
+            "BOMRef": "pkg:maven/org.eclipse.microprofile.health/microprofile-health-api@4.0.1?package-id=14559eb7358bc7cd"
+          },
+          "Version": "4.0.1",
+          "Licenses": [
+            "Apache License, Version 2.0"
+          ]
+        },
+        {
+          "ID": "org.eclipse.microprofile.openapi:microprofile-openapi-api:4.1.1",
+          "Name": "org.eclipse.microprofile.openapi:microprofile-openapi-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.microprofile.openapi/microprofile-openapi-api@4.1.1",
+            "UID": "48de6a442b439892",
+            "BOMRef": "pkg:maven/org.eclipse.microprofile.openapi/microprofile-openapi-api@4.1.1?package-id=e58be7f1903ba451"
+          },
+          "Version": "4.1.1",
+          "Licenses": [
+            "Apache License, Version 2.0"
+          ]
+        },
+        {
+          "ID": "org.eclipse.parsson:parsson:1.1.9",
+          "Name": "org.eclipse.parsson:parsson",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.parsson/parsson@1.1.9",
+            "UID": "52ee0fbaa8571ac3",
+            "BOMRef": "pkg:maven/org.eclipse.parsson/parsson@1.1.9?package-id=e8e7398da4cc9e4f"
+          },
+          "Version": "1.1.9",
+          "Licenses": [
+            "https://projects.eclipse.org/license/epl-2.0, https://projects.eclipse.org/license/secondary-gpl-2.0-cp"
+          ]
+        },
+        {
+          "ID": "org.eclipse.yasson:yasson:3.0.5",
+          "Name": "org.eclipse.yasson:yasson",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.yasson/yasson@3.0.5",
+            "UID": "6c1c2eb5bd82d8a",
+            "BOMRef": "pkg:maven/org.eclipse.yasson/yasson@3.0.5?package-id=ad510022447d4db4"
+          },
+          "Version": "3.0.5",
+          "Licenses": [
+            "http://www.eclipse.org/legal/epl-v20.html, http://www.eclipse.org/org/documents/edl-v10.php"
+          ]
+        },
+        {
+          "ID": "org.glassfish.expressly:expressly:6.0.0",
+          "Name": "org.glassfish.expressly:expressly",
+          "Identifier": {
+            "PURL": "pkg:maven/org.glassfish.expressly/expressly@6.0.0",
+            "UID": "5977d67ef2ced020",
+            "BOMRef": "pkg:maven/org.glassfish.expressly/expressly@6.0.0?package-id=b8ce2927d5c6082b"
+          },
+          "Version": "6.0.0",
+          "Licenses": [
+            "https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt, https://www.gnu.org/software/classpath/license.html"
+          ]
+        },
+        {
+          "ID": "org.glassfish.jaxb:jaxb-core:4.0.9",
+          "Name": "org.glassfish.jaxb:jaxb-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.glassfish.jaxb/jaxb-core@4.0.9",
+            "UID": "6be3d6c7330423a7",
+            "BOMRef": "pkg:maven/org.glassfish.jaxb/jaxb-core@4.0.9?package-id=74a709ace82afbb4"
+          },
+          "Version": "4.0.9",
+          "Licenses": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "ID": "org.glassfish.jaxb:jaxb-runtime:4.0.9",
+          "Name": "org.glassfish.jaxb:jaxb-runtime",
+          "Identifier": {
+            "PURL": "pkg:maven/org.glassfish.jaxb/jaxb-runtime@4.0.9",
+            "UID": "30ad07120428255c",
+            "BOMRef": "pkg:maven/org.glassfish.jaxb/jaxb-runtime@4.0.9?package-id=24f8409799a52b82"
+          },
+          "Version": "4.0.9",
+          "Licenses": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "ID": "org.glassfish.jaxb:txw2:4.0.9",
+          "Name": "org.glassfish.jaxb:txw2",
+          "Identifier": {
+            "PURL": "pkg:maven/org.glassfish.jaxb/txw2@4.0.9",
+            "UID": "3435a41de6797002",
+            "BOMRef": "pkg:maven/org.glassfish.jaxb/txw2@4.0.9?package-id=2d677441c9d446f3"
+          },
+          "Version": "4.0.9",
+          "Licenses": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "ID": "org.hdrhistogram:HdrHistogram:2.2.2",
+          "Name": "org.hdrhistogram:HdrHistogram",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hdrhistogram/HdrHistogram@2.2.2",
+            "UID": "65cf204518e164e",
+            "BOMRef": "pkg:maven/org.hdrhistogram/HdrHistogram@2.2.2?package-id=a09a4709dda15faf"
+          },
+          "Version": "2.2.2",
+          "Licenses": [
+            "http://creativecommons.org/publicdomain/zero/1.0/, https://opensource.org/licenses/BSD-2-Clause"
+          ]
+        },
+        {
+          "ID": "org.hibernate.models:hibernate-models:1.1.2",
+          "Name": "org.hibernate.models:hibernate-models",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hibernate.models/hibernate-models@1.1.2",
+            "UID": "6ca1057dda693952",
+            "BOMRef": "pkg:maven/org.hibernate.models/hibernate-models@1.1.2?package-id=39e28dab41a4117b"
+          },
+          "Version": "1.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.hibernate.validator:hibernate-validator:9.1.3.Final",
+          "Name": "org.hibernate.validator:hibernate-validator",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hibernate.validator/hibernate-validator@9.1.3.Final",
+            "UID": "cd5e55a4d153b89d",
+            "BOMRef": "pkg:maven/org.hibernate.validator/hibernate-validator@9.1.3.Final?package-id=78569044f5b87074"
+          },
+          "Version": "9.1.3.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.hibernate:hibernate-core:7.4.9.Final",
+          "Name": "org.hibernate:hibernate-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hibernate/hibernate-core@7.4.9.Final",
+            "UID": "cbb22cd5ccf01e9b",
+            "BOMRef": "pkg:maven/org.hibernate/hibernate-core@7.4.9.Final?package-id=c3002d4b3d65be06"
+          },
+          "Version": "7.4.9.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.hibernate:hibernate-graalvm:7.4.9.Final",
+          "Name": "org.hibernate:hibernate-graalvm",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hibernate/hibernate-graalvm@7.4.9.Final",
+            "UID": "8ba91f4bf5cd54f9",
+            "BOMRef": "pkg:maven/org.hibernate/hibernate-graalvm@7.4.9.Final?package-id=b507b73755625ff2"
+          },
+          "Version": "7.4.9.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.hibernate:hibernate-jcache:7.4.9.Final",
+          "Name": "org.hibernate:hibernate-jcache",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hibernate/hibernate-jcache@7.4.9.Final",
+            "UID": "84a63ee64cf5d68a",
+            "BOMRef": "pkg:maven/org.hibernate/hibernate-jcache@7.4.9.Final?package-id=785f5c626df5e314"
+          },
+          "Version": "7.4.9.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.jboss.logging:jboss-logging:3.6.3.Final",
+          "Name": "org.jboss.logging:jboss-logging",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.logging/jboss-logging@3.6.3.Final",
+            "UID": "69e9f8805f45fff3",
+            "BOMRef": "pkg:maven/org.jboss.logging/jboss-logging@3.6.3.Final?package-id=af19389ebce5c5f8"
+          },
+          "Version": "3.6.3.Final",
+          "Licenses": [
+            "https://repository.jboss.org/licenses/apache-2.0.txt"
+          ]
+        },
+        {
+          "ID": "org.jboss.logmanager:jboss-logmanager:3.2.2.Final",
+          "Name": "org.jboss.logmanager:jboss-logmanager",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.logmanager/jboss-logmanager@3.2.2.Final",
+            "UID": "df7e8bd6a9d9496f",
+            "BOMRef": "pkg:maven/org.jboss.logmanager/jboss-logmanager@3.2.2.Final?package-id=782033d598534e57"
+          },
+          "Version": "3.2.2.Final",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "org.jboss.narayana.arjunacore:arjuna:7.3.4.Final",
+          "Name": "org.jboss.narayana.arjunacore:arjuna",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.arjunacore/arjuna@7.3.4.Final",
+            "UID": "6734f5317362b838",
+            "BOMRef": "pkg:maven/org.jboss.narayana.arjunacore/arjuna@7.3.4.Final?package-id=2f308744f5aae8cf"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.narayana.arjunacore:txoj:7.3.4.Final",
+          "Name": "org.jboss.narayana.arjunacore:txoj",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.arjunacore/txoj@7.3.4.Final",
+            "UID": "b92e58aca36493e2",
+            "BOMRef": "pkg:maven/org.jboss.narayana.arjunacore/txoj@7.3.4.Final?package-id=c393869be8d66f54"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.narayana.jta:cdi:7.3.4.Final",
+          "Name": "org.jboss.narayana.jta:cdi",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.jta/cdi@7.3.4.Final",
+            "UID": "e78bdbbd75ea20d7",
+            "BOMRef": "pkg:maven/org.jboss.narayana.jta/cdi@7.3.4.Final?package-id=f55ffeb9e852a9ad"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.narayana.jta:jdbc:7.3.4.Final",
+          "Name": "org.jboss.narayana.jta:jdbc",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.jta/jdbc@7.3.4.Final",
+            "UID": "414dae69dfd103e6",
+            "BOMRef": "pkg:maven/org.jboss.narayana.jta/jdbc@7.3.4.Final?package-id=4a5d964687629209"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.narayana.jta:jms:7.3.4.Final",
+          "Name": "org.jboss.narayana.jta:jms",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.jta/jms@7.3.4.Final",
+            "UID": "8ff193d8bd979e77",
+            "BOMRef": "pkg:maven/org.jboss.narayana.jta/jms@7.3.4.Final?package-id=b6950a3441b0e7bf"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.narayana.jta:jta:7.3.4.Final",
+          "Name": "org.jboss.narayana.jta:jta",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.jta/jta@7.3.4.Final",
+            "UID": "7f0e8b30c8de49bc",
+            "BOMRef": "pkg:maven/org.jboss.narayana.jta/jta@7.3.4.Final?package-id=c7d3b42588611903"
+          },
+          "Version": "7.3.4.Final",
+          "DependsOn": [
+            "org.jboss.narayana.arjunacore:arjuna:7.3.4.Final",
+            "org.jboss.narayana.arjunacore:txoj:7.3.4.Final",
+            "org.jboss.narayana.jta:cdi:7.3.4.Final",
+            "org.jboss.narayana.jta:jdbc:7.3.4.Final",
+            "org.jboss.narayana.jta:jms:7.3.4.Final",
+            "org.jboss.narayana.jta:narayana-jta:7.3.4.Final",
+            "org.jboss.narayana:common:7.3.4.Final"
+          ]
+        },
+        {
+          "ID": "org.jboss.narayana.jta:narayana-jta:7.3.4.Final",
+          "Name": "org.jboss.narayana.jta:narayana-jta",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.jta/narayana-jta@7.3.4.Final",
+            "UID": "f02991ea238b8d45",
+            "BOMRef": "pkg:maven/org.jboss.narayana.jta/narayana-jta@7.3.4.Final?package-id=f62c7ae725501d78"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.narayana.jts:narayana-jts-integration:7.3.4.Final",
+          "Name": "org.jboss.narayana.jts:narayana-jts-integration",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana.jts/narayana-jts-integration@7.3.4.Final",
+            "UID": "c2fc3249092c65c3",
+            "BOMRef": "pkg:maven/org.jboss.narayana.jts/narayana-jts-integration@7.3.4.Final?package-id=02f3ad8ab101ab55"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.narayana:common:7.3.4.Final",
+          "Name": "org.jboss.narayana:common",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.narayana/common@7.3.4.Final",
+            "UID": "1713513d8e4d603c",
+            "BOMRef": "pkg:maven/org.jboss.narayana/common@7.3.4.Final?package-id=00df6ebc5e2fc4df"
+          },
+          "Version": "7.3.4.Final"
+        },
+        {
+          "ID": "org.jboss.resteasy.microprofile:microprofile-config:3.0.1.Final",
+          "Name": "org.jboss.resteasy.microprofile:microprofile-config",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.resteasy.microprofile/microprofile-config@3.0.1.Final",
+            "UID": "9dce3c93a3bb6669",
+            "BOMRef": "pkg:maven/org.jboss.resteasy.microprofile/microprofile-config@3.0.1.Final?package-id=050f2346ef2a14ba"
+          },
+          "Version": "3.0.1.Final"
+        },
+        {
+          "ID": "org.jboss.resteasy:resteasy-cdi:6.2.19.Final",
+          "Name": "org.jboss.resteasy:resteasy-cdi",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.resteasy/resteasy-cdi@6.2.19.Final",
+            "UID": "2bfd87fd83ca81f6",
+            "BOMRef": "pkg:maven/org.jboss.resteasy/resteasy-cdi@6.2.19.Final?package-id=545ec83c9d584341"
+          },
+          "Version": "6.2.19.Final"
+        },
+        {
+          "ID": "org.jboss.resteasy:resteasy-core:6.2.19.Final",
+          "Name": "org.jboss.resteasy:resteasy-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.resteasy/resteasy-core@6.2.19.Final",
+            "UID": "483cda752f902204",
+            "BOMRef": "pkg:maven/org.jboss.resteasy/resteasy-core@6.2.19.Final?package-id=d61666c6eeb856e6"
+          },
+          "Version": "6.2.19.Final"
+        },
+        {
+          "ID": "org.jboss.resteasy:resteasy-core-spi:6.2.19.Final",
+          "Name": "org.jboss.resteasy:resteasy-core-spi",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.resteasy/resteasy-core-spi@6.2.19.Final",
+            "UID": "31c2c02917d6398",
+            "BOMRef": "pkg:maven/org.jboss.resteasy/resteasy-core-spi@6.2.19.Final?package-id=ac6bb268315236ba"
+          },
+          "Version": "6.2.19.Final"
+        },
+        {
+          "ID": "org.jboss.resteasy:resteasy-json-binding-provider:6.2.19.Final",
+          "Name": "org.jboss.resteasy:resteasy-json-binding-provider",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.resteasy/resteasy-json-binding-provider@6.2.19.Final",
+            "UID": "1fbe38ce53696c64",
+            "BOMRef": "pkg:maven/org.jboss.resteasy/resteasy-json-binding-provider@6.2.19.Final?package-id=1a5804a17258071d"
+          },
+          "Version": "6.2.19.Final"
+        },
+        {
+          "ID": "org.jboss.resteasy:resteasy-json-p-provider:6.2.19.Final",
+          "Name": "org.jboss.resteasy:resteasy-json-p-provider",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.resteasy/resteasy-json-p-provider@6.2.19.Final",
+            "UID": "2a9e24eac194b4c9",
+            "BOMRef": "pkg:maven/org.jboss.resteasy/resteasy-json-p-provider@6.2.19.Final?package-id=df77098426011df9"
+          },
+          "Version": "6.2.19.Final"
+        },
+        {
+          "ID": "org.jboss.resteasy:resteasy-tracing-api:2.0.2.Final",
+          "Name": "org.jboss.resteasy:resteasy-tracing-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.resteasy/resteasy-tracing-api@2.0.2.Final",
+            "UID": "c536620e0505f65e",
+            "BOMRef": "pkg:maven/org.jboss.resteasy/resteasy-tracing-api@2.0.2.Final?package-id=d644361d6df98a5b"
+          },
+          "Version": "2.0.2.Final"
+        },
+        {
+          "ID": "org.jboss.slf4j:slf4j-jboss-logmanager:2.0.2.Final",
+          "Name": "org.jboss.slf4j:slf4j-jboss-logmanager",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.slf4j/slf4j-jboss-logmanager@2.0.2.Final",
+            "UID": "e8125647966a84d4",
+            "BOMRef": "pkg:maven/org.jboss.slf4j/slf4j-jboss-logmanager@2.0.2.Final?package-id=99ed53b43d9307c1"
+          },
+          "Version": "2.0.2.Final",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "org.jboss.threads:jboss-threads:3.9.2",
+          "Name": "org.jboss.threads:jboss-threads",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.threads/jboss-threads@3.9.2",
+            "UID": "b8d8681001a091c8",
+            "BOMRef": "pkg:maven/org.jboss.threads/jboss-threads@3.9.2?package-id=5f271f20e6d8aeee"
+          },
+          "Version": "3.9.2",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.jboss:jboss-transaction-spi:8.0.0.Final",
+          "Name": "org.jboss:jboss-transaction-spi",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss/jboss-transaction-spi@8.0.0.Final",
+            "UID": "a6cd2906308f5ac9",
+            "BOMRef": "pkg:maven/org.jboss/jboss-transaction-spi@8.0.0.Final?package-id=1e4fb334e0b46a25"
+          },
+          "Version": "8.0.0.Final"
+        },
+        {
+          "ID": "org.jctools:jctools-core:4.0.5",
+          "Name": "org.jctools:jctools-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jctools/jctools-core@4.0.5",
+            "UID": "720ec4d05bc8bea7",
+            "BOMRef": "pkg:maven/org.jctools/jctools-core@4.0.5?package-id=78d58fb6bbdc9f72"
+          },
+          "Version": "4.0.5",
+          "Licenses": [
+            "Apache License, Version 2.0"
+          ]
+        },
+        {
+          "ID": "org.jctools:jctools-core:4.0.5",
+          "Name": "org.jctools:jctools-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jctools/jctools-core@4.0.5",
+            "UID": "262581804d058d93",
+            "BOMRef": "pkg:maven/org.jctools/jctools-core@4.0.5?package-id=2646ebe222b13323"
+          },
+          "Version": "4.0.5",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.jspecify.jspecify:jspecify:1.0.0",
+          "Name": "org.jspecify.jspecify:jspecify",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jspecify.jspecify/jspecify@1.0.0",
+            "UID": "2d8a48f16e3f0b52",
+            "BOMRef": "pkg:maven/org.jspecify.jspecify/jspecify@1.0.0?package-id=67c2c3a7d5465151"
+          },
+          "Version": "1.0.0",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "org.latencyutils:LatencyUtils:2.0.3",
+          "Name": "org.latencyutils:LatencyUtils",
+          "Identifier": {
+            "PURL": "pkg:maven/org.latencyutils/LatencyUtils@2.0.3",
+            "UID": "37f3917207d91aef",
+            "BOMRef": "pkg:maven/org.latencyutils/LatencyUtils@2.0.3?package-id=02f1482a0832b08c"
+          },
+          "Version": "2.0.3",
+          "Licenses": [
+            "Public Domain, per Creative Commons CC0"
+          ]
+        },
+        {
+          "ID": "org.osgi:org.osgi.namespace.extender:1.0.1",
+          "Name": "org.osgi:org.osgi.namespace.extender",
+          "Identifier": {
+            "PURL": "pkg:maven/org.osgi/org.osgi.namespace.extender@1.0.1",
+            "UID": "682c47c93b6152cf",
+            "BOMRef": "pkg:maven/org.osgi/org.osgi.namespace.extender@1.0.1?package-id=01cff9c6c2d517d0"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "http://opensource.org/licenses/apache2.0.php; link=\"http://www.apache.org/licenses/LICENSE-2.0\"; description=\"Apache License, Version 2.0\""
+          ]
+        },
+        {
+          "ID": "org.osgi:org.osgi.service.component.annotations:1.5.1",
+          "Name": "org.osgi:org.osgi.service.component.annotations",
+          "Identifier": {
+            "PURL": "pkg:maven/org.osgi/org.osgi.service.component.annotations@1.5.1",
+            "UID": "7bce890d915fd3f8",
+            "BOMRef": "pkg:maven/org.osgi/org.osgi.service.component.annotations@1.5.1?package-id=907203660dba148a"
+          },
+          "Version": "1.5.1",
+          "Licenses": [
+            "Apache-2.0;description=\"This program and the accompanying materials are made available under the terms of the Apache License, Version 2.0.\";link=\"https://opensource.org/licenses/Apache-2.0\""
+          ]
+        },
+        {
+          "ID": "org.osgi:org.osgi.util.function:1.0.0",
+          "Name": "org.osgi:org.osgi.util.function",
+          "Identifier": {
+            "PURL": "pkg:maven/org.osgi/org.osgi.util.function@1.0.0",
+            "UID": "48f05850dceb9013",
+            "BOMRef": "pkg:maven/org.osgi/org.osgi.util.function@1.0.0?package-id=75de0b43dd90d64f"
+          },
+          "Version": "1.0.0",
+          "Licenses": [
+            "http://opensource.org/licenses/apache2.0.php; link=\"http://www.apache.org/licenses/LICENSE-2.0\"; description=\"Apache License, Version 2.0\""
+          ]
+        },
+        {
+          "ID": "org.osgi:org.osgi.util.promise:1.0.0",
+          "Name": "org.osgi:org.osgi.util.promise",
+          "Identifier": {
+            "PURL": "pkg:maven/org.osgi/org.osgi.util.promise@1.0.0",
+            "UID": "cb0a7fd431ceb64f",
+            "BOMRef": "pkg:maven/org.osgi/org.osgi.util.promise@1.0.0?package-id=07227fdebe54956a"
+          },
+          "Version": "1.0.0",
+          "Licenses": [
+            "http://opensource.org/licenses/apache2.0.php; link=\"http://www.apache.org/licenses/LICENSE-2.0\"; description=\"Apache License, Version 2.0\""
+          ]
+        },
+        {
+          "ID": "org.osgi:osgi.annotation:8.1.0",
+          "Name": "org.osgi:osgi.annotation",
+          "Identifier": {
+            "PURL": "pkg:maven/org.osgi/osgi.annotation@8.1.0",
+            "UID": "d8ec9f40dce6dc25",
+            "BOMRef": "pkg:maven/org.osgi/osgi.annotation@8.1.0?package-id=7554aa72c48d2d16"
+          },
+          "Version": "8.1.0",
+          "Licenses": [
+            "Apache-2.0;description=\"This program and the accompanying materials are made available under the terms of the Apache License, Version 2.0.\";link=\"https://opensource.org/licenses/Apache-2.0\""
+          ]
+        },
+        {
+          "ID": "org.postgresql:postgresql:42.7.13",
+          "Name": "org.postgresql:postgresql",
+          "Identifier": {
+            "PURL": "pkg:maven/org.postgresql/postgresql@42.7.13",
+            "UID": "1e0e0b3f76bf7373",
+            "BOMRef": "pkg:maven/org.postgresql/postgresql@42.7.13?package-id=eb4ae3989bb5f093"
+          },
+          "Version": "42.7.13",
+          "Licenses": [
+            "BSD-2-Clause"
+          ]
+        },
+        {
+          "ID": "org.reactivestreams:reactive-streams:1.0.4",
+          "Name": "org.reactivestreams:reactive-streams",
+          "Identifier": {
+            "PURL": "pkg:maven/org.reactivestreams/reactive-streams@1.0.4",
+            "UID": "6a9b9b1c4567af98",
+            "BOMRef": "pkg:maven/org.reactivestreams/reactive-streams@1.0.4?package-id=ae162f5872679729"
+          },
+          "Version": "1.0.4"
+        },
+        {
+          "ID": "org.slf4j:slf4j-api:2.0.18",
+          "Name": "org.slf4j:slf4j-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.slf4j/slf4j-api@2.0.18",
+            "UID": "3cf54baa78478eea",
+            "BOMRef": "pkg:maven/org.slf4j/slf4j-api@2.0.18?package-id=3fdcd11d26ac928f"
+          },
+          "Version": "2.0.18",
+          "Licenses": [
+            "https://opensource.org/license/mit"
+          ]
+        },
+        {
+          "ID": "org.wildfly.common:wildfly-common:2.0.1",
+          "Name": "org.wildfly.common:wildfly-common",
+          "Identifier": {
+            "PURL": "pkg:maven/org.wildfly.common/wildfly-common@2.0.1",
+            "UID": "db1fa760ac1235fb",
+            "BOMRef": "pkg:maven/org.wildfly.common/wildfly-common@2.0.1?package-id=9567a8cdcddea730"
+          },
+          "Version": "2.0.1",
+          "Licenses": [
+            "Apache License 2.0"
+          ]
+        },
+        {
+          "ID": "org.yaml:snakeyaml:2.6",
+          "Name": "org.yaml:snakeyaml",
+          "Identifier": {
+            "PURL": "pkg:maven/org.yaml/snakeyaml@2.6",
+            "UID": "b11d5cdb380ca217",
+            "BOMRef": "pkg:maven/org.yaml/snakeyaml@2.6?package-id=ae653faeab5afd67"
+          },
+          "Version": "2.6",
+          "Licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "ID": "quarkus-todo-apps:quarkus-todo-apps:1.0.0",
+          "Name": "quarkus-todo-apps:quarkus-todo-apps",
+          "Identifier": {
+            "PURL": "pkg:maven/quarkus-todo-apps/quarkus-todo-apps@1.0.0",
+            "UID": "1538ec87a148e0c1",
+            "BOMRef": "pkg:maven/quarkus-todo-apps/quarkus-todo-apps@1.0.0?package-id=e5ba027c4bece5c0"
+          },
+          "Version": "1.0.0"
+        }
+      ]
+    }
+  ]
+}
