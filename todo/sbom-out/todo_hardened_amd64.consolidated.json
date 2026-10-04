@@ -1,0 +1,194 @@
+[
+  {
+    "id": "CVE-2026-102010",
+    "pkg": "libgcc",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-102010",
+    "pkg": "libstdc++",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-103111",
+    "pkg": "pcre2",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-103111",
+    "pkg": "pcre2-syntax",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8674",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8674",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-8674",
+    "pkg": "glibc-langpack-en",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86805",
+    "pkg": "glibc",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86805",
+    "pkg": "glibc-common",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-86805",
+    "pkg": "glibc-langpack-en",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89092",
+    "pkg": "glibc",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89092",
+    "pkg": "glibc-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-89092",
+    "pkg": "glibc-langpack-en",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-93541",
+    "pkg": "libXi",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-93542",
+    "pkg": "libXi",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-93543",
+    "pkg": "libXi",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-93544",
+    "pkg": "libXi",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-93545",
+    "pkg": "libXi",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94281",
+    "pkg": "libXi",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94283",
+    "pkg": "libX11",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94283",
+    "pkg": "libX11-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94284",
+    "pkg": "libX11",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94284",
+    "pkg": "libX11-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94285",
+    "pkg": "libX11",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94285",
+    "pkg": "libX11-common",
+    "severity": "Medium",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-94286",
+    "pkg": "libXtst",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95818",
+    "pkg": "glibc",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95818",
+    "pkg": "glibc-common",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-95818",
+    "pkg": "glibc-langpack-en",
+    "severity": "High",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-97399",
+    "pkg": "glibc",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-97399",
+    "pkg": "glibc-common",
+    "severity": "Low",
+    "source": "only:grype"
+  },
+  {
+    "id": "CVE-2026-97399",
+    "pkg": "glibc-langpack-en",
+    "severity": "Low",
+    "source": "only:grype"
+  }
+]
